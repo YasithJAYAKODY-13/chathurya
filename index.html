@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chathurya Sandabarana | Singer</title>
-<meta name="description" content="Chathurya Sandabarana is a singer from Tangalle, Sri Lanka. Concerts, school and community events, and screen work.">
+<meta name="description" content="Chathurya Sandabarana is a singer from Tangalle, Sri Lanka. Concerts, television, The Voice and more.">
 <meta property="og:title" content="Chathurya Sandabarana | Singer">
-<meta property="og:description" content="Singer from Tangalle, Sri Lanka. Concerts, events and bookings.">
+<meta property="og:description" content="Singer from Tangalle, Sri Lanka. Concerts, television, The Voice and more.">
 <meta property="og:image" content="assets/share.jpg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0F2A24">
+<meta name="theme-color" content="#0C241F">
 <link rel="icon" href="assets/icon.png">
 <link rel="preload" href="assets/fonts/rozha-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -18,123 +18,174 @@
 @font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
 :root{
-  --night:#0F2A24;      /* deep bottle green, page base */
-  --dress:#1C5442;      /* her stage-dress green */
-  --brass:#D4A53A;      /* the poster's gold ring */
-  --brass-soft:#E9CB7E;
-  --pearl:#F2F1E8;      /* text on dark */
-  --mist:#A9BDB4;       /* secondary text */
+  --night:#0C241F;
+  --deep:#103129;
+  --dress:#1C5442;
+  --brass:#D4A53A;
+  --brass-soft:#ECCF85;
+  --pearl:#F4F2EA;
+  --mist:#AFC3BA;
   --display:"Rozha One", Georgia, serif;
   --body:"Hanken Grotesk", system-ui, sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--night);color:var(--pearl);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{background:var(--night);color:var(--pearl);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 a{color:var(--brass-soft)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:2px}
-.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:4px}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(2.3rem,5vw,3.7rem);line-height:1.05}
 
 /* top bar */
-.bar{position:absolute;inset:0 0 auto 0;z-index:5}
-.bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
-.mark{font-family:var(--display);font-size:1.35rem;color:var(--pearl);text-decoration:none;letter-spacing:.01em}
+.bar{position:fixed;inset:0 0 auto 0;z-index:20;transition:background .3s}
+.bar.solid{background:rgba(12,36,31,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,165,58,.15)}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
+.mark{font-family:var(--display);font-size:1.35rem;color:var(--pearl);text-decoration:none}
 .bar nav{display:flex;gap:28px}
 .bar nav a{color:var(--mist);text-decoration:none;font-weight:500;font-size:.95rem}
 .bar nav a:hover{color:var(--pearl)}
 
 /* hero */
-.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;
-  background:radial-gradient(120% 80% at 75% 40%, #1A4A3B 0%, var(--night) 62%)}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:0;padding-top:110px}
-.hero .wrap > div{position:relative;z-index:2;padding-bottom:11vh}
-.name{font-family:var(--display);font-weight:400;line-height:.86;font-size:clamp(4rem,7.4vw,7rem);letter-spacing:-.01em}
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate;
+  background:radial-gradient(90% 70% at 72% 45%, #1D5141 0%, #123A30 35%, var(--night) 75%)}
+#waves{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:22vh;background:linear-gradient(transparent,var(--night));z-index:-1;pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;padding-top:110px}
+.intro{position:relative;z-index:2;padding-bottom:11vh}
+.name{font-family:var(--display);font-weight:400;line-height:.9;font-size:clamp(4rem,7.4vw,7rem);text-shadow:0 18px 40px rgba(0,0,0,.35)}
 .name span{display:block}
-.name span + span{color:var(--brass)}
-.hero p.lede{max-width:30ch;color:var(--mist);font-size:1.15rem;margin-top:28px;line-height:1.5}
-.hero p.lede strong{color:var(--pearl);font-weight:500}
-.portrait{align-self:end;justify-self:end;height:min(78svh,700px);width:auto;max-width:none;filter:drop-shadow(0 30px 60px rgba(0,0,0,.45))}
-.cta{display:inline-flex;align-items:center;gap:10px;margin-top:30px;padding:14px 26px;border-radius:999px;background:var(--brass);color:var(--night);font-weight:600;text-decoration:none;transition:background .2s}
-.cta:hover{background:var(--brass-soft)}
+.name span + span{color:var(--brass);background:linear-gradient(180deg,#F3D98F 0%,#D4A53A 55%,#B4852A 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 14px 30px rgba(0,0,0,.35))}
+.lede{max-width:32ch;color:var(--mist);font-size:1.15rem;margin-top:26px;line-height:1.5}
+.lede strong{color:var(--pearl);font-weight:500}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .25s, box-shadow .25s, border-color .25s, color .25s}
+.btn.primary{background:linear-gradient(180deg,#E8C567,#C99A30);color:#14251F;box-shadow:0 10px 30px rgba(212,165,58,.25), inset 0 1px 0 rgba(255,255,255,.45)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(212,165,58,.35), inset 0 1px 0 rgba(255,255,255,.45)}
+.btn.ghost{color:var(--pearl);border:1px solid rgba(244,242,234,.35)}
+.btn.ghost:hover{border-color:var(--brass);color:var(--brass-soft)}
 
-/* load moment: the name rises, the portrait settles into its frame */
+.stage{justify-self:end;align-self:end;perspective:1200px}
+.portrait{height:min(80svh,720px);width:auto;max-width:none;
+  filter:drop-shadow(0 40px 60px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(212,165,58,.12));
+  transition:transform .6s cubic-bezier(.2,.7,.1,1);will-change:transform}
+
 @media (prefers-reduced-motion:no-preference){
-  .name span{animation:rise .9s cubic-bezier(.2,.7,.1,1) both}
+  .name span{animation:rise 1s cubic-bezier(.2,.7,.1,1) both}
   .name span + span{animation-delay:.12s}
-  .hero p.lede,.hero .cta{animation:fade .8s .45s both}
-  .portrait{animation:settle 1.2s .1s cubic-bezier(.2,.7,.1,1) both}
+  .lede,.actions{animation:fade .9s .45s both}
+  .stage{animation:settle 1.3s .1s cubic-bezier(.2,.7,.1,1) both}
   @keyframes rise{from{opacity:0;transform:translateY(.35em)}}
   @keyframes fade{from{opacity:0}}
-  @keyframes settle{from{opacity:0;transform:translateY(40px) scale(.97)}}
+  @keyframes settle{from{opacity:0;transform:translateY(50px)}}
 }
 
-/* sections */
-section{padding-block:clamp(72px,11vw,140px)}
-h2{font-family:var(--display);font-weight:400;font-size:clamp(2.3rem,5vw,3.6rem);line-height:1.05;margin-bottom:28px}
-.about{background:var(--pearl);color:#1D2B26}
-.about .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(32px,6vw,90px);align-items:start}
-.about h2{color:var(--dress)}
-.about p{max-width:62ch}
+/* about */
+.about{padding-block:clamp(80px,11vw,140px);background:linear-gradient(180deg,var(--night),var(--deep))}
+.about .wrap{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(32px,6vw,90px);align-items:start}
+.about p{max-width:60ch;color:#D8E2DC;font-size:1.12rem}
 .about p + p{margin-top:1.1em}
 
-.work ul{list-style:none;border-top:1px solid rgba(212,165,58,.35)}
-.work li{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:24px;padding-block:28px;border-bottom:1px solid rgba(212,165,58,.35)}
-.work .kind{color:var(--brass);font-weight:500}
-.work h3{font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1.15;margin-bottom:6px}
-.work li p{color:var(--mist);max-width:60ch}
+/* performances */
+.perf{padding-block:clamp(80px,11vw,140px);background:var(--deep)}
+.perf h2{margin-bottom:12px}
+.perf .sub{color:var(--mist);max-width:56ch;margin-bottom:36px}
+.tablist{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.tab{appearance:none;font:inherit;font-weight:500;font-size:1rem;color:var(--mist);cursor:pointer;
+  padding:12px 22px;border-radius:999px;border:1px solid rgba(175,195,186,.28);
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.01));
+  box-shadow:0 6px 18px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+  transition:color .25s, border-color .25s, transform .25s}
+.tab:hover{color:var(--pearl);border-color:rgba(212,165,58,.6);transform:translateY(-1px)}
+.tab[aria-selected="true"]{color:#14251F;border-color:transparent;
+  background:linear-gradient(180deg,#EDCB72,#C99A30);box-shadow:0 12px 30px rgba(212,165,58,.28), inset 0 1px 0 rgba(255,255,255,.5)}
 
-.show{background:var(--dress)}
-.show .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
-.show figure img{border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.show figcaption{color:var(--mist);font-size:.92rem;margin-top:12px}
-.show dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin-top:22px}
-.show dt{color:var(--brass-soft)}
-.show p{max-width:48ch}
+.panel{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start;
+  padding:clamp(26px,4vw,52px);border-radius:28px;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.015) 60%);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 40px 80px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08)}
+.panel[hidden]{display:none}
+.panel h3{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1.1;margin-bottom:16px;color:var(--brass-soft)}
+.panel .lead p{color:#D8E2DC;max-width:46ch}
+.panel .lead p + p{margin-top:1em}
+@media (prefers-reduced-motion:no-preference){ .panel.enter{animation:panelIn .55s cubic-bezier(.2,.7,.1,1)} @keyframes panelIn{from{opacity:0;transform:translateY(14px)}} }
 
-.book{text-align:left}
-.book .wrap{border:1px solid var(--brass);border-radius:28px;padding:clamp(32px,6vw,72px)}
-.book p{max-width:56ch;color:var(--mist)}
-.book p + p{margin-top:1em}
+.items{display:grid;gap:16px;perspective:900px}
+.item{padding:22px 24px;border-radius:18px;
+  background:linear-gradient(160deg,rgba(28,84,66,.92),rgba(16,49,41,.92));
+  border:1px solid rgba(212,165,58,.22);
+  box-shadow:0 18px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .35s cubic-bezier(.2,.7,.1,1), box-shadow .35s}
+.item:hover{transform:translateY(-3px) rotateX(3deg);box-shadow:0 26px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.1)}
+.item h4{font-family:var(--display);font-weight:400;font-size:1.35rem;line-height:1.2;margin-bottom:4px}
+.item p{color:var(--mist);font-size:.98rem}
+.item .when{color:var(--brass-soft);font-size:.92rem;font-weight:500;margin-bottom:4px;display:block}
+.item.feature{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:center}
+.item.feature img{border-radius:10px;box-shadow:0 12px 26px rgba(0,0,0,.4)}
+.item.soon{background:transparent;border-style:dashed;box-shadow:none}
+.item.soon:hover{transform:none}
+
+/* contact */
+.contact{padding-block:clamp(80px,11vw,140px);background:linear-gradient(180deg,var(--deep),var(--night))}
+.contact .card{border-radius:32px;padding:clamp(32px,6vw,72px);
+  background:radial-gradient(120% 140% at 100% 0%,rgba(212,165,58,.18),transparent 55%),linear-gradient(160deg,#17463A,#0F2C25);
+  border:1px solid rgba(212,165,58,.35);box-shadow:0 40px 90px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08)}
+.contact h2{margin-bottom:18px}
+.contact p{max-width:56ch;color:#D8E2DC}
+.contact p + p{margin-top:1em}
+.contact .note{color:var(--mist)}
 
 footer{padding-block:40px;color:var(--mist);font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
-@media (max-width:820px){
-  .bar nav{gap:18px}
+@media (max-width:860px){
+  .bar nav{gap:16px}
+  .bar nav a{font-size:.9rem}
   .hero{align-items:start}
-  .hero .wrap{grid-template-columns:1fr;padding-top:96px;gap:0}
-  .hero .wrap > div{padding-bottom:0}
+  .hero .wrap{grid-template-columns:1fr;padding-top:92px}
+  .intro{padding-bottom:0}
   .name{font-size:clamp(2.8rem,13.4vw,5.6rem)}
-  .portrait{justify-self:center;height:auto;width:min(92%,440px);max-width:100%;margin:28px 0 0}
-  .about .wrap,.show .wrap{grid-template-columns:1fr}
-  .work li{grid-template-columns:1fr;gap:6px}
+  .stage{justify-self:center;margin-top:24px}
+  .portrait{height:auto;width:min(92vw,440px);max-width:100%}
+  .about .wrap,.panel{grid-template-columns:1fr}
+  .tablist{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding:4px 16px 10px}
+  .tablist::-webkit-scrollbar{display:none}
+  .tab{flex:none}
+  .item.feature{grid-template-columns:96px 1fr}
 }
-@media (max-width:420px){ .bar nav a:nth-child(2){display:none} }
+@media (max-width:420px){ .bar nav a.hide-xs{display:none} }
 </style>
 </head>
 <body>
 
-<header class="bar">
+<header class="bar" id="bar">
   <div class="wrap">
     <a class="mark" href="#top">Chathurya</a>
     <nav aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#work">Stage and screen</a>
-      <a href="#book">Bookings</a>
+      <a href="#about" class="hide-xs">About</a>
+      <a href="#performances">Performances</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
   <section class="hero" aria-label="Introduction">
+    <canvas id="waves" aria-hidden="true"></canvas>
     <div class="wrap">
-      <div>
+      <div class="intro">
         <h1 class="name"><span>Chathurya</span><span>Sandabarana</span></h1>
-        <p class="lede"><strong>Singer from Tangalle, Sri Lanka.</strong> Live on concert stages, at schools and at community celebrations.</p>
-        <a class="cta" href="#book">Book Chathurya</a>
+        <p class="lede"><strong>Singer from Tangalle, Sri Lanka.</strong> On concert stages, on television and on The Voice.</p>
+        <div class="actions">
+          <a class="btn primary" href="#performances">Performances</a>
+          <a class="btn ghost" href="#contact">Contact</a>
+        </div>
       </div>
-      <img class="portrait" src="assets/chathurya-stage.webp" width="900" height="1195"
-           alt="Chathurya Sandabarana singing on stage in a green dress, holding a microphone">
+      <div class="stage">
+        <img class="portrait" id="portrait" src="assets/chathurya-stage.webp" width="900" height="1195"
+             alt="Chathurya Sandabarana singing on stage in a green gown, holding a microphone">
+      </div>
     </div>
   </section>
 
@@ -142,66 +193,98 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="wrap">
       <h2>About Chathurya</h2>
       <div>
-        <p>Chathurya Sandabarana is a singer who grew up in Tangalle, on Sri Lanka's southern coast. She performs live at concerts, school celebrations and community events.</p>
-        <p>She has also appeared on screen in the Sinhala film <em>Man Hoyanne Premayak</em>. Today her focus is music.</p>
+        <p>Chathurya Sandabarana is a singer who grew up in Tangalle, on Sri Lanka's southern coast. Singing is the centre of her work, and she has performed at a great many shows, concerts and events.</p>
+        <p>Her voice has reached audiences on television, through musical performances and appearances on television podcasts, and on the stage of The Voice. She has also appeared on screen in the Sinhala film <em>Man Hoyanne Premayak</em>.</p>
       </div>
     </div>
   </section>
 
-  <section class="work" id="work">
+  <section class="perf" id="performances" aria-labelledby="perf-title">
     <div class="wrap">
-      <h2>On stage and screen</h2>
-      <ul>
-        <li>
-          <span class="kind">Concert</span>
-          <div>
-            <h3>A Colourful Children's World 2026</h3>
-            <p>Featured performer at the Children's Day celebration organised by Nexus Organization at H/Udayala Maha Vidyalaya on 1 October 2026.</p>
-          </div>
-        </li>
-        <li>
-          <span class="kind">Concert</span>
-          <div>
-            <h3>Handawaka</h3>
-            <p>Sang as part of the Handawaka concert.</p>
-          </div>
-        </li>
-        <li>
-          <span class="kind">Film</span>
-          <div>
-            <h3>Man Hoyanne Premayak</h3>
-            <p>Appeared as an actress in the Sinhala feature film.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
+      <h2 id="perf-title">Performances</h2>
+      <p class="sub">Choose a category to see where Chathurya has performed.</p>
 
-  <section class="show" aria-labelledby="show-title">
-    <div class="wrap">
-      <figure>
-        <img src="assets/childrens-day-2026.webp" width="1400" height="1395" loading="lazy"
-             alt="Event poster for A Colourful Children's World 2026, featuring Chathurya Sandabarana">
-        <figcaption>Event poster, Nexus Organization</figcaption>
-      </figure>
-      <div>
-        <h2 id="show-title">Children's Day 2026</h2>
-        <p>Chathurya was the featured singer at A Colourful Children's World, a Children's Day special celebration for students and families.</p>
-        <dl>
-          <dt>Date</dt><dd>Thursday 1 October 2026</dd>
-          <dt>Time</dt><dd>9.00 am to 2.00 pm</dd>
-          <dt>Venue</dt><dd>H/Udayala Maha Vidyalaya</dd>
-          <dt>Organiser</dt><dd>Nexus Organization</dd>
-        </dl>
+      <div class="tablist" role="tablist" aria-label="Performance categories">
+        <button class="tab" role="tab" id="t-singing" aria-controls="p-singing" aria-selected="true">Singing</button>
+        <button class="tab" role="tab" id="t-live" aria-controls="p-live" aria-selected="false" tabindex="-1">Concerts and events</button>
+        <button class="tab" role="tab" id="t-tv" aria-controls="p-tv" aria-selected="false" tabindex="-1">Television</button>
+        <button class="tab" role="tab" id="t-voice" aria-controls="p-voice" aria-selected="false" tabindex="-1">The Voice</button>
+        <button class="tab" role="tab" id="t-film" aria-controls="p-film" aria-selected="false" tabindex="-1">Film</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-singing" aria-labelledby="t-singing" tabindex="0">
+        <div class="lead">
+          <h3>Singing</h3>
+          <p>Singing is at the heart of everything Chathurya does. She performs live for audiences of every kind, from large concert stages to school and community celebrations.</p>
+          <p>Her performances have taken her from live venues to television studios and to the stage of The Voice.</p>
+        </div>
+        <div class="items">
+          <a class="item" href="#live" style="text-decoration:none;color:inherit"><h4>Concerts and events</h4><p>A long run of shows, concerts and community events.</p></a>
+          <a class="item" href="#tv" style="text-decoration:none;color:inherit"><h4>Television</h4><p>Musical performances and appearances on television podcasts.</p></a>
+          <a class="item" href="#voice" style="text-decoration:none;color:inherit"><h4>The Voice</h4><p>A contestant on the singing competition The Voice.</p></a>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-live" aria-labelledby="t-live" tabindex="0" hidden>
+        <div class="lead">
+          <h3>Concerts and events</h3>
+          <p>Chathurya has sung at a great many shows, concerts and events, performing for audiences across Sri Lanka.</p>
+        </div>
+        <div class="items">
+          <div class="item feature">
+            <img src="assets/childrens-day-2026.webp" width="1400" height="1395" loading="lazy" alt="Event poster for A Colourful Children's World 2026">
+            <div>
+              <span class="when">1 October 2026</span>
+              <h4>A Colourful Children's World 2026</h4>
+              <p>Featured singer at the Children's Day special celebration organised by Nexus Organization at H/Udayala Maha Vidyalaya.</p>
+            </div>
+          </div>
+          <div class="item"><h4>Handawaka</h4><p>Sang as part of the Handawaka concert.</p></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-tv" aria-labelledby="t-tv" tabindex="0" hidden>
+        <div class="lead">
+          <h3>Television</h3>
+          <p>Chathurya has sung on television and has been a guest on television podcasts, sharing her music and her story with audiences at home.</p>
+        </div>
+        <div class="items">
+          <div class="item"><h4>Musical performances</h4><p>Singing on television programmes.</p></div>
+          <div class="item"><h4>Television podcasts</h4><p>Guest appearances, conversation and live singing.</p></div>
+          <div class="item soon"><p>Programme names and recordings will be added here.</p></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-voice" aria-labelledby="t-voice" tabindex="0" hidden>
+        <div class="lead">
+          <h3>The Voice</h3>
+          <p>Chathurya took part in The Voice, the singing competition where artists are chosen on the strength of their voice alone.</p>
+        </div>
+        <div class="items">
+          <div class="item"><h4>Contestant</h4><p>Performed on The Voice singing competition.</p></div>
+          <div class="item soon"><p>Performance videos will be added here.</p></div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-film" aria-labelledby="t-film" tabindex="0" hidden>
+        <div class="lead">
+          <h3>Film</h3>
+          <p>Alongside her music, Chathurya has appeared on screen in a Sinhala feature film.</p>
+        </div>
+        <div class="items">
+          <div class="item"><h4>Man Hoyanne Premayak</h4><p>Appeared as an actress in the Sinhala feature film.</p></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="book" id="book">
+  <section class="contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
-      <h2>Book Chathurya</h2>
-      <p>Chathurya is available to sing at concerts, school events and private functions.</p>
-      <p id="contact-line">Booking contact details will be added here shortly.</p>
+      <div class="card">
+        <h2 id="contact-title">Contact</h2>
+        <p>For performance enquiries, television and media requests, and collaborations, please get in touch.</p>
+        <p class="note" id="contact-line">Contact details will be added here shortly.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -212,6 +295,94 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <a href="#top">Back to top</a>
   </div>
 </footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* header turns to glass after scrolling */
+const bar = document.getElementById('bar');
+const onScroll = () => bar.classList.toggle('solid', scrollY > 40);
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+/* tabs: click, arrow keys, and links such as #tv */
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+function select(tab, focus){
+  tabs.forEach(t => {
+    const on = t === tab;
+    t.setAttribute('aria-selected', on);
+    t.tabIndex = on ? 0 : -1;
+    const p = document.getElementById(t.getAttribute('aria-controls'));
+    p.hidden = !on;
+    if (on){ p.classList.remove('enter'); void p.offsetWidth; p.classList.add('enter'); }
+  });
+  if (focus) tab.focus();
+}
+tabs.forEach((t,i) => {
+  t.addEventListener('click', () => { select(t); history.replaceState(null,'','#'+t.id.slice(2)); });
+  t.addEventListener('keydown', e => {
+    let j = null;
+    if (e.key === 'ArrowRight') j = (i+1) % tabs.length;
+    if (e.key === 'ArrowLeft') j = (i-1+tabs.length) % tabs.length;
+    if (e.key === 'Home') j = 0;
+    if (e.key === 'End') j = tabs.length-1;
+    if (j !== null){ e.preventDefault(); select(tabs[j], true); }
+  });
+});
+function fromHash(){
+  const t = document.getElementById('t-' + location.hash.slice(1));
+  if (t){ select(t); document.getElementById('performances').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); }
+}
+addEventListener('hashchange', fromHash); fromHash();
+
+/* portrait: gentle 3D tilt that follows the pointer */
+const portrait = document.getElementById('portrait');
+if (!reduce && matchMedia('(pointer:fine)').matches){
+  addEventListener('pointermove', e => {
+    const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
+    portrait.style.transform = `rotateY(${x*-10}deg) rotateX(${y*6}deg)`;
+  }, {passive:true});
+}
+
+/* hero backdrop: flowing 3D sound-wave lines in gold, drawn in perspective */
+(function(){
+  const c = document.getElementById('waves'), g = c.getContext('2d');
+  let W, H, mx = 0, my = 0, tx = 0, ty = 0;
+  const ROWS = 26, COLS = 90;
+  function size(){
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = c.clientWidth; H = c.clientHeight;
+    c.width = W*dpr; c.height = H*dpr; g.setTransform(dpr,0,0,dpr,0,0);
+    if (reduce) draw(0);
+  }
+  addEventListener('pointermove', e => { tx = e.clientX/innerWidth - .5; ty = e.clientY/innerHeight - .5; }, {passive:true});
+  function draw(t){
+    t *= .00045;
+    mx += (tx-mx)*.04; my += (ty-my)*.04;
+    g.clearRect(0,0,W,H);
+    const f = Math.min(W,H)*1.1, cx = W*(.62 + mx*.05), horizon = H*(.42 + my*.04);
+    for (let r = ROWS-1; r >= 0; r--){
+      const z = 1.2 + r*0.42, depth = 1 - r/ROWS;
+      g.beginPath();
+      for (let i = 0; i <= COLS; i++){
+        const wx = (i/COLS*2 - 1)*9;
+        const amp = .5 + .35*Math.sin(r*.35 + t*2);
+        const wy = Math.sin(wx*.55 + t*3 + r*.28)*amp*.6
+                 + Math.sin(wx*1.3 - t*2.2 + r*.5)*.22
+                 + Math.cos(wx*.25 + r*.15 - t)*.35;
+        const px = cx + (wx + mx*2)/z * f*.42;
+        const py = horizon + (1.6 - wy)/z * f*.32;
+        i ? g.lineTo(px,py) : g.moveTo(px,py);
+      }
+      g.strokeStyle = `rgba(${212+(1-depth)*20|0},${165+(1-depth)*40|0},${58+(1-depth)*60|0},${.05 + depth*depth*.38})`;
+      g.lineWidth = .6 + depth*1.1;
+      g.stroke();
+    }
+  }
+  function loop(t){ draw(t); requestAnimationFrame(loop); }
+  addEventListener('resize', size); size();
+  if (!reduce) requestAnimationFrame(loop);
+})();
+</script>
 </body>
 </html>
