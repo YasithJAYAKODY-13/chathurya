@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chathurya Sandabarana | Singer</title>
-<meta name="description" content="Chathurya Sandabarana is a singer from Tangalle, Sri Lanka. Concerts, television, The Voice and more.">
+<meta name="description" content="Chathurya Sandabarana, singer from Tangalle, Sri Lanka. Sayam Heene, The Voice Sri Lanka, Handawaka and more.">
 <meta property="og:title" content="Chathurya Sandabarana | Singer">
 <meta property="og:description" content="Singer from Tangalle, Sri Lanka. Concerts, television, The Voice and more.">
 <meta property="og:image" content="https://chathurya.caeleon.net/assets/share.jpg">
@@ -157,15 +157,82 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .item.feature{grid-template-columns:96px 1fr}
 }
 @media (max-width:420px){ .bar nav a.hide-xs{display:none} }
+
+/* ---- additions: icons, videos, upcoming, music, follow ---- */
+.ico{width:1.1em;height:1.1em;flex:none;display:inline-block;vertical-align:-.18em}
+.btn{gap:10px;cursor:pointer}
+
+.next{position:relative;z-index:3;margin-top:-56px}
+.next .card{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;
+  padding:22px 26px;border-radius:22px;
+  background:linear-gradient(135deg,rgba(236,207,133,.16),rgba(28,84,66,.85) 45%);
+  border:1px solid rgba(212,165,58,.45);
+  box-shadow:0 30px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.1);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.date{width:74px;text-align:center;border-radius:14px;overflow:hidden;background:var(--pearl);color:#14251F;box-shadow:0 10px 22px rgba(0,0,0,.35)}
+.date b{display:block;background:#B5322F;color:#fff;font-size:.78rem;font-weight:600;padding:4px 0}
+.date span{display:block;font-family:var(--display);font-size:2rem;line-height:1.1;padding:4px 0 6px}
+.next .label{color:var(--brass-soft);font-weight:500;font-size:.95rem}
+.next h3{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.15}
+.next p{color:var(--mist);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+.music{padding-block:clamp(80px,11vw,130px);background:linear-gradient(180deg,var(--night),var(--deep))}
+.music .wrap{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
+.music .lead p{color:#D8E2DC;max-width:44ch}
+.music .lead p + p{margin-top:1em}
+.music h2{margin-bottom:18px}
+.music .meta{color:var(--brass-soft);font-weight:500;margin-bottom:10px;display:block}
+.music .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+
+.video{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;border-radius:20px;overflow:hidden;cursor:pointer;
+  background:#0A1F1A center/cover no-repeat;color:var(--pearl);
+  box-shadow:0 40px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(212,165,58,.35)}
+.video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.1,1), filter .4s}
+.video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,36,31,0) 45%,rgba(12,36,31,.85))}
+.video .play{position:absolute;z-index:2;left:50%;top:50%;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;
+  display:grid;place-items:center;background:linear-gradient(180deg,#EDCB72,#C99A30);color:#14251F;
+  box-shadow:0 14px 34px rgba(0,0,0,.45), 0 0 0 10px rgba(212,165,58,.18);transition:transform .3s}
+.video .play svg{width:30px;height:30px;margin-left:4px}
+.video .cap{position:absolute;z-index:2;left:20px;right:20px;bottom:16px;text-align:left;font-weight:500;font-size:.98rem;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.video:hover img{transform:scale(1.04);filter:brightness(1.08)}
+.video:hover .play{transform:scale(1.08)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video.small{border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(212,165,58,.25)}
+.video.small .play{width:56px;height:56px;margin:-28px 0 0 -28px}
+.video.small .play svg{width:22px;height:22px}
+.item .video{margin-top:14px}
+.item a.more{display:inline-flex;gap:8px;align-items:center;margin-top:10px;font-weight:500;text-decoration:none}
+.item a.more:hover{text-decoration:underline}
+.badge{display:inline-block;font-size:.8rem;font-weight:600;color:#14251F;background:var(--brass-soft);border-radius:999px;padding:2px 10px;margin-left:8px;vertical-align:.2em}
+
+.follow{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.follow a{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;text-decoration:none;color:var(--pearl);
+  border:1px solid rgba(244,242,234,.3);background:rgba(255,255,255,.04);transition:border-color .25s,color .25s,transform .25s}
+.follow a:hover{border-color:var(--brass);color:var(--brass-soft);transform:translateY(-2px)}
+
+@media (max-width:860px){
+  .next{margin-top:24px}
+  .next .card{grid-template-columns:auto 1fr}
+  .next .card .btn{grid-column:1 / -1;justify-content:center}
+  .music .wrap{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.6-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8ZM9.8 15V9l5.7 3-5.7 3Z"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12Z"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 
 <header class="bar" id="bar">
   <div class="wrap">
     <a class="mark" href="#top">Chathurya</a>
     <nav aria-label="Main">
-      <a href="#about" class="hide-xs">About</a>
+      <a href="#music" class="hide-xs">Music</a>
       <a href="#performances">Performances</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -178,10 +245,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="wrap">
       <div class="intro">
         <h1 class="name"><span>Chathurya</span><span>Sandabarana</span></h1>
-        <p class="lede"><strong>Singer from Tangalle, Sri Lanka.</strong> On concert stages, on television and on The Voice.</p>
+        <p class="lede"><strong>Singer from Tangalle, Sri Lanka.</strong> Voice of <em>Sayam Heene</em>, The Voice Sri Lanka and the Handawaka stage.</p>
         <div class="actions">
-          <a class="btn primary" href="#performances">Performances</a>
-          <a class="btn ghost" href="#contact">Contact</a>
+          <a class="btn primary" href="#music"><svg class="ico"><use href="#i-play"/></svg>Watch Sayam Heene</a>
+          <a class="btn ghost" href="#performances">Performances</a>
         </div>
       </div>
       <div class="stage">
@@ -191,12 +258,44 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
+  <section class="next" aria-label="Next performance">
+    <div class="wrap">
+      <div class="card">
+        <div class="date" aria-hidden="true"><b>OCT</b><span>17</span></div>
+        <div>
+          <span class="label">Next performance</span>
+          <h3>Handawaka, Anuradhapura</h3>
+          <p><svg class="ico"><use href="#i-pin"/></svg>Irrigation Ground, Anuradhapura. Saturday 17 October 2026</p>
+        </div>
+        <a class="btn ghost" href="#live">Concerts and events</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="music" id="music" aria-labelledby="music-title">
+    <div class="wrap">
+      <button class="video" data-yt="4JqXkidcFCc" aria-label="Play Sayam Heene, official music video">
+        <img src="https://i.ytimg.com/vi/4JqXkidcFCc/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+        <span class="play"><svg><use href="#i-play"/></svg></span>
+        <span class="cap">Sayam Heene | Official Music Video</span>
+      </button>
+      <div class="lead">
+        <span class="meta">Official music video</span>
+        <h2 id="music-title">Sayam Heene</h2>
+        <p>Chathurya's single <em>Sayam Heene</em>, released with an official music video on her YouTube channel.</p>
+        <div class="links">
+          <a class="btn primary" href="https://www.youtube.com/@chathuryasandabaranaofficial" target="_blank" rel="noopener"><svg class="ico"><use href="#i-yt"/></svg>YouTube channel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="about" id="about">
     <div class="wrap">
       <h2>About Chathurya</h2>
       <div>
         <p>Chathurya Sandabarana is a singer who grew up in Tangalle, on Sri Lanka's southern coast. Singing is the centre of her work, and she has performed at a great many shows, concerts and events.</p>
-        <p>Her voice has reached audiences on television, through musical performances and appearances on television podcasts, and on the stage of The Voice. She has also appeared on screen in the Sinhala film <em>Man Hoyanne Premayak</em>.</p>
+        <p>She sang <em>Hithala Wanniye</em> in the Blind Auditions of The Voice Sri Lanka, released her single <em>Sayam Heene</em>, and recorded <em>Amma Tharam Akka</em> with her sisters Chathurtha and Tharanya. She has sung on the Handawaka concert stage, and appears on screen in the 2026 Sinhala film <em>Man Hoyanne Premayak</em>.</p>
       </div>
     </div>
   </section>
@@ -217,13 +316,27 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="panel" role="tabpanel" id="p-singing" aria-labelledby="t-singing" tabindex="0">
         <div class="lead">
           <h3>Singing</h3>
-          <p>Singing is at the heart of everything Chathurya does. She performs live for audiences of every kind, from large concert stages to school and community celebrations.</p>
-          <p>Her performances have taken her from live venues to television studios and to the stage of The Voice.</p>
+          <p>Singing is at the heart of everything Chathurya does, from her own releases to live concert stages, television and school and community celebrations.</p>
+          <p>Her songs include her single <em>Sayam Heene</em> and <em>Amma Tharam Akka</em>, a family song she sings with her sisters.</p>
         </div>
         <div class="items">
-          <a class="item" href="#live" style="text-decoration:none;color:inherit"><h4>Concerts and events</h4><p>A long run of shows, concerts and community events.</p></a>
-          <a class="item" href="#tv" style="text-decoration:none;color:inherit"><h4>Television</h4><p>Musical performances and appearances on television podcasts.</p></a>
-          <a class="item" href="#voice" style="text-decoration:none;color:inherit"><h4>The Voice</h4><p>A contestant on the singing competition The Voice.</p></a>
+          <div class="item">
+            <span class="when">Single, official music video</span>
+            <h4>Sayam Heene</h4>
+            <button class="video small" data-yt="4JqXkidcFCc" aria-label="Play Sayam Heene, official music video">
+              <img src="https://i.ytimg.com/vi/4JqXkidcFCc/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+              <span class="play"><svg><use href="#i-play"/></svg></span>
+            </button>
+          </div>
+          <div class="item">
+            <span class="when">With Chathurtha and Tharanya Sandabarana</span>
+            <h4>Amma Tharam Akka</h4>
+            <p>Lyrics and melody by Krisha Sandabarana.</p>
+            <button class="video small" data-yt="C_ibs-_HYC0" aria-label="Play Amma Tharam Akka, lyrics video">
+              <img src="https://i.ytimg.com/vi/C_ibs-_HYC0/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+              <span class="play"><svg><use href="#i-play"/></svg></span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -233,48 +346,70 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <p>Chathurya has sung at a great many shows, concerts and events, performing for audiences across Sri Lanka.</p>
         </div>
         <div class="items">
+          <div class="item">
+            <span class="when">Saturday 17 October 2026 <span class="badge">Upcoming</span></span>
+            <h4>Handawaka, Anuradhapura</h4>
+            <p>Chathurya returns to the Handawaka stage at Irrigation Ground, Anuradhapura.</p>
+          </div>
           <div class="item feature">
             <img src="assets/childrens-day-2026.webp" width="1400" height="1395" loading="lazy" alt="Event poster for A Colourful Children's World 2026">
             <div>
-              <span class="when">1 October 2026</span>
+              <span class="when">Thursday 1 October 2026</span>
               <h4>A Colourful Children's World 2026</h4>
               <p>Featured singer at the Children's Day special celebration organised by Nexus Organization at H/Udayala Maha Vidyalaya.</p>
             </div>
           </div>
-          <div class="item"><h4>Handawaka</h4><p>Sang as part of the Handawaka concert.</p></div>
+          <div class="item"><h4>Handawaka</h4><p>A returning voice in the Handawaka concert series.</p></div>
         </div>
       </div>
 
       <div class="panel" role="tabpanel" id="p-tv" aria-labelledby="t-tv" tabindex="0" hidden>
         <div class="lead">
           <h3>Television</h3>
-          <p>Chathurya has sung on television and has been a guest on television podcasts, sharing her music and her story with audiences at home.</p>
+          <p>Chathurya has sung on television, including on The Voice Sri Lanka, and has been a guest on television podcasts, sharing her music and her story with audiences at home.</p>
         </div>
         <div class="items">
-          <div class="item"><h4>Musical performances</h4><p>Singing on television programmes.</p></div>
+          <div class="item">
+            <span class="when">The Voice Sri Lanka, Blind Auditions</span>
+            <h4>Hithala Wanniye</h4>
+            <button class="video small" data-yt="loiP_i2w4II" aria-label="Play Hithala Wanniye, The Voice Sri Lanka Blind Auditions">
+              <img src="https://i.ytimg.com/vi/loiP_i2w4II/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+              <span class="play"><svg><use href="#i-play"/></svg></span>
+            </button>
+          </div>
           <div class="item"><h4>Television podcasts</h4><p>Guest appearances, conversation and live singing.</p></div>
-          <div class="item soon"><p>Programme names and recordings will be added here.</p></div>
         </div>
       </div>
 
       <div class="panel" role="tabpanel" id="p-voice" aria-labelledby="t-voice" tabindex="0" hidden>
         <div class="lead">
-          <h3>The Voice</h3>
-          <p>Chathurya took part in The Voice, the singing competition where artists are chosen on the strength of their voice alone.</p>
+          <h3>The Voice Sri Lanka</h3>
+          <p>In the Blind Auditions of The Voice Sri Lanka, where the coaches listen with their backs turned and choose on the strength of the voice alone, Chathurya sang <em>Hithala Wanniye</em>.</p>
         </div>
         <div class="items">
-          <div class="item"><h4>Contestant</h4><p>Performed on The Voice singing competition.</p></div>
-          <div class="item soon"><p>Performance videos will be added here.</p></div>
+          <div class="item">
+            <span class="when">Blind Auditions</span>
+            <h4>Hithala Wanniye</h4>
+            <button class="video small" data-yt="loiP_i2w4II" aria-label="Play Hithala Wanniye, The Voice Sri Lanka Blind Auditions">
+              <img src="https://i.ytimg.com/vi/loiP_i2w4II/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+              <span class="play"><svg><use href="#i-play"/></svg></span>
+            </button>
+          </div>
         </div>
       </div>
 
       <div class="panel" role="tabpanel" id="p-film" aria-labelledby="t-film" tabindex="0" hidden>
         <div class="lead">
           <h3>Film</h3>
-          <p>Alongside her music, Chathurya has appeared on screen in a Sinhala feature film.</p>
+          <p>Alongside her music, Chathurya appears on screen in a Sinhala feature film.</p>
         </div>
         <div class="items">
-          <div class="item"><h4>Man Hoyanne Premayak</h4><p>Appeared as an actress in the Sinhala feature film.</p></div>
+          <div class="item">
+            <span class="when">2026</span>
+            <h4>Man Hoyanne Premayak</h4>
+            <p>Appears in the Sinhala feature film.</p>
+            <a class="more" href="https://www.imdb.com/name/nm16989301/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-film"/></svg>Her profile on IMDb<svg class="ico"><use href="#i-arrow"/></svg></a>
+          </div>
         </div>
       </div>
     </div>
@@ -284,8 +419,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="wrap">
       <div class="card">
         <h2 id="contact-title">Contact</h2>
-        <p>For performance enquiries, television and media requests, and collaborations, please get in touch.</p>
-        <p class="note" id="contact-line">Contact details will be added here shortly.</p>
+        <p>For performance enquiries, television and media requests, and collaborations, please send a message through Chathurya's official Facebook page.</p>
+        <div class="follow">
+          <a href="https://www.facebook.com/chathuryasandabaranaofficial" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb"/></svg>Facebook</a>
+          <a href="https://www.youtube.com/@chathuryasandabaranaofficial" target="_blank" rel="noopener"><svg class="ico"><use href="#i-yt"/></svg>YouTube</a>
+        </div>
       </div>
     </div>
   </section>
@@ -385,6 +523,24 @@ if (!reduce && matchMedia('(pointer:fine)').matches){
   addEventListener('resize', size); size();
   if (!reduce) requestAnimationFrame(loop);
 })();
+
+/* videos: click to play, loads YouTube only when asked */
+document.querySelectorAll('.video[data-yt]').forEach(v => {
+  v.addEventListener('click', () => {
+    const id = v.dataset.yt;
+    document.querySelectorAll('.video iframe').forEach(f => f.remove());
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+    f.title = v.getAttribute('aria-label');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    v.appendChild(f);
+  });
+});
+/* pause any playing video when switching tabs */
+document.querySelectorAll('[role="tab"]').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.panel .video iframe').forEach(f => f.remove());
+}));
 </script>
 </body>
 </html>
