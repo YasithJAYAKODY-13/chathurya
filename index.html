@@ -216,6 +216,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .next .card .btn{grid-column:1 / -1;justify-content:center}
   .music .wrap{grid-template-columns:1fr}
 }
+.global{display:flex;gap:14px;align-items:flex-start;margin-top:22px;padding:18px 20px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(236,207,133,.18),rgba(236,207,133,.04));border:1px solid rgba(212,165,58,.5)}
+.global .ico{width:26px;height:26px;color:var(--brass-soft);margin-top:2px}
+.global p{margin:0 !important;color:#E6EDE9}
+.global strong{color:var(--brass-soft);font-weight:600;display:block;margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -225,6 +230,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8ZM9.8 15V9l5.7 3-5.7 3Z"/></symbol>
   <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12Z"/></symbol>
   <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -295,7 +301,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <h2>About Chathurya</h2>
       <div>
         <p>Chathurya Sandabarana is a singer who grew up in Tangalle, on Sri Lanka's southern coast. Singing is the centre of her work, and she has performed at a great many shows, concerts and events.</p>
-        <p>She sang <em>Hithala Wanniye</em> in the Blind Auditions of The Voice Sri Lanka, released her single <em>Sayam Heene</em>, and recorded <em>Amma Tharam Akka</em> with her sisters Chathurtha and Tharanya. She has sung on the Handawaka concert stage, and appears on screen in the 2026 Sinhala film <em>Man Hoyanne Premayak</em>.</p>
+        <p>She sang <em>Hithala Wanniye</em> in the Blind Auditions of The Voice Sri Lanka, a performance selected by The Voice Global to represent Sri Lanka internationally. She released her single <em>Sayam Heene</em>, and recorded <em>Amma Tharam Akka</em> with her sisters Chathurtha and Tharanya. She has sung on the Handawaka concert stage, and appears on screen in the 2026 Sinhala film <em>Man Hoyanne Premayak</em>.</p>
       </div>
     </div>
   </section>
@@ -385,10 +391,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <div class="lead">
           <h3>The Voice Sri Lanka</h3>
           <p>In the Blind Auditions of The Voice Sri Lanka, where the coaches listen with their backs turned and choose on the strength of the voice alone, Chathurya sang <em>Hithala Wanniye</em>, then went through to The Battles, where she sang <em>Dadubasnamanaya</em>. Her journey continued into the Knockouts and the Live Shows.</p>
+          <div class="global"><svg class="ico"><use href="#i-globe"/></svg><p><strong>Selected by The Voice Global, representing Sri Lanka.</strong> Her Blind Audition of <em>Hithala Wanniye</em> was chosen for The Voice Global, which brings standout performances from versions of The Voice around the world to an international audience. Chathurya's performance was featured as Sri Lanka's representative.</p></div>
         </div>
         <div class="items">
           <div class="item">
-            <span class="when">Blind Auditions</span>
+            <span class="when">Blind Auditions <span class="badge">The Voice Global, Sri Lanka</span></span>
             <h4>Hithala Wanniye</h4>
             <button class="video small" data-yt="loiP_i2w4II" aria-label="Play Hithala Wanniye, The Voice Sri Lanka Blind Auditions">
               <img src="https://i.ytimg.com/vi/loiP_i2w4II/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
