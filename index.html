@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chathurya Sandabarana | Singer</title>
+<meta name="description" content="Chathurya Sandabarana is a singer from Tangalle, Sri Lanka. Concerts, school and community events, and screen work.">
+<meta property="og:title" content="Chathurya Sandabarana | Singer">
+<meta property="og:description" content="Singer from Tangalle, Sri Lanka. Concerts, events and bookings.">
+<meta property="og:image" content="assets/share.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0F2A24">
+<link rel="icon" href="assets/icon.png">
+<link rel="preload" href="assets/fonts/rozha-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Rozha One";src:url(assets/fonts/rozha-one-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{
+  --night:#0F2A24;      /* deep bottle green, page base */
+  --dress:#1C5442;      /* her stage-dress green */
+  --brass:#D4A53A;      /* the poster's gold ring */
+  --brass-soft:#E9CB7E;
+  --pearl:#F2F1E8;      /* text on dark */
+  --mist:#A9BDB4;       /* secondary text */
+  --display:"Rozha One", Georgia, serif;
+  --body:"Hanken Grotesk", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--pearl);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--brass-soft)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:4px;border-radius:2px}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+
+/* top bar */
+.bar{position:absolute;inset:0 0 auto 0;z-index:5}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
+.mark{font-family:var(--display);font-size:1.35rem;color:var(--pearl);text-decoration:none;letter-spacing:.01em}
+.bar nav{display:flex;gap:28px}
+.bar nav a{color:var(--mist);text-decoration:none;font-weight:500;font-size:.95rem}
+.bar nav a:hover{color:var(--pearl)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;
+  background:radial-gradient(120% 80% at 75% 40%, #1A4A3B 0%, var(--night) 62%)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:0;padding-top:110px}
+.hero .wrap > div{position:relative;z-index:2;padding-bottom:11vh}
+.name{font-family:var(--display);font-weight:400;line-height:.86;font-size:clamp(4rem,7.4vw,7rem);letter-spacing:-.01em}
+.name span{display:block}
+.name span + span{color:var(--brass)}
+.hero p.lede{max-width:30ch;color:var(--mist);font-size:1.15rem;margin-top:28px;line-height:1.5}
+.hero p.lede strong{color:var(--pearl);font-weight:500}
+.portrait{align-self:end;justify-self:end;height:min(78svh,700px);width:auto;max-width:none;filter:drop-shadow(0 30px 60px rgba(0,0,0,.45))}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:30px;padding:14px 26px;border-radius:999px;background:var(--brass);color:var(--night);font-weight:600;text-decoration:none;transition:background .2s}
+.cta:hover{background:var(--brass-soft)}
+
+/* load moment: the name rises, the portrait settles into its frame */
+@media (prefers-reduced-motion:no-preference){
+  .name span{animation:rise .9s cubic-bezier(.2,.7,.1,1) both}
+  .name span + span{animation-delay:.12s}
+  .hero p.lede,.hero .cta{animation:fade .8s .45s both}
+  .portrait{animation:settle 1.2s .1s cubic-bezier(.2,.7,.1,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(.35em)}}
+  @keyframes fade{from{opacity:0}}
+  @keyframes settle{from{opacity:0;transform:translateY(40px) scale(.97)}}
+}
+
+/* sections */
+section{padding-block:clamp(72px,11vw,140px)}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(2.3rem,5vw,3.6rem);line-height:1.05;margin-bottom:28px}
+.about{background:var(--pearl);color:#1D2B26}
+.about .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(32px,6vw,90px);align-items:start}
+.about h2{color:var(--dress)}
+.about p{max-width:62ch}
+.about p + p{margin-top:1.1em}
+
+.work ul{list-style:none;border-top:1px solid rgba(212,165,58,.35)}
+.work li{display:grid;grid-template-columns:minmax(120px,200px) 1fr;gap:24px;padding-block:28px;border-bottom:1px solid rgba(212,165,58,.35)}
+.work .kind{color:var(--brass);font-weight:500}
+.work h3{font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1.15;margin-bottom:6px}
+.work li p{color:var(--mist);max-width:60ch}
+
+.show{background:var(--dress)}
+.show .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.show figure img{border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.show figcaption{color:var(--mist);font-size:.92rem;margin-top:12px}
+.show dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin-top:22px}
+.show dt{color:var(--brass-soft)}
+.show p{max-width:48ch}
+
+.book{text-align:left}
+.book .wrap{border:1px solid var(--brass);border-radius:28px;padding:clamp(32px,6vw,72px)}
+.book p{max-width:56ch;color:var(--mist)}
+.book p + p{margin-top:1em}
+
+footer{padding-block:40px;color:var(--mist);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:820px){
+  .bar nav{gap:18px}
+  .hero{align-items:start}
+  .hero .wrap{grid-template-columns:1fr;padding-top:96px;gap:0}
+  .hero .wrap > div{padding-bottom:0}
+  .name{font-size:clamp(2.8rem,13.4vw,5.6rem)}
+  .portrait{justify-self:center;height:auto;width:min(92%,440px);max-width:100%;margin:28px 0 0}
+  .about .wrap,.show .wrap{grid-template-columns:1fr}
+  .work li{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:420px){ .bar nav a:nth-child(2){display:none} }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top">Chathurya</a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#work">Stage and screen</a>
+      <a href="#book">Bookings</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap">
+      <div>
+        <h1 class="name"><span>Chathurya</span><span>Sandabarana</span></h1>
+        <p class="lede"><strong>Singer from Tangalle, Sri Lanka.</strong> Live on concert stages, at schools and at community celebrations.</p>
+        <a class="cta" href="#book">Book Chathurya</a>
+      </div>
+      <img class="portrait" src="assets/chathurya-stage.webp" width="900" height="1195"
+           alt="Chathurya Sandabarana singing on stage in a green dress, holding a microphone">
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <h2>About Chathurya</h2>
+      <div>
+        <p>Chathurya Sandabarana is a singer who grew up in Tangalle, on Sri Lanka's southern coast. She performs live at concerts, school celebrations and community events.</p>
+        <p>She has also appeared on screen in the Sinhala film <em>Man Hoyanne Premayak</em>. Today her focus is music.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="wrap">
+      <h2>On stage and screen</h2>
+      <ul>
+        <li>
+          <span class="kind">Concert</span>
+          <div>
+            <h3>A Colourful Children's World 2026</h3>
+            <p>Featured performer at the Children's Day celebration organised by Nexus Organization at H/Udayala Maha Vidyalaya on 1 October 2026.</p>
+          </div>
+        </li>
+        <li>
+          <span class="kind">Concert</span>
+          <div>
+            <h3>Handawaka</h3>
+            <p>Sang as part of the Handawaka concert.</p>
+          </div>
+        </li>
+        <li>
+          <span class="kind">Film</span>
+          <div>
+            <h3>Man Hoyanne Premayak</h3>
+            <p>Appeared as an actress in the Sinhala feature film.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="show" aria-labelledby="show-title">
+    <div class="wrap">
+      <figure>
+        <img src="assets/childrens-day-2026.webp" width="1400" height="1395" loading="lazy"
+             alt="Event poster for A Colourful Children's World 2026, featuring Chathurya Sandabarana">
+        <figcaption>Event poster, Nexus Organization</figcaption>
+      </figure>
+      <div>
+        <h2 id="show-title">Children's Day 2026</h2>
+        <p>Chathurya was the featured singer at A Colourful Children's World, a Children's Day special celebration for students and families.</p>
+        <dl>
+          <dt>Date</dt><dd>Thursday 1 October 2026</dd>
+          <dt>Time</dt><dd>9.00 am to 2.00 pm</dd>
+          <dt>Venue</dt><dd>H/Udayala Maha Vidyalaya</dd>
+          <dt>Organiser</dt><dd>Nexus Organization</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="wrap">
+      <h2>Book Chathurya</h2>
+      <p>Chathurya is available to sing at concerts, school events and private functions.</p>
+      <p id="contact-line">Booking contact details will be added here shortly.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Chathurya Sandabarana</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
