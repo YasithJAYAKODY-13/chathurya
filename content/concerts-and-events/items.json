@@ -163,6 +163,16 @@
         "images/03-30-attack-show-ambalantota-poster.webp": "Attack Show poster, Bolana, Ambalantota"
       },
       "needs": "year (user wrote 2029, likely a typo); confirm 29 or 30 March"
+    },
+    {
+      "id": "2024-04-sonduru-sihina-ra-vol-5",
+      "title": "Sonduru Sihina Ra, Volume 5",
+      "date": "2024-04",
+      "broadcast_live": true,
+      "also_in": "television",
+      "description": "Chathurya sang at the fifth edition of the Sonduru Sihina Ra concert, which was broadcast live.",
+      "images": [],
+      "needs": "poster or photos; venue; TV channel that broadcast it"
     }
   ]
 }
