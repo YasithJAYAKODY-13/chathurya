@@ -62,7 +62,7 @@
       "image_captions": {
         "images/2022-02-26-angunakolapelessa-concert-poster.webp": "Concert poster, Angunakolapelessa Town Hall, 26 February 2022"
       },
-      "needs": "English concert name; confirm Dhammika Bandara and the song credit"
+      "needs": "English concert name"
     },
     {
       "id": "secret-mega-blast-ambalantota",
@@ -177,10 +177,10 @@
       "title": "Sonduru Sihina Ra, Volume 5",
       "date": "2024-04",
       "broadcast_live": true,
-      "also_in": "television",
-      "description": "Chathurya sang at the fifth edition of the Sonduru Sihina Ra concert, which was broadcast live.",
+      "description": "Chathurya sang at the fifth edition of Sonduru Sihina Ra, an open-air theatre concert that was broadcast live.",
       "images": [],
-      "needs": "poster or photos; venue; TV channel that broadcast it"
+      "needs": "which open-air theatre; how it was broadcast live (TV or online); poster/photos",
+      "venue": "open-air theatre"
     },
     {
       "id": "2023-02-25-praana-live-in-concert",
