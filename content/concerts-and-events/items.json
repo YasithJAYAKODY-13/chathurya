@@ -117,6 +117,29 @@
       "image_captions": {
         "images/2022-07-09-ethera-nimnada-dubai-poster.webp": "Ethera Nimnada Dubai concert poster, 9 July 2022"
       }
+    },
+    {
+      "id": "2024-04-16-beliatthapura-wasantha-udanaya",
+      "title": "Beliatthapura Wasantha Udanaya",
+      "title_sinhala": "බෙලිඅත්තපුර වසන්ත උදානය",
+      "date": "2024-04-16",
+      "venue": "Pradeshiya Sabha grounds, near the bus stand",
+      "city": "Beliatta",
+      "band": "Moratuwa Inthal",
+      "with": [
+        "Apoorwa",
+        "Harsha"
+      ],
+      "organiser": "Brothers friends' society with local residents",
+      "description": "A Sinhala and Tamil New Year season festival concert in Beliatta, where Chathurya sang with the band Moratuwa Inthal.",
+      "omitted_on_purpose": "political patron named on poster",
+      "images": [
+        "images/2024-04-16-beliatthapura-wasantha-udanaya-poster.webp"
+      ],
+      "image_captions": {
+        "images/2024-04-16-beliatthapura-wasantha-udanaya-poster.webp": "Beliatthapura Wasantha Udanaya concert poster, Beliatta, 16 April 2024"
+      },
+      "needs": "surnames of Apoorwa and Harsha (optional)"
     }
   ]
 }
