@@ -179,7 +179,6 @@
       "title": "Praana, Live in Concert",
       "title_sinhala": "ප්‍රාණ",
       "tagline_sinhala": "නොමියන ආදරය",
-      "headline": true,
       "featured": true,
       "date": "2023-02-25",
       "time": "from 3.00 pm",
@@ -189,14 +188,24 @@
       "programme": "Live concert with food festival and cultural show",
       "dance": "Nirosha Thalagala",
       "compere": "Isuru",
-      "description": "Praana was Chathurya's own live concert, with her as the headline artist. Presented by Show Bees at the NLDB farm premises by Weerawila Lake in Tissamaharama, the evening combined her live concert with a food festival and cultural show, including a dance performance by Nirosha Thalagala.",
+      "description": "Chathurya was one of the featured artists at Praana, a live concert presented by Show Bees at the NLDB farm premises by Weerawila Lake in Tissamaharama. She shared the stage with Umara Sinhawansa, her coach on The Voice Sri Lanka, along with Peshala Ridhma, Sanka, Piyath, Samanalee Fonseka and Indrachapa. The evening combined the concert with a food festival and cultural show, including a dance performance by Nirosha Thalagala.",
       "omitted_on_purpose": "ticket prices and organisers' phone numbers",
       "images": [
-        "images/2023-02-25-praana-live-in-concert-poster.webp"
+        "images/2023-02-25-praana-live-in-concert-poster.webp",
+        "images/2023-02-25-praana-live-in-concert-group-poster.webp"
       ],
       "image_captions": {
-        "images/2023-02-25-praana-live-in-concert-poster.webp": "Praana, Live in Concert poster, 25 February 2023"
-      }
+        "images/2023-02-25-praana-live-in-concert-poster.webp": "Chathurya's artist poster for Praana, Live in Concert, 25 February 2023",
+        "images/2023-02-25-praana-live-in-concert-group-poster.webp": "Praana, Live in Concert line-up poster, 25 February 2023"
+      },
+      "with": [
+        "Umara Sinhawansa",
+        "Peshala Ridhma",
+        "Sanka",
+        "Piyath",
+        "Samanalee Fonseka",
+        "Indrachapa"
+      ]
     }
   ]
 }
