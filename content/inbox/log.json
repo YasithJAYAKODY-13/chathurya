@@ -27,6 +27,13 @@
       "value": "coach_reaction.en.srt",
       "filed_as": "the-voice/sources/coach-reaction-adam-baruell.en.srt",
       "note": "summary and quotes written into the coach reaction entry"
+    },
+    {
+      "received": "2026-10-04 11:18",
+      "type": "youtube",
+      "value": "https://www.youtube.com/watch?v=JatYDHP0ARc",
+      "filed_as": "the-voice/best-of-the-week",
+      "note": "repeat; her segment is 3:31 to 5:37, set as start and end"
     }
   ]
 }
