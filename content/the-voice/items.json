@@ -17,10 +17,15 @@
       "highlight": true,
       "description": "Blind Audition of Hithala Wanniye selected to represent Sri Lanka in The Voice's global Best of the Week feature.",
       "quote": "An unforgettable honour to see my performance carry the voice of Sri Lanka onto a global platform, bringing international recognition to my country through music.",
-      "images": [],
+      "images": [
+        "images/2021-01-08-best-of-the-week-sirasa-poster.webp"
+      ],
       "start": 211,
       "end": 337,
-      "segment": "3:31 to 5:37"
+      "segment": "3:31 to 5:37",
+      "image_captions": {
+        "images/2021-01-08-best-of-the-week-sirasa-poster.webp": "Sirasa TV congratulates Chathurya: The best performance this week in The Voice Global, January 8th 2021"
+      }
     },
     {
       "id": "battles",
