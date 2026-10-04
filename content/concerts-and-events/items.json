@@ -140,6 +140,29 @@
         "images/2024-04-16-beliatthapura-wasantha-udanaya-poster.webp": "Beliatthapura Wasantha Udanaya concert poster, Beliatta, 16 April 2024"
       },
       "needs": "surnames of Apoorwa and Harsha (optional)"
+    },
+    {
+      "id": "attack-show-ambalantota",
+      "title": "Attack Show, Ambalantota",
+      "date": "YYYY-03-30",
+      "time": "8.00 pm",
+      "venue": "Bolana Maha Vidyalaya grounds",
+      "city": "Ambalantota",
+      "format": "Two-night show, 29 and 30 March: Secret vs Power Pack, and Embilipitiya Delighted",
+      "with": [
+        "Nipun Kalhara",
+        "Rasika Liyanaarachchi",
+        "Saman Ithdika"
+      ],
+      "compere": "Duminda Amarakoon",
+      "description": "A two-night open-air show at Bolana Maha Vidyalaya grounds, Ambalantota, featuring the bands Secret, Power Pack and Embilipitiya Delighted, with Chathurya among the guest singers.",
+      "images": [
+        "images/03-30-attack-show-ambalantota-poster.webp"
+      ],
+      "image_captions": {
+        "images/03-30-attack-show-ambalantota-poster.webp": "Attack Show poster, Bolana, Ambalantota"
+      },
+      "needs": "year (user wrote 2029, likely a typo); confirm 29 or 30 March"
     }
   ]
 }
