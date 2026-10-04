@@ -33,7 +33,12 @@
       "title": "Dadubasnamanaya",
       "opponent": "Kavini Liyadipita",
       "youtube": "Mi-GWA1FGIs",
-      "images": []
+      "images": [
+        "images/the-voice-battles-official-portrait.webp"
+      ],
+      "image_captions": {
+        "images/the-voice-battles-official-portrait.webp": "Official The Voice Sri Lanka portrait for The Battles"
+      }
     },
     {
       "id": "knockouts",
