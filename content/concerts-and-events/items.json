@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "id": "2026-10-17-handawaka-anuradhapura",
+      "title": "Handawaka, Anuradhapura",
+      "date": "2026-10-17",
+      "venue": "Irrigation Ground",
+      "city": "Anuradhapura",
+      "status": "upcoming",
+      "description": "Chathurya returns to the Handawaka stage.",
+      "images": []
+    },
+    {
+      "id": "2026-10-01-childrens-day-udayala",
+      "title": "A Colourful Children's World 2026",
+      "date": "2026-10-01",
+      "time": "9.00 am to 2.00 pm",
+      "venue": "H/Udayala Maha Vidyalaya",
+      "organiser": "Nexus Organization",
+      "description": "Featured singer at the Children's Day special celebration.",
+      "images": [
+        "images/2026-10-01-childrens-day-udayala.webp"
+      ]
+    },
+    {
+      "id": "handawaka-series",
+      "title": "Handawaka",
+      "description": "A returning voice in the Handawaka concert series.",
+      "images": []
+    }
+  ]
+}

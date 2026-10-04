@@ -1,0 +1,47 @@
+{
+  "items": [
+    {
+      "id": "blind-audition",
+      "round": "Blind Auditions",
+      "season": 1,
+      "title": "Hithala Wanniye",
+      "youtube": "loiP_i2w4II",
+      "images": []
+    },
+    {
+      "id": "best-of-the-week",
+      "round": "The Voice Global, Best of the Week",
+      "date": "2021-01-08",
+      "title": "Best of the Week, The Voice Global",
+      "youtube": "JatYDHP0ARc",
+      "highlight": true,
+      "description": "Blind Audition of Hithala Wanniye selected to represent Sri Lanka in The Voice's global Best of the Week feature.",
+      "quote": "An unforgettable honour to see my performance carry the voice of Sri Lanka onto a global platform, bringing international recognition to my country through music.",
+      "images": []
+    },
+    {
+      "id": "battles",
+      "round": "The Battles",
+      "title": "Dadubasnamanaya",
+      "opponent": "Kavini Liyadipita",
+      "youtube": "Mi-GWA1FGIs",
+      "images": []
+    },
+    {
+      "id": "knockouts",
+      "round": "Knockouts",
+      "title": "",
+      "youtube": "",
+      "images": [],
+      "needs": "song, video link, photos"
+    },
+    {
+      "id": "live-shows",
+      "round": "Live Shows",
+      "title": "",
+      "youtube": "",
+      "images": [],
+      "needs": "song, video link, photos"
+    }
+  ]
+}
