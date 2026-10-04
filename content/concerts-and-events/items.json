@@ -80,6 +80,43 @@
         "images/03-06-secret-mega-blast-ambalantota-poster.webp": "Secret Mega Blast concert poster, Bolana, Ambalantota"
       },
       "needs": "year"
+    },
+    {
+      "id": "2022-07-09-ethera-nimnada-dubai",
+      "title": "Ethera Nimnada Dubai",
+      "title_sinhala": "එතෙර නිම්නද ඩුබායි",
+      "date": "2022-07-09",
+      "city": "Dubai",
+      "country": "United Arab Emirates",
+      "international": true,
+      "with": [
+        "Shashika Nisansala",
+        "K Sujeewa",
+        "Dumal Warnakulasuriya",
+        "Pali Bagra",
+        "Arosha Narmada",
+        "Sachith",
+        "Adhithya",
+        "Shania"
+      ],
+      "band": "Indika Kariyawasam with Signature",
+      "organiser": "Ethera",
+      "media_partners": [
+        "Rupavahini (official media partner)",
+        "Lake House (official printed media partner)"
+      ],
+      "hosts": [
+        "Sinduja",
+        "Upekshi"
+      ],
+      "presenter": "Randunu Soorya",
+      "description": "An international Sri Lankan music concert in Dubai, where Chathurya performed for the Sri Lankan community abroad alongside Shashika Nisansala, K Sujeewa, Dumal Warnakulasuriya and others, backed by Indika Kariyawasam with Signature.",
+      "images": [
+        "images/2022-07-09-ethera-nimnada-dubai-poster.webp"
+      ],
+      "image_captions": {
+        "images/2022-07-09-ethera-nimnada-dubai-poster.webp": "Ethera Nimnada Dubai concert poster, 9 July 2022"
+      }
     }
   ]
 }
