@@ -53,6 +53,33 @@
         "images/2022-02-26-angunakolapelessa-concert-poster.webp": "Concert poster, Angunakolapelessa Town Hall, 26 February 2022"
       },
       "needs": "English concert name; confirm Dhammika Bandara and the song credit"
+    },
+    {
+      "id": "secret-mega-blast-ambalantota",
+      "title": "Secret Mega Blast",
+      "date": "YYYY-03-06",
+      "time": "from 8.00 pm",
+      "venue": "Bolana Maha Vidyalaya grounds",
+      "city": "Ambalantota",
+      "band": "Secret",
+      "with": [
+        "Kumarasiri Pathirana",
+        "Athula Sri Gamage",
+        "Malan",
+        "Nilan Hettiarachchi",
+        "Nipun Kalhara",
+        "Kokila Pawan",
+        "Ravi Gamage"
+      ],
+      "compere": "Sumith Karunaratne",
+      "description": "A large open-air concert with the band Secret at Bolana Maha Vidyalaya grounds, Ambalantota, where Chathurya sang on a line-up of well-known Sri Lankan artists.",
+      "images": [
+        "images/03-06-secret-mega-blast-ambalantota-poster.webp"
+      ],
+      "image_captions": {
+        "images/03-06-secret-mega-blast-ambalantota-poster.webp": "Secret Mega Blast concert poster, Bolana, Ambalantota"
+      },
+      "needs": "year"
     }
   ]
 }
