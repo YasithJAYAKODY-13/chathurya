@@ -57,6 +57,19 @@
       "original_artist": "Sunil Edirisinghe"
     },
     {
+      "id": "road-to-lives",
+      "round": "Road to Lives",
+      "title": "Road to Lives",
+      "description": "A special showcase programme arranged by The Voice Sri Lanka between the Knockouts and the Live Shows, outside the competition, in which Chathurya performed on stage with fellow artists.",
+      "competitive": false,
+      "images": [
+        "images/the-voice-road-to-lives-group-performance.webp"
+      ],
+      "image_captions": {
+        "images/the-voice-road-to-lives-group-performance.webp": "Performing on The Voice Sri Lanka's Road to Lives programme"
+      }
+    },
+    {
       "id": "live-shows",
       "round": "Live Shows",
       "title": "Pun Sanda Raaka",
