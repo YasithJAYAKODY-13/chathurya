@@ -6,7 +6,22 @@
       "year": 2026,
       "role": "Appears in the Sinhala feature film",
       "link": "https://www.imdb.com/name/nm16989301/",
-      "images": []
+      "images": [
+        "images/man-hoyanne-premayak-official-poster.webp"
+      ],
+      "title_sinhala": "මං හොයන්නේ ප්‍රේමයක්",
+      "debut": true,
+      "director": "Thilina Boralessa",
+      "producer": "Usy Ajith",
+      "story": "Anoma Wijayawardane",
+      "music_director": "Thilina Tharaka",
+      "lyrics": "Shehan Galahitiyawa",
+      "dop": "Striner Adams",
+      "poster_release_note": "Poster says In Theatres 2025; film listings show 2026",
+      "needs": "release year to show; red carpet photos to come",
+      "image_captions": {
+        "images/man-hoyanne-premayak-official-poster.webp": "Official poster, Man Hoyanne Premayak"
+      }
     }
   ]
 }
