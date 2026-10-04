@@ -215,6 +215,45 @@
         "Samanalee Fonseka",
         "Indrachapa"
       ]
+    },
+    {
+      "id": "kandy-kisses-gatambe",
+      "title": "Kandy Kisses",
+      "date": "YYYY-02-18",
+      "time": "from 11.00 am",
+      "venue": "Gatambe Grounds",
+      "city": "Kandy",
+      "season": "Valentine's season",
+      "organiser": "MindSpark",
+      "media_partner": "Shaa FM",
+      "bands": [
+        "Centigradz",
+        "Arrow Star"
+      ],
+      "with": [
+        "Centigradz",
+        "Shashika Nisansala",
+        "Manej",
+        "Sadun",
+        "Ameesha",
+        "Nilan",
+        "Shanika",
+        "Sachini",
+        "Pali"
+      ],
+      "guests": "Podi Malli and Chooty Malli",
+      "compere": [
+        "Jagath Nathandi",
+        "Chanu Dissanayaka"
+      ],
+      "description": "A Valentine's season concert at Gatambe Grounds, Kandy, organised by MindSpark with Shaa FM as media partner. Chathurya sang alongside Centigradz and Shashika Nisansala, with the band Arrow Star and a guest appearance by Podi Malli and Chooty Malli.",
+      "images": [
+        "images/02-18-kandy-kisses-gatambe-poster.webp"
+      ],
+      "image_captions": {
+        "images/02-18-kandy-kisses-gatambe-poster.webp": "Kandy Kisses concert poster, Gatambe Grounds, Kandy"
+      },
+      "needs": "year"
     }
   ]
 }
