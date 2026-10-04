@@ -58,14 +58,16 @@
     {
       "id": "live-shows",
       "round": "Live Shows",
-      "title": "",
+      "title": "Pun Sanda Raaka",
       "youtube": "",
       "images": [
+        "images/the-voice-live-shows-official-portrait.webp",
         "images/the-voice-live-shows-performance-poster.webp"
       ],
-      "needs": "song she sang and video link (photo received)",
+      "needs": "video link (optional)",
       "image_captions": {
-        "images/the-voice-live-shows-performance-poster.webp": "Performing in the Live Shows, The Voice Sri Lanka (Sirasa TV)"
+        "images/the-voice-live-shows-performance-poster.webp": "Singing Pun Sanda Raaka in the Live Shows, The Voice Sri Lanka (Sirasa TV)",
+        "images/the-voice-live-shows-official-portrait.webp": "Official The Voice Sri Lanka portrait for the Live Shows (Sirasa TV)"
       }
     },
     {
