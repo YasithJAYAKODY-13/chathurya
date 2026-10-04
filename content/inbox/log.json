@@ -20,6 +20,13 @@
       "value": "https://www.youtube.com/watch?v=8pR_vEtabqI",
       "filed_as": "the-voice/coach-reaction-adam-baruell",
       "note": "new; wants a summary of the coach's comments; transcript pending"
+    },
+    {
+      "received": "2026-10-04 11:13",
+      "type": "transcript",
+      "value": "coach_reaction.en.srt",
+      "filed_as": "the-voice/sources/coach-reaction-adam-baruell.en.srt",
+      "note": "summary and quotes written into the coach reaction entry"
     }
   ]
 }

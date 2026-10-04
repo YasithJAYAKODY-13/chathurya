@@ -51,9 +51,14 @@
       "reviewer_channel": "https://www.youtube.com/@AdamBaruell",
       "youtube": "8pR_vEtabqI",
       "relates_to": "blind-audition",
-      "description": "",
-      "needs": "transcript, to write the summary of his comments",
-      "images": []
+      "description": "Vocal coach Adam Baruell reviewed Chathurya's Blind Audition on his YouTube channel. He singled out the control and tone of her voice, the subtle riffs and runs woven through the song, and her command of head voice as the melody climbs into falsetto. He called the melody catchy and memorable, noted that three coaches turned their chairs, and summed it up as a stellar audition.",
+      "images": [],
+      "quotes": [
+        "I love the control of her voice and also the tonality on it. Absolutely awesome.",
+        "There's a lot of mini riffs and runs that you can almost hear, but really, really subtle, and it takes a lot of technique.",
+        "That was a stellar audition for Chathurya Sandabarana singing Hithala Wanniye."
+      ],
+      "transcript": "sources/coach-reaction-adam-baruell.en.srt"
     }
   ]
 }
