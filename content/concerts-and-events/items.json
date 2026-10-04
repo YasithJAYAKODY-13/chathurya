@@ -20,7 +20,16 @@
       "description": "Featured singer at the Children's Day special celebration.",
       "images": [
         "images/2026-10-01-childrens-day-udayala.webp"
-      ]
+      ],
+      "videos_pending": [
+        {
+          "file": "videos/2026-10-01-childrens-day-udayala-gift-giving.mp4",
+          "length": "42 seconds",
+          "content": "Chathurya handing gifts to schoolchildren",
+          "status": "held back: children's faces visible; needs school/parent permission or face blurring before publishing"
+        }
+      ],
+      "note": "Chathurya said she really enjoyed this one; more photos and videos to come"
     },
     {
       "id": "handawaka-series",

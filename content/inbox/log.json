@@ -150,6 +150,13 @@
       "type": "image+text",
       "value": "Praana group line-up poster; correction: group concert, not solo",
       "filed_as": "concerts-and-events/images/2023-02-25-praana-live-in-concert-group-poster.webp"
+    },
+    {
+      "received": "2026-10-04 11:48",
+      "type": "video",
+      "value": "Children's Day 1 Oct 2026, gift-giving video, 42s",
+      "filed_as": "content/inbox/hold/ (not pushed)",
+      "note": "held pending decision on children's faces"
     }
   ]
 }
