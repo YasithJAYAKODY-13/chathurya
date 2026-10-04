@@ -6,6 +6,13 @@
       "value": "https://www.youtube.com/watch?v=loiP_i2w4II",
       "filed_as": "the-voice/blind-audition",
       "note": "duplicate, already on site"
+    },
+    {
+      "received": "2026-10-04 10:36",
+      "type": "youtube",
+      "value": "https://www.youtube.com/watch?v=Mi-GWA1FGIs",
+      "filed_as": "the-voice/battles",
+      "note": "duplicate, already on site"
     }
   ]
 }
