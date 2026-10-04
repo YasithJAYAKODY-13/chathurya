@@ -27,6 +27,32 @@
       "title": "Handawaka",
       "description": "A returning voice in the Handawaka concert series.",
       "images": []
+    },
+    {
+      "id": "2022-02-26-angunakolapelessa-concert",
+      "title": "",
+      "title_sinhala": "(title on poster, to confirm)",
+      "date": "2022-02-26",
+      "time": "7.00 pm",
+      "day": "Saturday",
+      "venue": "Angunakolapelessa Town Hall",
+      "city": "Angunakolapelessa",
+      "with": [
+        "Dhammika Bandara (veteran lyricist, guest of honour)",
+        "Thilina Sudesh",
+        "Visharada Maneesha Bandara"
+      ],
+      "music": "Thineth Wijesinghe with YoYo Acoustic",
+      "compere": "Prasad Rajapaksha",
+      "presented_by": "Bigwings Holding",
+      "description": "A concert at Angunakolapelessa Town Hall honouring veteran lyricist Dhammika Bandara, with Chathurya singing alongside Thilina Sudesh and Visharada Maneesha Bandara.",
+      "images": [
+        "images/2022-02-26-angunakolapelessa-concert-poster.webp"
+      ],
+      "image_captions": {
+        "images/2022-02-26-angunakolapelessa-concert-poster.webp": "Concert poster, Angunakolapelessa Town Hall, 26 February 2022"
+      },
+      "needs": "English concert name; confirm Dhammika Bandara and the song credit"
     }
   ]
 }
