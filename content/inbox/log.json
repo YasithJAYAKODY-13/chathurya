@@ -78,6 +78,12 @@
       "type": "image+text",
       "value": "Live Shows official portrait; song: Pun Sanda Raaka",
       "filed_as": "the-voice/images/the-voice-live-shows-official-portrait.webp"
+    },
+    {
+      "received": "2026-10-04 11:24",
+      "type": "text",
+      "value": "Knockouts song: Ada Ipadunu by Sunil Edirisinghe",
+      "filed_as": "the-voice/knockouts"
     }
   ]
 }

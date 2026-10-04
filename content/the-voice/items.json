@@ -43,17 +43,18 @@
     {
       "id": "knockouts",
       "round": "Knockouts",
-      "title": "",
+      "title": "Ada Ipadunu",
       "youtube": "",
       "images": [
         "images/the-voice-knockouts-official-portrait-1.webp",
         "images/the-voice-knockouts-official-portrait-2.webp"
       ],
-      "needs": "song she sang and video link (photos received)",
+      "needs": "video link (optional)",
       "image_captions": {
         "images/the-voice-knockouts-official-portrait-1.webp": "Official The Voice Sri Lanka portrait for The Knockouts (Sirasa TV)",
         "images/the-voice-knockouts-official-portrait-2.webp": "Official The Voice Sri Lanka portrait for The Knockouts"
-      }
+      },
+      "original_artist": "Sunil Edirisinghe"
     },
     {
       "id": "live-shows",
