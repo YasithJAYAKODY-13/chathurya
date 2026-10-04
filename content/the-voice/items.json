@@ -60,8 +60,13 @@
       "round": "Live Shows",
       "title": "",
       "youtube": "",
-      "images": [],
-      "needs": "song, video link, photos"
+      "images": [
+        "images/the-voice-live-shows-performance-poster.webp"
+      ],
+      "needs": "song she sang and video link (photo received)",
+      "image_captions": {
+        "images/the-voice-live-shows-performance-poster.webp": "Performing in the Live Shows, The Voice Sri Lanka (Sirasa TV)"
+      }
     },
     {
       "id": "coach-reaction-adam-baruell",
