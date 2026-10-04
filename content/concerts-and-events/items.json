@@ -173,6 +173,30 @@
       "description": "Chathurya sang at the fifth edition of the Sonduru Sihina Ra concert, which was broadcast live.",
       "images": [],
       "needs": "poster or photos; venue; TV channel that broadcast it"
+    },
+    {
+      "id": "2023-02-25-praana-live-in-concert",
+      "title": "Praana, Live in Concert",
+      "title_sinhala": "ප්‍රාණ",
+      "tagline_sinhala": "නොමියන ආදරය",
+      "headline": true,
+      "featured": true,
+      "date": "2023-02-25",
+      "time": "from 3.00 pm",
+      "venue": "NLDB farm premises, Weerawila Lake",
+      "city": "Tissamaharama",
+      "presented_by": "Show Bees",
+      "programme": "Live concert with food festival and cultural show",
+      "dance": "Nirosha Thalagala",
+      "compere": "Isuru",
+      "description": "Praana was Chathurya's own live concert, with her as the headline artist. Presented by Show Bees at the NLDB farm premises by Weerawila Lake in Tissamaharama, the evening combined her live concert with a food festival and cultural show, including a dance performance by Nirosha Thalagala.",
+      "omitted_on_purpose": "ticket prices and organisers' phone numbers",
+      "images": [
+        "images/2023-02-25-praana-live-in-concert-poster.webp"
+      ],
+      "image_captions": {
+        "images/2023-02-25-praana-live-in-concert-poster.webp": "Praana, Live in Concert poster, 25 February 2023"
+      }
     }
   ]
 }
