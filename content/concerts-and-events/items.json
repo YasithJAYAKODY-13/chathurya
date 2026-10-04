@@ -21,15 +21,16 @@
       "images": [
         "images/2026-10-01-childrens-day-udayala.webp"
       ],
-      "videos_pending": [
+      "note": "Chathurya said she really enjoyed this one; more photos and videos to come",
+      "videos": [
         {
           "file": "videos/2026-10-01-childrens-day-udayala-gift-giving.mp4",
+          "poster": "videos/2026-10-01-childrens-day-udayala-gift-giving.jpg",
+          "caption": "Chathurya handing out gifts to students on Children's Day",
           "length": "42 seconds",
-          "content": "Chathurya handing gifts to schoolchildren",
-          "status": "held back: children's faces visible; needs school/parent permission or face blurring before publishing"
+          "publish_ok": "approved by Yasith to publish as is"
         }
-      ],
-      "note": "Chathurya said she really enjoyed this one; more photos and videos to come"
+      ]
     },
     {
       "id": "handawaka-series",
@@ -65,8 +66,8 @@
     },
     {
       "id": "secret-mega-blast-ambalantota",
-      "title": "Secret Mega Blast",
-      "date": "YYYY-03-06",
+      "title": "Mega Blast with the Secret band",
+      "date": "2022-03-06",
       "time": "from 8.00 pm",
       "venue": "Bolana Maha Vidyalaya grounds",
       "city": "Ambalantota",
@@ -87,8 +88,7 @@
       ],
       "image_captions": {
         "images/03-06-secret-mega-blast-ambalantota-poster.webp": "Secret Mega Blast concert poster, Bolana, Ambalantota"
-      },
-      "needs": "year"
+      }
     },
     {
       "id": "2022-07-09-ethera-nimnada-dubai",
@@ -153,7 +153,7 @@
     {
       "id": "attack-show-ambalantota",
       "title": "Attack Show, Ambalantota",
-      "date": "YYYY-03-30",
+      "date": "2024-03-30",
       "time": "8.00 pm",
       "venue": "Bolana Maha Vidyalaya grounds",
       "city": "Ambalantota",
@@ -170,8 +170,7 @@
       ],
       "image_captions": {
         "images/03-30-attack-show-ambalantota-poster.webp": "Attack Show poster, Bolana, Ambalantota"
-      },
-      "needs": "year (user wrote 2029, likely a typo); confirm 29 or 30 March"
+      }
     },
     {
       "id": "2024-04-sonduru-sihina-ra-vol-5",
@@ -219,7 +218,7 @@
     {
       "id": "kandy-kisses-gatambe",
       "title": "Kandy Kisses",
-      "date": "YYYY-02-18",
+      "date": "2023-02-18",
       "time": "from 11.00 am",
       "venue": "Gatambe Grounds",
       "city": "Kandy",
@@ -252,8 +251,7 @@
       ],
       "image_captions": {
         "images/02-18-kandy-kisses-gatambe-poster.webp": "Kandy Kisses concert poster, Gatambe Grounds, Kandy"
-      },
-      "needs": "year"
+      }
     }
   ]
 }
