@@ -1,3 +1,11 @@
 {
-  "items": []
+  "items": [
+    {
+      "received": "2026-10-04 10:35",
+      "type": "youtube",
+      "value": "https://www.youtube.com/watch?v=loiP_i2w4II",
+      "filed_as": "the-voice/blind-audition",
+      "note": "duplicate, already on site"
+    }
+  ]
 }
