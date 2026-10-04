@@ -6,7 +6,9 @@
       "season": 1,
       "title": "Hithala Wanniye",
       "youtube": "loiP_i2w4II",
-      "images": []
+      "images": [],
+      "coach": "Umaria Sinhawansa",
+      "chairs_turned": 3
     },
     {
       "id": "best-of-the-week",
@@ -38,7 +40,8 @@
       ],
       "image_captions": {
         "images/the-voice-battles-official-portrait.webp": "Official The Voice Sri Lanka portrait for The Battles"
-      }
+      },
+      "result": "won"
     },
     {
       "id": "knockouts",
@@ -49,12 +52,13 @@
         "images/the-voice-knockouts-official-portrait-1.webp",
         "images/the-voice-knockouts-official-portrait-2.webp"
       ],
-      "needs": "video link (optional)",
+      "needs": "none (no video available)",
       "image_captions": {
         "images/the-voice-knockouts-official-portrait-1.webp": "Official The Voice Sri Lanka portrait for The Knockouts (Sirasa TV)",
         "images/the-voice-knockouts-official-portrait-2.webp": "Official The Voice Sri Lanka portrait for The Knockouts"
       },
-      "original_artist": "Sunil Edirisinghe"
+      "original_artist": "Sunil Edirisinghe",
+      "date": "2021-06-28"
     },
     {
       "id": "road-to-lives",
@@ -67,7 +71,8 @@
       ],
       "image_captions": {
         "images/the-voice-road-to-lives-group-performance.webp": "Performing on The Voice Sri Lanka's Road to Lives programme"
-      }
+      },
+      "song": "Bala Walapemi"
     },
     {
       "id": "live-shows",
@@ -78,11 +83,13 @@
         "images/the-voice-live-shows-official-portrait.webp",
         "images/the-voice-live-shows-performance-poster.webp"
       ],
-      "needs": "video link (optional)",
+      "needs": "none (no video available)",
       "image_captions": {
         "images/the-voice-live-shows-performance-poster.webp": "Singing Pun Sanda Raaka in the Live Shows, The Voice Sri Lanka (Sirasa TV)",
         "images/the-voice-live-shows-official-portrait.webp": "Official The Voice Sri Lanka portrait for the Live Shows (Sirasa TV)"
-      }
+      },
+      "date": "2021-10",
+      "summary": "Reached the Live Shows"
     },
     {
       "id": "coach-reaction-adam-baruell",
