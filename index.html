@@ -272,6 +272,52 @@ dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
 .tthumbw img{width:100%;height:100%}
 @media (max-width:420px){.tthumbw{width:76px;height:76px}}
 .ttext strong,.ctext strong,.htext strong{overflow-wrap:anywhere}
+
+/* ---- scroll-darkening background: sections are transparent over a body colour set by JS ---- */
+body{background:var(--bg,#0E2C25);transition:background-color .2s linear}
+.music,.press,.about,.perf,.invite{background:transparent!important}
+.hero{background:radial-gradient(90% 70% at 72% 45%,#1D5141 0%,#123A30 35%,transparent 75%)}
+.hero::after{background:linear-gradient(transparent,var(--bg,#0E2C25))}
+:root{--mist:#C3D3CC}
+
+/* ---- highlights: big numbers ---- */
+.highlights{padding-block:clamp(48px,7vw,80px) 8px}
+.hl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:900px){.hl-grid{grid-template-columns:1fr 1fr}}
+.hl-tile{display:flex;flex-direction:column;gap:2px;padding:24px 22px;border-radius:22px;text-decoration:none;color:var(--pearl);
+ background:linear-gradient(160deg,rgba(28,84,66,.55),rgba(8,24,20,.55));border:1px solid rgba(212,165,58,.35);position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.hl-tile:hover{transform:translateY(-4px);border-color:var(--gold)}
+.hl-tile::before{content:"";position:absolute;inset:-1px;background:linear-gradient(120deg,transparent 40%,rgba(236,207,133,.18) 50%,transparent 60%);transform:translateX(-100%);pointer-events:none}
+.hl-tile.in::before{animation:sheen 2.4s .3s ease-out}
+.hl-tile .big{font-family:var(--display);line-height:1;font-size:clamp(1.9rem,4vw,2.6rem);background:linear-gradient(180deg,#F3D98F,#D4A53A 60%,#B4852A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.hl-tile .big.num{font-size:clamp(3.4rem,8vw,5rem)}
+.hl-tile strong{font-size:1.1rem;font-weight:600}
+.hl-tile span:last-child{color:var(--mist);font-size:.95rem}
+.award{display:flex;gap:16px;align-items:center;margin-top:16px;padding:18px 22px;border-radius:20px;text-decoration:none;color:var(--pearl);
+ background:linear-gradient(100deg,rgba(236,207,133,.22),rgba(236,207,133,.05) 60%);border:1px solid var(--brass)}
+.award .ico{width:44px;height:44px;color:var(--gold);flex:none}
+.award strong{display:block;font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.2;color:var(--gold)}
+.award span span{color:var(--mist)}
+.hawards{display:inline-flex;gap:8px;align-items:center;color:#14251F;background:var(--gold);border-radius:999px;padding:4px 14px;font-weight:600;font-size:.92rem}
+.hawards .ico{width:18px;height:18px}
+
+/* ---- animated gold dividers ---- */
+.divider{position:relative;height:60px;width:min(1160px,100% - 32px);margin:0 auto;overflow:visible}
+.divider svg{width:100%;height:100%;overflow:visible}
+.divider path{fill:none;stroke-linecap:round}
+.divider .d1{stroke:url(#none);stroke:#D4A53A;stroke-width:1.6;stroke-dasharray:1400;stroke-dashoffset:1400;opacity:.85}
+.divider .d2{stroke:#ECCF85;stroke-width:.8;stroke-dasharray:1400;stroke-dashoffset:1400;opacity:.45}
+.divider.in .d1{animation:draw 2.2s cubic-bezier(.4,.1,.2,1) forwards}
+.divider.in .d2{animation:draw 2.6s .25s cubic-bezier(.4,.1,.2,1) forwards}
+.divider .spark{position:absolute;top:50%;left:0;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#FFF3CC;box-shadow:0 0 14px 6px rgba(236,207,133,.7);opacity:0}
+.divider.in .spark{animation:spark 2.4s cubic-bezier(.4,.1,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes spark{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:100%;opacity:0}}
+@keyframes sheen{to{transform:translateX(100%)}}
+h2.reveal{position:relative;padding-bottom:12px}
+h2.reveal::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;border-radius:3px;background:linear-gradient(90deg,#ECCF85,#D4A53A,transparent);transition:width 1.2s cubic-bezier(.2,.7,.1,1)}
+h2.reveal.in::after{width:min(180px,40%)}
+@media (prefers-reduced-motion:reduce){.divider .d1,.divider .d2{stroke-dashoffset:0}.divider .spark{display:none}h2.reveal::after{width:min(180px,40%)}}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/", "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": "Tangalle, Sri Lanka"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"}, "sameAs": ["https://www.facebook.com/chathuryasandabaranaofficial", "https://www.youtube.com/@chathuryasandabaranaofficial", "https://www.imdb.com/name/nm16989301/"], "image": "https://chathurya.caeleon.net/assets/share.jpg"}, {"@context": "https://schema.org", "@type": "MusicEvent", "name": "Handawaka, Anuradhapura", "startDate": "2026-10-17", "eventStatus": "https://schema.org/EventScheduled", "location": {"@type": "Place", "name": "Irrigation Ground", "address": {"@type": "PostalAddress", "addressLocality": "Anuradhapura", "addressCountry": "LK"}}, "performer": {"@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/"}}]</script>
 </head>
@@ -301,6 +347,7 @@ dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
   <p><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Irrigation Ground, Anuradhapura. Saturday 17 October 2026</p></div>
   <a class="btn ghost" href="#concerts">All concerts</a>
 </div></div></section>
+<section class="highlights" aria-label="Highlights"><div class="wrap"><div class="hl-grid"><a class="hl-tile" href="#concerts"><span class="big num" data-count="4">4</span><strong>Handawaka shows</strong><span>Colombo, Kandy, Havelock grounds, Galle</span></a><a class="hl-tile" href="#concerts"><span class="big num" data-count="13">13</span><strong>Concerts and events</strong><span>Across Sri Lanka and in Dubai since 2022</span></a><a class="hl-tile" href="#voice"><span class="big">Live Shows</span><strong>The Voice Sri Lanka</strong><span>Season 1, trained under Umaria Sinhawansa</span></a><a class="hl-tile" href="#voice"><span class="big">Best of the Week</span><strong>The Voice Global</strong><span>Representing Sri Lanka, 8 January 2021</span></a></div><a class="award" href="#concerts"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8M9 18h6"/></svg><span><strong>Handawaka was named Most Popular Concert in 2026</strong><span>Chathurya has sung at four Handawaka shows.</span></span></a></div></section><div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path class="d1" d="M0 30 C 150 5, 300 55, 450 30 S 750 5, 900 30 S 1100 55, 1200 30"/><path class="d2" d="M0 34 C 160 12, 310 58, 460 34 S 760 10, 910 34 S 1110 56, 1200 34"/></svg><span class="spark"></span></div>
 <section class="music" id="music" aria-labelledby="music-title"><div class="wrap music-grid">
   <button class="video facade" data-yt="4JqXkidcFCc" data-start="" data-end="" aria-label="Play Sayam Heene, Single, official music video">
   <img src="https://i.ytimg.com/vi/4JqXkidcFCc/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
@@ -321,7 +368,7 @@ dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
     <p class="tr">Chathurya, keeping a balanced path between the arts and science</p>
     <button class="link" data-gallery="press-2026-10-04-silumina-rasaduna">Read the article</button>
   </div>
-</article></div></section>
+</article></div></section><div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path class="d1" d="M0 30 C 150 5, 300 55, 450 30 S 750 5, 900 30 S 1100 55, 1200 30"/><path class="d2" d="M0 34 C 160 12, 310 58, 460 34 S 760 10, 910 34 S 1110 56, 1200 34"/></svg><span class="spark"></span></div>
 <section class="about" id="about" aria-labelledby="about-title"><div class="wrap about-grid">
   <h2 id="about-title">About Chathurya</h2>
   <div>
@@ -329,7 +376,7 @@ dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
     <p>Since then she has sung at concerts across Sri Lanka and in Dubai, including four Handawaka shows, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she is an aerospace engineering graduate.</p>
     <ul class="facts"><li>The Voice Sri Lanka, Season 1: trained under Umaria Sinhawansa and reached the Live Shows</li><li>Selected for The Voice Global &quot;Best of the Week&quot;, representing Sri Lanka</li><li>Four Handawaka shows: Colombo, Kandy, Havelock grounds and Galle</li><li>Concerts across Sri Lanka and in Dubai since 2022</li></ul>
   </div>
-</div></section>
+</div></section><div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path class="d1" d="M0 30 C 150 5, 300 55, 450 30 S 750 5, 900 30 S 1100 55, 1200 30"/><path class="d2" d="M0 34 C 160 12, 310 58, 460 34 S 760 10, 910 34 S 1110 56, 1200 34"/></svg><span class="spark"></span></div>
 <section class="perf" id="performances" aria-labelledby="perf-title"><div class="wrap">
   <h2 id="perf-title">Performances</h2>
   <p class="sub">Choose a category to see Chathurya's work.</p>
@@ -351,7 +398,7 @@ dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
   <img src="https://i.ytimg.com/vi/Kg2N7YGMPvo/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
   <span class="play"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></span>
 </button></div></div></div><div class="panel" role="tabpanel" id="p-concerts" aria-labelledby="t-concerts" tabindex="0"><div class="wide">
-<div class="hhead"><h3>Handawaka</h3><p>Chathurya has sung at 4 Handawaka shows. Tap a show to see all its photos and videos.</p></div>
+<div class="hhead"><h3>Handawaka</h3><p>Chathurya has sung at 4 Handawaka shows. Tap a show to see all its photos and videos.</p><span class="hawards"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8M9 18h6"/></svg>Handawaka was named Most Popular Concert in 2026</span></div>
 <ol class="htimeline"><li class="hstep"><button class="hbtn" data-gallery="handawaka-1" aria-label="Open Handawaka 1, Colombo">
   <span class="hnum">1</span><img src="assets/img/concerts-and-events__images__2024-handawaka-colombo-1-480.webp" srcset="assets/img/concerts-and-events__images__2024-handawaka-colombo-1-480.webp 480w, assets/img/concerts-and-events__images__2024-handawaka-colombo-1-960.webp 960w" sizes="(max-width: 860px) 92vw, 260px" width="1066" height="1600" alt="Chathurya at Handawaka, Colombo" class="hcover" loading="lazy" decoding="async">
   <span class="htext"><strong>Colombo</strong><span>2024 · Arcade Independence Square</span><span class="badge">8 photos · 2 videos. View all</span></span>
@@ -430,7 +477,7 @@ dialog#lightbox::backdrop{background:rgba(0,0,0,.85)}
 <p>When a spacecraft comes back to Earth, it hits the atmosphere at around 25 times the speed of sound, and its outer surface heats to well over 1,500°C. Chathurya works on materials that can survive that heat, using computer simulations of the airflow around the vehicle (CFD) and of how heat travels through its structure (FEA), so engineers can predict how a design behaves before anything is built.</p><h4>Research areas</h4><ul class="areas"><li>Ultra-high-temperature alloys for space re-entry vehicles</li><li>Computational fluid dynamics (CFD)</li><li>Heat-dissipation analysis integrated with finite element analysis (FEA)</li></ul></div>
 <div class="items"><button class="item gradbtn" data-gallery="education" aria-label="Open graduation photo"><img src="assets/img/education__images__2026-graduation-bsc-aerospace-engineering-480.webp" srcset="assets/img/education__images__2026-graduation-bsc-aerospace-engineering-480.webp 480w, assets/img/education__images__2026-graduation-bsc-aerospace-engineering-960.webp 960w" sizes="(max-width: 700px) 60vw, 300px" width="1400" height="1660" alt="Chathurya at her graduation" class="grad" loading="lazy" decoding="async"></button>
 <div class="item"><h4>Why her work matters to everyone</h4><ul class="why"><li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8 12l3 3 5-6"/></svg><div><strong>Safer journeys home</strong><p>Better heat shields protect astronauts and spacecraft on the most dangerous part of the trip.</p></div></li><li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 7l4 4-6 6-4-4z"/><path d="M15 5l2-2 4 4-2 2M5 15l-2 2 4 4 2-2M17 13a4 4 0 0 0 4 4"/></svg><div><strong>Cheaper access to space</strong><p>Spacecraft that survive re-entry can be reused, which lowers the cost of launching the satellites behind GPS, weather forecasts, internet and disaster warnings.</p></div></li><li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg><div><strong>Everyday engineering</strong><p>The same heat-resistant materials and simulation methods help make jet engines, power stations and vehicles more efficient, using less fuel.</p></div></li></ul></div></div></div>
-</div></section>
+</div></section><div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path class="d1" d="M0 30 C 150 5, 300 55, 450 30 S 750 5, 900 30 S 1100 55, 1200 30"/><path class="d2" d="M0 34 C 160 12, 310 58, 460 34 S 760 10, 910 34 S 1110 56, 1200 34"/></svg><span class="spark"></span></div>
 <section class="invite" id="invite" aria-labelledby="invite-title"><div class="wrap"><div class="icard">
   <h2 id="invite-title">Invite to perform</h2>
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
@@ -571,6 +618,20 @@ addEventListener('resize', size); size();
 if (!reduce && !lowEnd) {
   new IntersectionObserver(en => { const was = run; run = en[0].isIntersecting && !document.hidden; if (run && !was) requestAnimationFrame(loop); }).observe(c);
   document.addEventListener('visibilitychange', () => { run = !document.hidden && c.getBoundingClientRect().bottom > 0; if (run) requestAnimationFrame(loop); }); }
+})();
+(function(){
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* background darkens from forest green to near-black as you scroll */
+const from=[14,44,37], to=[5,15,12], root=document.documentElement;
+function bg(){ const max=Math.max(1,document.body.scrollHeight-innerHeight); const t=Math.min(1,scrollY/max);
+  const c=from.map((v,i)=>Math.round(v+(to[i]-v)*t)); root.style.setProperty('--bg',`rgb(${c})`); }
+addEventListener('scroll',bg,{passive:true}); addEventListener('resize',bg); bg();
+/* reveal gold accents when they come into view */
+document.querySelectorAll('main h2').forEach(h=>h.classList.add('reveal'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
+  const n=e.target.querySelector('.num[data-count]'); if(n && !reduce){ const end=+n.dataset.count; let k=0; const st=performance.now();
+    (function tick(ts){ k=Math.min(1,(ts-st)/1200); n.textContent=Math.round(end*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(tick); })(st); } } }),{threshold:.35});
+document.querySelectorAll('.divider, h2.reveal, .hl-tile').forEach(el=>io.observe(el));
 })();
 </script>
 </body>

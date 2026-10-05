@@ -114,3 +114,17 @@ if (!reduce && !lowEnd) {
   new IntersectionObserver(en => { const was = run; run = en[0].isIntersecting && !document.hidden; if (run && !was) requestAnimationFrame(loop); }).observe(c);
   document.addEventListener('visibilitychange', () => { run = !document.hidden && c.getBoundingClientRect().bottom > 0; if (run) requestAnimationFrame(loop); }); }
 })();
+(function(){
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* background darkens from forest green to near-black as you scroll */
+const from=[14,44,37], to=[5,15,12], root=document.documentElement;
+function bg(){ const max=Math.max(1,document.body.scrollHeight-innerHeight); const t=Math.min(1,scrollY/max);
+  const c=from.map((v,i)=>Math.round(v+(to[i]-v)*t)); root.style.setProperty('--bg',`rgb(${c})`); }
+addEventListener('scroll',bg,{passive:true}); addEventListener('resize',bg); bg();
+/* reveal gold accents when they come into view */
+document.querySelectorAll('main h2').forEach(h=>h.classList.add('reveal'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
+  const n=e.target.querySelector('.num[data-count]'); if(n && !reduce){ const end=+n.dataset.count; let k=0; const st=performance.now();
+    (function tick(ts){ k=Math.min(1,(ts-st)/1200); n.textContent=Math.round(end*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(tick); })(st); } } }),{threshold:.35});
+document.querySelectorAll('.divider, h2.reveal, .hl-tile').forEach(el=>io.observe(el));
+})();

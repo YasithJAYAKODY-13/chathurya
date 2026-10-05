@@ -154,6 +154,7 @@ ICONS = {
     "menu": '<path d="M4 7h16M4 12h16M4 17h16"/>',
     "close": '<path d="M6 6l12 12M18 6L6 18"/>',
     "film": '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+    "trophy": '<path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8M9 18h6"/>',
     "copy": '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>',
 }
 
@@ -236,6 +237,43 @@ def section_next():
   <p>{icon("pin")}{e(where)}. {d.strftime("%A")} {d.day} {MONTHS[d.month-1]} {d.year}</p></div>
   <a class="btn ghost" href="#concerts">All concerts</a>
 </div></div></section>'''
+
+
+def divider():
+    return '''<div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path class="d1" d="M0 30 C 150 5, 300 55, 450 30 S 750 5, 900 30 S 1100 55, 1200 30"/><path class="d2" d="M0 34 C 160 12, 310 58, 460 34 S 760 10, 910 34 S 1110 56, 1200 34"/></svg><span class="spark"></span></div>'''
+
+
+def section_highlights():
+    past = [c for c in concerts if parse_date(c.get("date"))[0] and not (date_obj(c["date"]) and date_obj(c["date"]) >= TODAY)]
+    groups = set()
+    n_concerts = 0
+    for c in past:
+        if c.get("series") == "Handawaka":
+            key = (c.get("city"), str(c.get("date"))[:7])
+            if key in groups:
+                continue
+            groups.add(key)
+        n_concerts += 1
+    n_hand = len(groups)
+    aw = site.get("handawaka_award", {})
+    tiles = [
+        (str(n_hand), "Handawaka shows", "Colombo, Kandy, Havelock grounds, Galle", "#concerts"),
+        (str(n_concerts), "Concerts and events", "Across Sri Lanka and in Dubai since 2022", "#concerts"),
+        ("Live Shows", "The Voice Sri Lanka", "Season 1, trained under Umaria Sinhawansa", "#voice"),
+        ("Best of the Week", "The Voice Global", "Representing Sri Lanka, 8 January 2021", "#voice"),
+    ]
+    def tile(n, a, s, h):
+        num = n.isdigit()
+        cls = "big num" if num else "big"
+        dc = f' data-count="{n}"' if num else ""
+        return f'<a class="hl-tile" href="{h}"><span class="{cls}"{dc}>{e(n)}</span><strong>{e(a)}</strong><span>{e(s)}</span></a>'
+    t = "".join(tile(*x) for x in tiles)
+    award = ""
+    if aw.get("text"):
+        name = f" ({e(aw['award_name'])})" if aw.get("award_name") else ""
+        award = f'<a class="award" href="#concerts">{icon("trophy")}<span><strong>{e(aw["text"])}{name}</strong><span>Chathurya has sung at four Handawaka shows.</span></span></a>'
+    return f'''
+<section class="highlights" aria-label="Highlights"><div class="wrap"><div class="hl-grid">{t}</div>{award}</div></section>'''
 
 
 def section_music():
@@ -407,7 +445,7 @@ def tab_concerts():
     others.sort(key=lambda c: parse_date(c["date"])[0], reverse=True)
     cards = "".join(concert_card(c) for c in others)
     return f'''<div class="wide">
-<div class="hhead"><h3>Handawaka</h3><p>Chathurya has sung at {n} Handawaka shows. Tap a show to see all its photos and videos.</p></div>
+<div class="hhead"><h3>Handawaka</h3><p>Chathurya has sung at {n} Handawaka shows. Tap a show to see all its photos and videos.</p>{('<span class="hawards">' + icon("trophy") + e(site["handawaka_award"]["text"]) + '</span>') if site.get("handawaka_award", {}).get("text") else ""}</div>
 <ol class="htimeline">{steps}</ol>
 <h3 class="sub-h">Concerts and events</h3>
 <p class="muted">Shows across Sri Lanka and overseas, newest first. Tap a poster for photos.</p>
@@ -567,8 +605,8 @@ def section_invite():
 CSS = open(os.path.join(ROOT, "tools", "site.css"), encoding="utf-8").read()
 JS = open(os.path.join(ROOT, "tools", "site.js"), encoding="utf-8").read()
 
-body = "".join([section_hero(), section_next(), section_music(), section_press(), section_about(),
-                section_performances(), section_invite()])
+body = "".join([section_hero(), section_next(), section_highlights(), divider(), section_music(), section_press(), divider(),
+                section_about(), divider(), section_performances(), divider(), section_invite()])
 
 person_ld = {"@context": "https://schema.org", "@type": "Person", "name": site["name"], "url": site["url"],
              "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": site["hometown"]},
