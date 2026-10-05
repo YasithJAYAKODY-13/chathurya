@@ -125,7 +125,18 @@ document.querySelectorAll('main h2').forEach(h=>h.classList.add('reveal'));
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
   const n=e.target.querySelector('.num[data-count]'); if(n && !reduce){ const end=+n.dataset.count; let k=0; const st=performance.now();
     (function tick(ts){ k=Math.min(1,(ts-st)/1200); n.textContent=Math.round(end*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(tick); })(st); } } }),{threshold:.35});
-document.querySelectorAll('.divider, h2.reveal, .hl-tile').forEach(el=>io.observe(el));
+document.querySelectorAll('.divider, h2.reveal, .hl-tile, .ms').forEach(el=>io.observe(el));
+/* 3D tilt for milestone cards */
+const fine=matchMedia('(pointer:fine)').matches;
+document.querySelectorAll('.ms').forEach(card=>{ if(reduce) return;
+  if(fine){ card.addEventListener('pointermove',ev=>{ const r=card.getBoundingClientRect(), x=(ev.clientX-r.left)/r.width, y=(ev.clientY-r.top)/r.height;
+      card.classList.add('live'); card.style.setProperty('--ry',((x-.5)*16).toFixed(2)+'deg'); card.style.setProperty('--rx',((.5-y)*12).toFixed(2)+'deg');
+      card.style.setProperty('--gx',(x*100).toFixed(0)+'%'); card.style.setProperty('--gy',(y*100).toFixed(0)+'%'); });
+    card.addEventListener('pointerleave',()=>{ card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg'); }); } });
+if(!reduce && !fine){ const cards=[...document.querySelectorAll('.ms')];
+  const tilt=()=>cards.forEach(c=>{ const r=c.getBoundingClientRect(); const t=((r.top+r.height/2)/innerHeight-.5); c.classList.add('live');
+    c.style.setProperty('--rx',(t*-14).toFixed(2)+'deg'); c.style.setProperty('--gy',(50+t*80).toFixed(0)+'%'); });
+  addEventListener('scroll',()=>requestAnimationFrame(tilt),{passive:true}); }
 /* 3D gold wave ribbons, same language as the hero waves */
 const lowEnd=(navigator.connection&&navigator.connection.saveData)||(navigator.hardwareConcurrency||8)<=4;
 const ribs=[...document.querySelectorAll('.divider canvas')].map((cv,k)=>({cv,g:cv.getContext('2d'),gem:cv.parentNode.querySelector('.gem'),k,on:false,W:0,H:0}));

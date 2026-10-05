@@ -259,24 +259,25 @@ def section_highlights():
         n_concerts += 1
     n_hand = len(groups)
     aw = site.get("handawaka_award", {})
+    n_places = len([p for p in places_list() if p["shows"]])
     tiles = [
-        (str(n_hand), "Handawaka shows", "Colombo, Kandy, Havelock grounds, Galle", "#concerts"),
-        (str(n_concerts), "Concerts and events", "Sri Lanka and Dubai, since 2022", "#concerts"),
-        ("Live Shows", "The Voice Sri Lanka", "Season 1, trained under Umaria Sinhawansa", "#voice"),
-        ("Best of the Week", "The Voice Global", "Representing Sri Lanka, 8 January 2021", "#voice"),
+        ("trophy", str(n_hand), "Handawaka shows", "Colombo · Kandy · Havelock · Galle", "#concerts"),
+        ("pin", str(n_concerts), "Concerts and events", f"{n_places} cities · Sri Lanka and Dubai", "#concerts"),
+        ("mic", "Live Shows", "The Voice Sri Lanka", "Season 1 · Team Umaria Sinhawansa", "#voice"),
+        ("globe", "Global", "International recognition", "The Voice Global best performances of the week · Live in Dubai", "#voice"),
     ]
-    def tile(n, a, s, h):
+    def tile(ic, n, a, s, h):
         num = n.isdigit()
-        cls = "big num" if num else "big"
         dc = f' data-count="{n}"' if num else ""
-        return f'<a class="hl-tile" href="{h}"><span class="{cls}"{dc}>{e(n)}</span><strong>{e(a)}</strong><span>{e(s)}</span></a>'
+        return (f'<a class="ms" href="{h}"><span class="ms-in"><span class="ms-ico">{icon(ic)}</span>'
+                f'<span class="ms-big{" n num" if num else ""}"{dc}>{e(n)}</span><strong>{e(a)}</strong><span class="ms-sub">{e(s)}</span></span></a>')
     t = "".join(tile(*x) for x in tiles)
     award = ""
     if aw.get("text"):
         name = f" ({e(aw['award_name'])})" if aw.get("award_name") else ""
         award = f'<a class="award" href="#concerts">{icon("trophy")}<span><strong>{e(aw["text"])}{name}</strong><span>Chathurya has sung at four Handawaka shows.</span></span></a>'
     return f'''
-<section class="highlights" aria-label="Highlights"><div class="wrap"><div class="hl-grid">{t}</div>{award}</div></section>'''
+<section class="highlights" aria-label="Highlights"><div class="wrap"><div class="ms-stage top">{t}</div>{award}</div></section>'''
 
 
 def places_list():
@@ -358,14 +359,12 @@ def section_press():
 
 
 def section_about():
-    facts = "".join(f"<li>{e(f)}</li>" for f in site.get("facts", []))
     return f'''
 <section class="about" id="about" aria-labelledby="about-title"><div class="wrap about-grid">
   <h2 id="about-title">About Chathurya</h2>
   <div>
-    <p>Chathurya Sandabarana is a singer from Tangalle, on Sri Lanka's southern coast. She came to national attention on The Voice Sri Lanka, Season 1, where she trained under Umaria Sinhawansa and reached the Live Shows. Her Blind Audition was selected for The Voice Global's "Best of the Week", representing Sri Lanka.</p>
+    <p>Chathurya Sandabarana is a singer from Tangalle, on Sri Lanka's southern coast. She came to national attention on The Voice Sri Lanka, Season 1, where she trained under Umaria Sinhawansa and reached the Live Shows. Her Blind Audition then brought her international recognition: The Voice Global chose it among the best performances of the week from Voice shows around the world, representing Sri Lanka.</p>
     <p>Since then she has sung at concerts across Sri Lanka, from Colombo, Kandy and Galle to Ambalantota, Beliatta and Tissamaharama, and overseas in Dubai. She has performed at four Handawaka shows, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she studied Aerospace Engineering in the United Kingdom and graduated with First Class Honours. <a class="link" href="education.html">Read about her education</a></p>
-    <ul class="facts">{facts}</ul>
   </div>
 </div></section>'''
 
@@ -509,8 +508,8 @@ def tab_tv():
 <p>Chathurya first reached audiences across Sri Lanka on The Voice Sri Lanka on Sirasa TV, and her Blind Audition was later featured in The Voice Global's international highlights. She has also sung on television and been a guest on television podcasts.</p>
 <a class="link" href="#voice" data-tab="t-voice">See her journey on The Voice</a></div>
 <div class="items">
-<div class="item"><span class="when">8 January 2021</span><h4>The Voice Global, Best of the Week</h4><p>Her Blind Audition of Hithala Wanniye, chosen to represent Sri Lanka.</p>
-{video_facade("youtube", "JatYDHP0ARc", "Hithala Wanniye", "The Voice Global, Best of the Week", start=211, end=337, cls="video small")}</div>
+<div class="item"><span class="when">8 January 2021</span><h4>International recognition, The Voice Global</h4><p>Her Blind Audition of Hithala Wanniye, chosen to represent Sri Lanka.</p>
+{video_facade("youtube", "JatYDHP0ARc", "Hithala Wanniye", "The Voice Global, best performances of the week", start=211, end=337, cls="video small")}</div>
 {son_html}
 <div class="item"><h4>Television podcasts</h4><p>Guest appearances, conversation and live singing.</p></div></div>'''
 
@@ -557,7 +556,7 @@ def tab_voice():
 {video_facade("youtube", coach["youtube"], "Vocal coach reaction", "Adam Baruell", cls="video small")}</div>'''
     return f'''<div class="lead"><h3>The Voice Sri Lanka</h3>
 <p>On Season 1 of The Voice Sri Lanka on Sirasa TV, Chathurya trained under Umaria Sinhawansa and went through every round to the Live Shows.</p>
-<div class="global">{icon("globe")}<p><strong>A proud moment for Sri Lanka.</strong> Her Blind Audition of <em>Hithala Wanniye</em> was selected for The Voice Global's "Best of the Week" on 8 January 2021, representing Sri Lanka among standout performances from the international Voice franchise.</p></div>
+<div class="global">{icon("globe")}<p><strong>A proud moment for Sri Lanka.</strong> Her Blind Audition of <em>Hithala Wanniye</em> was chosen by The Voice Global among the best performances of the week from Voice shows around the world, on 8 January 2021, representing Sri Lanka.</p></div>
 <blockquote class="quote">"{e(bw.get("quote", ""))}"<cite>Chathurya</cite></blockquote>
 {coach_html}</div>
 <ol class="timeline">{"".join(rows)}</ol>'''
@@ -607,10 +606,10 @@ def education_body():
         for i, rel in enumerate(ed["images"]))
     why = "".join(f'<li>{icon(w["icon"])}<div><strong>{e(w["title"])}</strong><p>{e(w["text"])}</p></div></li>' for w in ed.get("why_it_matters", []))
     areas = "".join(f"<li>{e(a)}</li>" for a in ed.get("research_areas", []))
-    tiles = [("First Class", "Honours degree", f'{ed["title"]}, {ed.get("year", "")}'),
-             ("UK", "Studied in England", ed.get("institution", "")),
-             ("Research", rp.get("status", ""), rp.get("topic", ""))]
-    t = "".join(f'<div class="hl-tile"><span class="big">{e(a)}</span><strong>{e(b)}</strong><span>{e(c)}</span></div>' for a, b, c in tiles)
+    tiles = [("cap", "First Class", "Honours degree", f'{ed["title"]}, {ed.get("year", "")}'),
+             ("globe", "UK", "Studied in England", ed.get("institution", "")),
+             ("shield", "Research", rp.get("status", ""), rp.get("topic", ""))]
+    t = "".join(f'<div class="ms"><span class="ms-in"><span class="ms-ico">{icon(ic)}</span><span class="ms-big">{e(a)}</span><strong>{e(b)}</strong><span class="ms-sub">{e(c)}</span></span></div>' for ic, a, b, c in tiles)
     return f'''
 <section class="hero ehero" aria-label="Education">
   <canvas id="waves" aria-hidden="true"></canvas>
@@ -625,7 +624,7 @@ def education_body():
     <div class="stage"><button class="eframe" data-gallery="{gid}" data-index="0" aria-label="Open graduation photos">{lead_photo}</button></div>
   </div>
 </section>
-<section class="highlights"><div class="wrap"><div class="hl-grid e3">{t}</div></div></section>
+<section class="highlights"><div class="wrap"><div class="ms-stage e3">{t}</div></div></section>
 {divider()}
 <section class="words" id="words" aria-labelledby="words-title"><div class="wrap">
   <span class="kicker">In her words</span>
