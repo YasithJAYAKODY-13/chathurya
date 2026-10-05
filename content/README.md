@@ -10,6 +10,7 @@ Everything shown on the site lives here, one folder per tab.
 | `the-voice/` | The Voice Sri Lanka (Blind Auditions, Best of the Week, Battles, Knockouts, Live Shows) |
 | `film/` | Film |
 | `education/` | Education (degree, research, why it matters) |
+| `press/` | Press and media features (shown on the home page) |
 | `gallery/` | Photos not tied to one event |
 | `inbox/` | New material received but not yet published |
 

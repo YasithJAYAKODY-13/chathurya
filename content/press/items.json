@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "id": "2026-10-04-silumina-rasaduna",
+      "outlet": "Silumina",
+      "section": "Rasaduna",
+      "date": "2026-10-04",
+      "featured_on_home": true,
+      "headline_sinhala": "කලාවත් විද්‍යාවත් අතර සමබර ගමනක් යන චාතුර්යා",
+      "headline_english": "Chathurya, keeping a balanced path between the arts and science",
+      "summary": "A feature interview in the Sunday Silumina's Rasaduna supplement on how Chathurya balances her singing and screen work with her career in aerospace engineering, from her curiosity about technology as a child to her research on materials for space re-entry vehicles.",
+      "pull_quotes_sinhala": [
+        "කැමරාවක් ඉදිරියට එද්දී දැනෙන්නේ සතුටක්",
+        "කුඩා කාලේ ඉඳන්ම තාක්ෂණය ගැන කුතුහලයක් තිබුණා"
+      ],
+      "pull_quotes_english": [
+        "I feel happy in front of a camera",
+        "I have been curious about technology since I was small"
+      ],
+      "source": "Chathurya Sandabarana official Facebook page post",
+      "images": [
+        "images/2026-10-04-silumina-rasaduna-feature.webp"
+      ],
+      "image_captions": {
+        "images/2026-10-04-silumina-rasaduna-feature.webp": "Silumina, Rasaduna, 4 October 2026"
+      }
+    }
+  ]
+}
