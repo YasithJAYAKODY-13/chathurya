@@ -308,7 +308,7 @@ def section_places():
         elif not p["shows"]:
             tag, cls = "Next show", "pl soon"
         else:
-            tag, cls = ("Handawaka" if p["handawaka"] else ""), "pl"
+            tag, cls = "", "pl"
         items.append(f'<li class="{cls}"><a href="#concerts"><span>{e(p["city"])}</span>{f"<em>{e(tag)}</em>" if tag else ""}</a></li>')
     n_lk = sum(1 for p in ps if not p["country"] and p["shows"])
     return f'''
