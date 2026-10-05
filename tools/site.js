@@ -125,7 +125,7 @@ document.querySelectorAll('main h2').forEach(h=>h.classList.add('reveal'));
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
   const n=e.target.querySelector('.num[data-count]'); if(n && !reduce){ const end=+n.dataset.count; let k=0; const st=performance.now();
     (function tick(ts){ k=Math.min(1,(ts-st)/1200); n.textContent=Math.round(end*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(tick); })(st); } } }),{threshold:.35});
-document.querySelectorAll('.divider, h2.reveal, .hl-tile, .ms').forEach(el=>io.observe(el));
+document.querySelectorAll('.divider, h2.reveal, .hl-tile, .ms, .medal').forEach(el=>io.observe(el));
 /* 3D tilt for milestone cards */
 const fine=matchMedia('(pointer:fine)').matches;
 document.querySelectorAll('.ms').forEach(card=>{ if(reduce) return;

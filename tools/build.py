@@ -17,6 +17,7 @@ import sys
 from urllib.parse import quote
 
 from PIL import Image
+from edu_art import journey_html, medal
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C = os.path.join(ROOT, "content")
@@ -612,10 +613,10 @@ def education_body():
         for i, rel in enumerate(ed["images"]))
     why = "".join(f'<li>{icon(w["icon"])}<div><strong>{e(w["title"])}</strong><p>{e(w["text"])}</p></div></li>' for w in ed.get("why_it_matters", []))
     areas = "".join(f"<li>{e(a)}</li>" for a in ed.get("research_areas", []))
-    tiles = [("cap", "First Class", "Honours degree", f'{ed["title"]}, {ed.get("year", "")}'),
-             ("globe", "UK", "Studied in England", ed.get("institution", "")),
-             ("shield", "Research", rp.get("status", ""), rp.get("topic", ""))]
-    t = "".join(f'<div class="ms"><span class="ms-in"><span class="ms-ico">{icon(ic)}</span><span class="ms-big">{e(a)}</span><strong>{e(b)}</strong><span class="ms-sub">{e(c)}</span></span></div>' for ic, a, b, c in tiles)
+    medals = [("cap", "First Class", "BSC (HONS) AEROSPACE ENGINEERING · 2026 · ", "Honours degree", "The highest class of degree"),
+              ("globe", "UK", "KINGSTON UNIVERSITY LONDON · ENGLAND · ", "Studied in England", ed.get("institution", "")),
+              ("shield", "Research", "RE-ENTRY HEAT RESEARCH · PEER REVIEW · ", rp.get("status", ""), "Research paper on re-entry heating")]
+    t = "".join(medal(i, icon(ic), big, ring, lab, sub, e) for i, (ic, big, ring, lab, sub) in enumerate(medals))
     return f'''
 <section class="hero ehero" aria-label="Education">
   <canvas id="waves" aria-hidden="true"></canvas>
@@ -630,7 +631,7 @@ def education_body():
     <div class="stage"><button class="eframe" data-gallery="{gid}" data-index="0" aria-label="Open graduation photos">{lead_photo}</button></div>
   </div>
 </section>
-<section class="highlights"><div class="wrap"><div class="ms-stage e3">{t}</div></div></section>
+<section class="medals-sec"><div class="wrap"><div class="medals">{t}</div></div></section>
 {divider()}
 <section class="words" id="words" aria-labelledby="words-title"><div class="wrap">
   <span class="kicker">In her words</span>
@@ -640,11 +641,12 @@ def education_body():
 </div></section>
 {divider()}
 <section class="eresearch" aria-labelledby="res-title"><div class="wrap">
+  <div class="er-head"><span class="kicker">Her research</span><h2 id="res-title">Bringing spacecraft home safely</h2>
+  <p class="er-lede">The most dangerous minutes of any space mission are the last ones. Here is the problem her research works on, in four pictures.</p></div>
+  {journey_html(e)}
   <div class="er-grid">
-    <div><span class="kicker">Her research</span><h2 id="res-title">Bringing spacecraft home safely</h2>
-      <p>{e(ed.get("plain_language", ""))}</p>
-      <p class="paper">{icon("shield")}<span><strong>Research paper, {e(rp.get("status", "").lower())}</strong>{e(rp.get("topic", ""))}</span></p>
-      <h4>Research areas</h4><ul class="areas">{areas}</ul></div>
+    <div><p class="paper">{icon("shield")}<span><strong>Research paper, {e(rp.get("status", "").lower())}</strong>{e(rp.get("topic", ""))}</span></p>
+      <h4>Research areas</h4><ul class="chips">{"".join(f"<li>{e(a)}</li>" for a in ed.get("research_areas", []))}</ul></div>
     <div class="item"><h4>Why her work matters to everyone</h4><ul class="why">{why}</ul></div>
   </div>
 </div></section>
