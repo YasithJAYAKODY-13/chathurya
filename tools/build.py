@@ -258,7 +258,7 @@ def section_highlights():
     aw = site.get("handawaka_award", {})
     tiles = [
         (str(n_hand), "Handawaka shows", "Colombo, Kandy, Havelock grounds, Galle", "#concerts"),
-        (str(n_concerts), "Concerts and events", "Across Sri Lanka and in Dubai since 2022", "#concerts"),
+        (str(n_concerts), "Concerts and events", "Sri Lanka and Dubai, since 2022", "#concerts"),
         ("Live Shows", "The Voice Sri Lanka", "Season 1, trained under Umaria Sinhawansa", "#voice"),
         ("Best of the Week", "The Voice Global", "Representing Sri Lanka, 8 January 2021", "#voice"),
     ]
@@ -274,6 +274,49 @@ def section_highlights():
         award = f'<a class="award" href="#concerts">{icon("trophy")}<span><strong>{e(aw["text"])}{name}</strong><span>Chathurya has sung at four Handawaka shows.</span></span></a>'
     return f'''
 <section class="highlights" aria-label="Highlights"><div class="wrap"><div class="hl-grid">{t}</div>{award}</div></section>'''
+
+
+def places_list():
+    """Every town she has performed in, from the concert data. International first, then most shows."""
+    seen = {}
+    for c in concerts:
+        city = c.get("city")
+        if not city or not parse_date(c.get("date"))[0]:
+            continue
+        p = seen.setdefault(city, {"city": city, "country": c.get("country") or "", "shows": 0, "next": False, "handawaka": False})
+        d = date_obj(c["date"])
+        if d and d >= TODAY:
+            p["next"] = True
+            continue
+        if c.get("series") == "Handawaka":
+            p["handawaka"] = True
+            if "Day 2" in c.get("title", ""):
+                continue
+        p["shows"] += 1
+    return sorted(seen.values(), key=lambda p: (not p["country"], not p["shows"], -p["shows"], p["city"]))
+
+
+def section_places():
+    ps = places_list()
+    if not ps:
+        return ""
+    items = []
+    for p in ps:
+        if p["country"]:
+            tag, cls = p["country"], "pl intl"
+        elif not p["shows"]:
+            tag, cls = "Next show", "pl soon"
+        else:
+            tag, cls = ("Handawaka" if p["handawaka"] else ""), "pl"
+        items.append(f'<li class="{cls}"><a href="#concerts"><span>{e(p["city"])}</span>{f"<em>{e(tag)}</em>" if tag else ""}</a></li>')
+    n_lk = sum(1 for p in ps if not p["country"] and p["shows"])
+    return f'''
+<section class="places" aria-labelledby="places-title"><div class="wrap">
+  <span class="kicker">On stage</span>
+  <h2 id="places-title">Where she has performed</h2>
+  <p class="sub">{n_lk} towns and cities across Sri Lanka, and overseas in Dubai.</p>
+  <ul class="pl-list">{"".join(items)}</ul>
+</div></section>'''
 
 
 def section_music():
@@ -318,7 +361,7 @@ def section_about():
   <h2 id="about-title">About Chathurya</h2>
   <div>
     <p>Chathurya Sandabarana is a singer from Tangalle, on Sri Lanka's southern coast. She came to national attention on The Voice Sri Lanka, Season 1, where she trained under Umaria Sinhawansa and reached the Live Shows. Her Blind Audition was selected for The Voice Global's "Best of the Week", representing Sri Lanka.</p>
-    <p>Since then she has sung at concerts across Sri Lanka and in Dubai, including four Handawaka shows, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she is an aerospace engineering graduate.</p>
+    <p>Since then she has sung at concerts across Sri Lanka, from Colombo, Kandy and Galle to Ambalantota, Beliatta and Tissamaharama, and overseas in Dubai. She has performed at four Handawaka shows, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she is an aerospace engineering graduate.</p>
     <ul class="facts">{facts}</ul>
   </div>
 </div></section>'''
@@ -606,7 +649,7 @@ def section_invite():
 CSS = open(os.path.join(ROOT, "tools", "site.css"), encoding="utf-8").read()
 JS = open(os.path.join(ROOT, "tools", "site.js"), encoding="utf-8").read()
 
-body = "".join([section_hero(), section_next(), section_highlights(), divider(), section_music(), section_press(), divider(),
+body = "".join([section_hero(), section_next(), section_highlights(), section_places(), divider(), section_music(), section_press(), divider(),
                 section_about(), divider(), section_performances(), divider(), section_invite()])
 
 person_ld = {"@context": "https://schema.org", "@type": "Person", "name": site["name"], "url": site["url"],
