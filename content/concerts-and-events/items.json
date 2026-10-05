@@ -414,6 +414,39 @@
         "images/2025-10-handawaka-galle-day1-10.webp": "The Handawaka stage and audience, Galle. Photo: Mayiclick",
         "images/2025-10-handawaka-galle-day1-11.webp": "Handawaka, Galle. Photo: Mayiclick"
       }
+    },
+    {
+      "id": "2025-10-handawaka-galle-day2",
+      "title": "Handawaka, Galle (Day 2)",
+      "date": "2025-10",
+      "city": "Galle",
+      "series": "Handawaka",
+      "description": "On the second night of Handawaka in Galle in October 2025, Chathurya sang solo with the band and joined fellow Handawaka artists for the ensemble finale.",
+      "photo_credits": [
+        "Studio Vision",
+        "Mayiclick",
+        "Tharindu Jayaz"
+      ],
+      "event_partner": "Asdum Event",
+      "images": [
+        "images/2025-10-handawaka-galle-day2-1.webp",
+        "images/2025-10-handawaka-galle-day2-2.webp",
+        "images/2025-10-handawaka-galle-day2-3.webp",
+        "images/2025-10-handawaka-galle-day2-4.webp",
+        "images/2025-10-handawaka-galle-day2-5.webp",
+        "images/2025-10-handawaka-galle-day2-6.webp",
+        "images/2025-10-handawaka-galle-day2-7.webp"
+      ],
+      "image_captions": {
+        "images/2025-10-handawaka-galle-day2-1.webp": "Singing at Handawaka, Galle. Photo: Studio Vision",
+        "images/2025-10-handawaka-galle-day2-2.webp": "On stage at Handawaka, Galle. Photo: Tharindu Jayaz",
+        "images/2025-10-handawaka-galle-day2-3.webp": "Singing at Handawaka, Galle. Photo: Mayiclick",
+        "images/2025-10-handawaka-galle-day2-4.webp": "With the Handawaka band, Galle. Photo: Studio Vision",
+        "images/2025-10-handawaka-galle-day2-5.webp": "Group song with fellow Handawaka artists. Photo: Mayiclick",
+        "images/2025-10-handawaka-galle-day2-6.webp": "With fellow Handawaka artists, Galle. Photo: Mayiclick",
+        "images/2025-10-handawaka-galle-day2-7.webp": "The Handawaka stage and audience, Galle. Photo: Studio Vision"
+      },
+      "omitted_on_purpose": "one side-profile photo not used (focus on appearance rather than performance)"
     }
   ]
 }
