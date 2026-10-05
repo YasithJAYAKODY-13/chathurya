@@ -250,6 +250,59 @@
       "image_captions": {
         "images/02-18-kandy-kisses-gatambe-poster.webp": "Kandy Kisses concert poster, Gatambe Grounds, Kandy"
       }
+    },
+    {
+      "id": "2024-handawaka-colombo",
+      "title": "Handawaka, Colombo",
+      "date": "2024",
+      "venue": "Arcade Independence Square",
+      "city": "Colombo",
+      "series": "Handawaka",
+      "song": "Mathaka Mandira (Chanchala)",
+      "with": [
+        "Malith Perera"
+      ],
+      "featured": true,
+      "description": "At Handawaka in Colombo, held at Arcade Independence Square, Chathurya joined Malith Perera on stage for a duet of Mathaka Mandira (Chanchala), sung to a packed open-air audience.",
+      "videos_youtube": [
+        {
+          "id": "Kg2N7YGMPvo",
+          "title": "Mathaka Mandira, full song",
+          "channel": "Dhanuka Lakshan"
+        },
+        {
+          "id": "Jqwvrs0qgJk",
+          "title": "Mathaka Mandira, short clip",
+          "channel": "Tips4U",
+          "short": true
+        }
+      ],
+      "photo_credits": [
+        "Fox Tribe Pictures",
+        "Viviki",
+        "Tharindu Jayaz"
+      ],
+      "images": [
+        "images/2024-handawaka-colombo-1.webp",
+        "images/2024-handawaka-colombo-2.webp",
+        "images/2024-handawaka-colombo-3.webp",
+        "images/2024-handawaka-colombo-4.webp",
+        "images/2024-handawaka-colombo-5.webp",
+        "images/2024-handawaka-colombo-6.webp",
+        "images/2024-handawaka-colombo-7.webp",
+        "images/2024-handawaka-colombo-8.webp"
+      ],
+      "image_captions": {
+        "images/2024-handawaka-colombo-1.webp": "On stage at Handawaka. Photo: Viviki",
+        "images/2024-handawaka-colombo-2.webp": "Singing at Handawaka, Colombo. Photo: Fox Tribe Pictures",
+        "images/2024-handawaka-colombo-3.webp": "Singing Mathaka Mandira with Malith Perera. Photo: Fox Tribe Pictures",
+        "images/2024-handawaka-colombo-4.webp": "With Malith Perera on the Handawaka stage. Photo: Fox Tribe Pictures",
+        "images/2024-handawaka-colombo-5.webp": "The Handawaka audience at Arcade Independence Square. Photo: Fox Tribe Pictures",
+        "images/2024-handawaka-colombo-6.webp": "Duet with Malith Perera. Photo: Fox Tribe Pictures",
+        "images/2024-handawaka-colombo-7.webp": "Mathaka Mandira duet, Handawaka Colombo. Photo: Fox Tribe Pictures",
+        "images/2024-handawaka-colombo-8.webp": "With Malith Perera at Handawaka. Photo: Tharindu Jayaz"
+      },
+      "needs": "confirm year (2023 or 2024)"
     }
   ]
 }
