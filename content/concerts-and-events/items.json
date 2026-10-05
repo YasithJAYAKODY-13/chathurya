@@ -328,6 +328,40 @@
         "images/2025-02-handawaka-kandy-4.webp": "Under the Handawaka sign, Sahas Uyana, Kandy"
       },
       "needs": "song(s) sung; photographer credit; exact date (optional)"
+    },
+    {
+      "id": "2025-06-03-handawaka-havelock",
+      "title": "Handawaka, Havelock grounds",
+      "date": "2025-06-03",
+      "venue": "Havelock grounds",
+      "city": "Colombo",
+      "series": "Handawaka",
+      "featured": true,
+      "description": "On 3 June 2025 Chathurya sang at Handawaka on the Havelock grounds, performing solo with the live band and in a duet on stage.",
+      "photo_credits": [
+        "Mayiclick",
+        "Tharindu Jayaz"
+      ],
+      "event_partner": "Asdum Event",
+      "images": [
+        "images/2025-06-03-handawaka-havelock-1.webp",
+        "images/2025-06-03-handawaka-havelock-2.webp",
+        "images/2025-06-03-handawaka-havelock-3.webp",
+        "images/2025-06-03-handawaka-havelock-4.webp",
+        "images/2025-06-03-handawaka-havelock-5.webp",
+        "images/2025-06-03-handawaka-havelock-6.webp",
+        "images/2025-06-03-handawaka-havelock-7.webp"
+      ],
+      "image_captions": {
+        "images/2025-06-03-handawaka-havelock-1.webp": "Singing at Handawaka, Havelock grounds. Photo: Mayiclick",
+        "images/2025-06-03-handawaka-havelock-2.webp": "On the Handawaka stage, Havelock grounds. Photo: Tharindu Jayaz",
+        "images/2025-06-03-handawaka-havelock-3.webp": "Handawaka, Havelock grounds. Photo: Mayiclick",
+        "images/2025-06-03-handawaka-havelock-4.webp": "Handawaka, Havelock grounds. Photo: Mayiclick",
+        "images/2025-06-03-handawaka-havelock-5.webp": "With the Handawaka band. Photo: Mayiclick",
+        "images/2025-06-03-handawaka-havelock-6.webp": "Handawaka, Havelock grounds. Photo: Mayiclick",
+        "images/2025-06-03-handawaka-havelock-7.webp": "Duet on the Handawaka stage, Havelock grounds. Photo: Mayiclick"
+      },
+      "needs": "song(s); duet partner name (optional)"
     }
   ]
 }
