@@ -390,7 +390,7 @@ def section_concerts():
   <h2 id="concerts-title">Concerts and events</h2>
   <p class="sub">{total} concerts and events since 2022, newest first. Tap any poster for photos and videos.</p>
   <details class="hgroup" open>
-    <summary>{hcover}<span class="hlabel"><span class="kicker">A returning voice</span><strong>Handawaka</strong><span>{len(hand)} shows: Colombo, Kandy, Havelock grounds and Anuradhapura</span></span></summary>
+    <summary>{hcover}<span class="hlabel"><span class="kicker">A returning voice</span><strong>Handawaka</strong><span>{len(hand)} shows across Colombo, Kandy, Galle and Anuradhapura</span></span></summary>
     <ul class="grid">{hand_cards}</ul>
   </details>
   <ul class="grid more" id="concert-grid">{rest_cards}</ul>
