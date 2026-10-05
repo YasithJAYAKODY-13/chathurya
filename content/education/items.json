@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "id": "bsc-aerospace-engineering",
+      "title": "BSc (Hons) Aerospace Engineering",
+      "classification": "First Class Honours",
+      "year": 2026,
+      "institution": "Kingston University London (to confirm)",
+      "research_areas": [
+        "Ultra-high-temperature alloys for space re-entry vehicles",
+        "Computational fluid dynamics (CFD)",
+        "Heat-dissipation analysis integrated with finite element analysis (FEA)"
+      ],
+      "plain_language": "When a spacecraft comes back to Earth, it hits the atmosphere at around 25 times the speed of sound, and its outer surface heats to well over 1,500°C. Chathurya works on materials that can survive that heat, using computer simulations of the airflow around the vehicle (CFD) and of how heat travels through its structure (FEA), so engineers can predict how a design behaves before anything is built.",
+      "why_it_matters": [
+        {
+          "icon": "shield",
+          "title": "Safer journeys home",
+          "text": "Better heat shields protect astronauts and spacecraft on the most dangerous part of the trip."
+        },
+        {
+          "icon": "satellite",
+          "title": "Cheaper access to space",
+          "text": "Spacecraft that survive re-entry can be reused, which lowers the cost of launching the satellites behind GPS, weather forecasts, internet and disaster warnings."
+        },
+        {
+          "icon": "engine",
+          "title": "Everyday engineering",
+          "text": "The same heat-resistant materials and simulation methods help make jet engines, power stations and vehicles more efficient, using less fuel."
+        }
+      ],
+      "images": [
+        "images/2026-graduation-bsc-aerospace-engineering.webp"
+      ],
+      "image_captions": {
+        "images/2026-graduation-bsc-aerospace-engineering.webp": "Graduation, BSc (Hons) Aerospace Engineering, First Class Honours, 2026"
+      }
+    }
+  ]
+}

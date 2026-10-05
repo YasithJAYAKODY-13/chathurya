@@ -178,6 +178,13 @@
       "received": "2026-10-04 12:05",
       "type": "answers",
       "value": "Sonduru: leave details; Angunakolapelessa: just 'Concert'; earlier Handawaka shows to follow; Contact: add an email (address not yet given)"
+    },
+    {
+      "received": "2026-10-05 07:04",
+      "type": "image+text",
+      "value": "Graduation photo; BSc Aerospace Engineering 2026 First Class; research areas",
+      "filed_as": "education/images/2026-graduation-bsc-aerospace-engineering.webp",
+      "note": "user typed 2926, read as 2026"
     }
   ]
 }
