@@ -361,7 +361,15 @@
         "images/2025-06-03-handawaka-havelock-6.webp": "Handawaka, Havelock grounds. Photo: Mayiclick",
         "images/2025-06-03-handawaka-havelock-7.webp": "Duet on the Handawaka stage, Havelock grounds. Photo: Mayiclick"
       },
-      "needs": "song(s); duet partner name (optional)"
+      "needs": "song(s); duet partner name (optional)",
+      "videos": [
+        {
+          "file": "videos/2025-06-03-handawaka-havelock-1.mp4",
+          "poster": "videos/2025-06-03-handawaka-havelock-1.jpg",
+          "length": "2 minutes",
+          "caption": "Live at Handawaka, Havelock grounds. Video: Jaanu Munasinghe"
+        }
+      ]
     }
   ]
 }
