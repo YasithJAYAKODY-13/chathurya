@@ -303,6 +303,31 @@
         "images/2024-handawaka-colombo-8.webp": "With Malith Perera at Handawaka. Photo: Tharindu Jayaz"
       },
       "needs": "confirm year (2023 or 2024)"
+    },
+    {
+      "id": "2025-02-handawaka-kandy",
+      "title": "Handawaka, Kandy",
+      "date": "2025-02",
+      "venue": "Sahas Uyana",
+      "city": "Kandy",
+      "series": "Handawaka",
+      "with": [
+        "Malith Perera"
+      ],
+      "description": "Chathurya returned to the Handawaka stage in February 2025 at Sahas Uyana in Kandy, singing alongside Malith Perera.",
+      "images": [
+        "images/2025-02-handawaka-kandy-1.webp",
+        "images/2025-02-handawaka-kandy-2.webp",
+        "images/2025-02-handawaka-kandy-3.webp",
+        "images/2025-02-handawaka-kandy-4.webp"
+      ],
+      "image_captions": {
+        "images/2025-02-handawaka-kandy-1.webp": "Singing with Malith Perera at Handawaka, Kandy",
+        "images/2025-02-handawaka-kandy-2.webp": "With Malith Perera on the Handawaka stage, Sahas Uyana",
+        "images/2025-02-handawaka-kandy-3.webp": "On stage at Handawaka, Kandy",
+        "images/2025-02-handawaka-kandy-4.webp": "Under the Handawaka sign, Sahas Uyana, Kandy"
+      },
+      "needs": "song(s) sung; photographer credit; exact date (optional)"
     }
   ]
 }
