@@ -2,9 +2,10 @@
 @font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Hanken Grotesk";src:url(assets/fonts/hanken-grotesk-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Noto Serif Sinhala";src:url(assets/fonts/noto-serif-sinhala-sinhala-600-normal.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0D80-0DFF,U+200C-200D}
 @font-face{font-family:"Noto Sans Sinhala";src:url(assets/fonts/noto-sans-sinhala-sinhala-400-normal.woff2) format("woff2");font-display:swap;unicode-range:U+0D80-0DFF,U+200C-200D}
 :root{--night:#0C241F;--deep:#103129;--dress:#1C5442;--brass:#D4A53A;--gold:#ECCF85;--pearl:#F4F2EA;--mist:#B9CBC3;
---display:"Rozha One",Georgia,serif;--body:"Hanken Grotesk","Noto Sans Sinhala","Iskoola Pota",system-ui,sans-serif}
+--display:"Rozha One","Noto Serif Sinhala",Georgia,serif;--body:"Hanken Grotesk","Noto Sans Sinhala","Iskoola Pota",system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
@@ -319,3 +320,5 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .pl.intl a{border-color:var(--gold);background:linear-gradient(135deg,rgba(236,207,133,.22),rgba(212,165,58,.06));box-shadow:0 0 0 1px rgba(236,207,133,.25) inset,0 10px 30px -12px rgba(212,165,58,.5)}
 .pl.intl span{background:linear-gradient(180deg,#FFF3CC,#ECCF85 45%,#C9952E);-webkit-background-clip:text;background-clip:text;color:transparent}
 .pl.soon a{border-style:dashed}
+
+.si-t{font-family:inherit;font-style:normal;letter-spacing:0;text-transform:none}

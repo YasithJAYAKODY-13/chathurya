@@ -11,6 +11,7 @@ Run from the repo root:  python3 tools/build.py
 import datetime as dt
 import html
 import json
+import re
 import os
 import sys
 from urllib.parse import quote
@@ -703,6 +704,19 @@ page = f'''<!doctype html>
 </body>
 </html>
 '''
+
+# Show non-English words in Sinhala script (visible text and gallery captions only; head, attributes and JSON-LD stay English)
+SI = {k: v for k, v in site.get("sinhala_terms", {}).items() if not k.startswith("_")}
+if SI:
+    term_re = re.compile("|".join(re.escape(k) for k in sorted(SI, key=len, reverse=True)))
+    head, sep, rest = page.partition("<body")
+    parts = re.split(r'(<script[\s\S]*?</script>|<style[\s\S]*?</style>|<[^>]+>)', rest)
+    for i, part in enumerate(parts):
+        if part.startswith('<script id="galleries"'):
+            parts[i] = term_re.sub(lambda m: SI[m.group(0)], part)
+        elif part and not part.startswith("<"):
+            parts[i] = term_re.sub(lambda m: f'<span lang="si" class="si-t" title="{m.group(0)}">{SI[m.group(0)]}</span>', part)
+    page = head + sep + "".join(parts)
 
 with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
     f.write(page)
