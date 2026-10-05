@@ -126,4 +126,22 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.ta
   const n=e.target.querySelector('.num[data-count]'); if(n && !reduce){ const end=+n.dataset.count; let k=0; const st=performance.now();
     (function tick(ts){ k=Math.min(1,(ts-st)/1200); n.textContent=Math.round(end*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(tick); })(st); } } }),{threshold:.35});
 document.querySelectorAll('.divider, h2.reveal, .hl-tile').forEach(el=>io.observe(el));
+/* 3D gold wave ribbons, same language as the hero waves */
+const lowEnd=(navigator.connection&&navigator.connection.saveData)||(navigator.hardwareConcurrency||8)<=4;
+const ribs=[...document.querySelectorAll('.divider canvas')].map((cv,k)=>({cv,g:cv.getContext('2d'),gem:cv.parentNode.querySelector('.gem'),k,on:false,W:0,H:0}));
+function rsize(r){ const d=Math.min(devicePixelRatio||1,2); r.W=r.cv.clientWidth; r.H=r.cv.clientHeight; r.cv.width=r.W*d; r.cv.height=r.H*d; r.g.setTransform(d,0,0,d,0,0); }
+function rdraw(r,t){ const {g,W,H,k}=r; g.clearRect(0,0,W,H); t*=.00035; const L=W<700?11:16, N=W<700?70:120, ph=k*1.7;
+  for(let j=L-1;j>=0;j--){ const z=1+j*.16, dp=1-j/L; g.beginPath();
+    for(let i=0;i<=N;i++){ const u=i/N, x=(u*2-1)*6;
+      const h=Math.sin(x*.62+t*2.4+j*.32+ph)*.55+Math.sin(x*1.45-t*1.7+j*.55)*.22+Math.cos(x*.3+j*.2-t+ph)*.3;
+      const env=Math.sin(Math.PI*u);
+      const px=W/2+(u-.5)*W*(1.08/(.85+.15*z)), py=H*.5+(j-L/2)*H*.03/z-h*env*H*.2/z;
+      i?g.lineTo(px,py):g.moveTo(px,py); if(j===0&&i===N/2&&r.gem) r.gem.style.top=py+'px'; }
+    g.strokeStyle=`rgba(${212+(1-dp)*24|0},${165+(1-dp)*45|0},${58+(1-dp)*70|0},${.06+dp*dp*.55})`; g.lineWidth=.5+dp*1.2; g.stroke(); } }
+ribs.forEach(r=>{ rsize(r); rdraw(r,0); });
+addEventListener('resize',()=>ribs.forEach(r=>{ rsize(r); rdraw(r,performance.now()); }));
+if(!reduce&&!lowEnd&&ribs.length){ let last=0;
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{ ribs.find(r=>r.cv===e.target).on=e.isIntersecting; }));
+  ribs.forEach(r=>vio.observe(r.cv));
+  (function loop(ts){ if(ts-last>33&&!document.hidden){ last=ts; ribs.forEach(r=>r.on&&rdraw(r,ts)); } requestAnimationFrame(loop); })(0); }
 })();

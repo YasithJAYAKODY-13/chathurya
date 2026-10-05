@@ -240,7 +240,7 @@ def section_next():
 
 
 def divider():
-    return '''<div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path class="d1" d="M0 30 C 150 5, 300 55, 450 30 S 750 5, 900 30 S 1100 55, 1200 30"/><path class="d2" d="M0 34 C 160 12, 310 58, 460 34 S 760 10, 910 34 S 1110 56, 1200 34"/></svg><span class="spark"></span></div>'''
+    return '<div class="divider" aria-hidden="true"><canvas></canvas><span class="gem"></span></div>'
 
 
 def section_highlights():
@@ -576,7 +576,6 @@ def section_invite():
         direct.append(f'<a href="https://wa.me/{whatsapp}">{icon("wa")}WhatsApp +{whatsapp}</a>')
     if email:
         direct.append(f'<a href="mailto:{e(email)}">{icon("mail")}{e(email)}</a>')
-    direct.append(f'<a href="{e(contact["facebook"])}" target="_blank" rel="noopener">{icon("fb")}Facebook</a>')
     direct.append(f'<a href="{e(contact["youtube"])}" target="_blank" rel="noopener">{icon("yt")}YouTube</a>')
     if btns:
         form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-mail="{e(email)}">

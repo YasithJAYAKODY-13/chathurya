@@ -283,22 +283,27 @@ body{background:var(--bg,#0E2C25);transition:background-color .2s linear}
 .hawards{display:inline-flex;gap:8px;align-items:center;color:#14251F;background:var(--gold);border-radius:999px;padding:4px 14px;font-weight:600;font-size:.92rem}
 .hawards .ico{width:18px;height:18px}
 
-/* ---- animated gold dividers ---- */
-.divider{position:relative;height:60px;width:min(1160px,100% - 32px);margin:0 auto;overflow:visible}
-.divider svg{width:100%;height:100%;overflow:visible}
-.divider path{fill:none;stroke-linecap:round}
-.divider .d1{stroke:url(#none);stroke:#D4A53A;stroke-width:1.6;stroke-dasharray:1400;stroke-dashoffset:1400;opacity:.85}
-.divider .d2{stroke:#ECCF85;stroke-width:.8;stroke-dasharray:1400;stroke-dashoffset:1400;opacity:.45}
-.divider.in .d1{animation:draw 2.2s cubic-bezier(.4,.1,.2,1) forwards}
-.divider.in .d2{animation:draw 2.6s .25s cubic-bezier(.4,.1,.2,1) forwards}
-.divider .spark{position:absolute;top:50%;left:0;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:#FFF3CC;box-shadow:0 0 14px 6px rgba(236,207,133,.7);opacity:0}
-.divider.in .spark{animation:spark 2.4s cubic-bezier(.4,.1,.2,1) forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes spark{0%{left:0;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:100%;opacity:0}}
+/* ---- 3D gold wave dividers ---- */
+.divider{position:relative;height:clamp(96px,12vw,150px);width:100%;margin:clamp(8px,2vw,24px) 0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+.divider canvas{display:block;width:100%;height:100%;opacity:0;clip-path:inset(0 50% 0 50%);transition:opacity 1.4s ease,clip-path 2.2s cubic-bezier(.3,.1,.1,1)}
+.divider.in canvas{opacity:1;clip-path:inset(0 0 0 0)}
+.divider .gem{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-6px 0 0 -6px;transform:rotate(45deg) scale(0);
+  background:linear-gradient(135deg,#FFF3CC,#ECCF85 40%,#B9862A);box-shadow:0 0 0 4px rgba(14,30,25,.9),0 0 0 5px rgba(212,165,58,.55),0 0 22px 6px rgba(236,207,133,.35);transition:transform .9s 1.1s cubic-bezier(.3,1.6,.5,1)}
+.divider.in .gem{transform:rotate(45deg) scale(1)}
 @keyframes sheen{to{transform:translateX(100%)}}
 h2.reveal{position:relative;padding-bottom:12px}
-h2.reveal::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;border-radius:3px;background:linear-gradient(90deg,#ECCF85,#D4A53A,transparent);transition:width 1.2s cubic-bezier(.2,.7,.1,1)}
+h2.reveal::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:linear-gradient(90deg,#ECCF85,#D4A53A 60%,transparent);transition:width 1.2s cubic-bezier(.2,.7,.1,1)}
 h2.reveal.in::after{width:min(180px,40%)}
-@media (prefers-reduced-motion:reduce){.divider .d1,.divider .d2{stroke-dashoffset:0}.divider .spark{display:none}h2.reveal::after{width:min(180px,40%)}}
+@media (prefers-reduced-motion:reduce){.divider canvas{opacity:1;clip-path:none;transition:none}.divider .gem{transform:rotate(45deg);transition:none}h2.reveal::after{width:min(180px,40%)}}
 
 .icard .soon{font-family:var(--display);font-size:clamp(1.3rem,3vw,1.7rem);color:var(--gold);border:1px solid rgba(212,165,58,.45);border-radius:14px;padding:22px 24px;margin:26px 0;text-align:center}
+
+/* ---- fine luxury lattice texture ---- */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 0L26 13L13 26L0 13Z' fill='none' stroke='%23D4A53A' stroke-opacity='.09' stroke-width='.6'/%3E%3Ccircle cx='13' cy='13' r='.9' fill='%23ECCF85' fill-opacity='.12'/%3E%3C/svg%3E");
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 40%,#000 30%,rgba(0,0,0,.35));mask-image:radial-gradient(120% 90% at 50% 40%,#000 30%,rgba(0,0,0,.35))}
+
+/* ---- luxury typography refinements ---- */
+.kicker,.label{text-transform:uppercase;letter-spacing:.2em;font-size:.78rem;font-weight:600}
+.divider+section{padding-top:clamp(40px,6vw,80px)!important}
