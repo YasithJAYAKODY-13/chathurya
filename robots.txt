@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /content/inbox/
+Disallow: /tools/
+Sitemap: https://chathurya.caeleon.net/sitemap.xml
