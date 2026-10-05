@@ -300,3 +300,5 @@ h2.reveal{position:relative;padding-bottom:12px}
 h2.reveal::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;border-radius:3px;background:linear-gradient(90deg,#ECCF85,#D4A53A,transparent);transition:width 1.2s cubic-bezier(.2,.7,.1,1)}
 h2.reveal.in::after{width:min(180px,40%)}
 @media (prefers-reduced-motion:reduce){.divider .d1,.divider .d2{stroke-dashoffset:0}.divider .spark{display:none}h2.reveal::after{width:min(180px,40%)}}
+
+.icard .soon{font-family:var(--display);font-size:clamp(1.3rem,3vw,1.7rem);color:var(--gold);border:1px solid rgba(212,165,58,.45);border-radius:14px;padding:22px 24px;margin:26px 0;text-align:center}

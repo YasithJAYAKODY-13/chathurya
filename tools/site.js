@@ -76,8 +76,8 @@ addEventListener('popstate', () => close());
 
 /* invite form */
 const form = $('#inviteForm');
-form.addEventListener('submit', ev => { ev.preventDefault();
-  const how = ev.submitter?.dataset.send || 'fb'; const f = new FormData(form), v = k => (f.get(k) || '').toString().trim();
+if (form) form.addEventListener('submit', ev => { ev.preventDefault();
+  const how = ev.submitter?.dataset.send || ''; const f = new FormData(form), v = k => (f.get(k) || '').toString().trim();
   if (!v('name') || !v('phone')) { $('#formErr').hidden = false; (v('name') ? form.phone : form.name).focus(); return; }
   $('#formErr').hidden = true;
   const lines = ['Invitation for Chathurya Sandabarana', '', 'Name: ' + v('name')];
@@ -86,7 +86,6 @@ form.addEventListener('submit', ev => { ev.preventDefault();
   const text = lines.join('\n').slice(0, 1500); const done = $('#formDone');
   if (how === 'wa' && form.dataset.wa) { location.href = 'https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text); done.textContent = 'Your message is ready in WhatsApp. Press send there.'; }
   else if (how === 'mail' && form.dataset.mail) { location.href = 'mailto:' + form.dataset.mail + '?subject=' + encodeURIComponent('Invitation to perform') + '&body=' + encodeURIComponent(text.replace(/\n/g, '\r\n')); done.textContent = 'Your message is ready in your email app. Press send there.'; }
-  else { navigator.clipboard?.writeText(text).catch(()=>{}); window.open(form.dataset.fb, '_blank', 'noopener'); done.textContent = 'Your message has been copied. Paste it into the Messenger chat that opened, then press send.'; }
   done.hidden = false; });
 
 /* portrait tilt */

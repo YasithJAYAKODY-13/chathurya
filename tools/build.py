@@ -400,7 +400,7 @@ def handawaka_steps():
         cover = img_tag(f"content/concerts-and-events/{cover_rel}", f"Chathurya at Handawaka, {city}",
                         sizes="(max-width: 860px) 92vw, 260px", cls="hcover")
         counts = [f"{nphoto} photos"] + ([f"{nvid} video" + ("s" if nvid > 1 else "")] if nvid else [])
-        sub = ", ".join(x for x in [venue if venue and venue not in place else (city if city not in place else ""), ("two nights" if nights == 2 else "")] if x)
+        sub = ", ".join(x for x in [venue if venue and venue not in place else (city if city not in place else ""), ("Day 1 and Day 2" if nights == 2 else "")] if x)
         steps.append(f'''<li class="hstep"><button class="hbtn" data-gallery="{gid}" aria-label="Open Handawaka {n}, {e(place)}">
   <span class="hnum">{n}</span>{cover}
   <span class="htext"><strong>{e(place)}</strong><span>{e(pretty)}{(" · " + e(sub)) if sub else ""}</span><span class="badge">{" · ".join(counts)}. View all</span></span>
@@ -571,8 +571,6 @@ def section_invite():
         btns.append(f'<button type="submit" class="btn primary" data-send="wa">{icon("wa")}Send via WhatsApp</button>')
     if email:
         btns.append(f'<button type="submit" class="btn {"ghost" if whatsapp else "primary"}" data-send="mail">{icon("mail")}Send via email</button>')
-    if not btns:
-        btns.append(f'<button type="submit" class="btn primary" data-send="fb">{icon("fb")}Send via Facebook Messenger</button>')
     direct = []
     if whatsapp:
         direct.append(f'<a href="https://wa.me/{whatsapp}">{icon("wa")}WhatsApp +{whatsapp}</a>')
@@ -580,13 +578,8 @@ def section_invite():
         direct.append(f'<a href="mailto:{e(email)}">{icon("mail")}{e(email)}</a>')
     direct.append(f'<a href="{e(contact["facebook"])}" target="_blank" rel="noopener">{icon("fb")}Facebook</a>')
     direct.append(f'<a href="{e(contact["youtube"])}" target="_blank" rel="noopener">{icon("yt")}YouTube</a>')
-    person = f'<p class="person">Enquiries handled by {e(contact["contact_person"])}</p>' if contact.get("contact_person") else ""
-    return f'''
-<section class="invite" id="invite" aria-labelledby="invite-title"><div class="wrap"><div class="icard">
-  <h2 id="invite-title">Invite to perform</h2>
-  <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
-  <p>For concerts, musical shows, school and community events, television and media, in Sri Lanka or overseas.</p>
-  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-mail="{e(email)}" data-fb="{e(contact.get("messenger", ""))}">
+    if btns:
+        form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-mail="{e(email)}">
     <label><span class="lt">Your name <span class="req">required</span></span><input name="name" autocomplete="name" required></label>
     <label><span class="lt">Organisation or event</span><input name="event" autocomplete="organization"></label>
     <div class="two"><label><span class="lt">Date</span><input name="date" type="date"></label><label><span class="lt">Town or city</span><input name="town" autocomplete="address-level2"></label></div>
@@ -595,7 +588,16 @@ def section_invite():
     <p class="err" id="formErr" role="alert" hidden>Please add your name and a phone number so she can reply.</p>
     <div class="send">{"".join(btns)}</div>
     <p class="done" id="formDone" role="status" hidden></p>
-  </form>
+  </form>'''
+    else:
+        form_html = f'<p class="soon">{e(contact.get("coming_soon") or "Contact details will be updated here soon.")}</p>'
+    person = f'<p class="person">Enquiries handled by {e(contact["contact_person"])}</p>' if contact.get("contact_person") else ""
+    return f'''
+<section class="invite" id="invite" aria-labelledby="invite-title"><div class="wrap"><div class="icard">
+  <h2 id="invite-title">Invite to perform</h2>
+  <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
+  <p>For concerts, musical shows, school and community events, television and media, in Sri Lanka or overseas.</p>
+  {form_html}
   {person}
   <div class="direct">{"".join(direct)}</div>
 </div></div></section>'''
