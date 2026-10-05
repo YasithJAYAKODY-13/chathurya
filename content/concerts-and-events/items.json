@@ -36,12 +36,12 @@
       "id": "handawaka-series",
       "title": "Handawaka",
       "description": "A returning voice in the Handawaka concert series.",
-      "images": []
+      "images": [],
+      "needs": "earlier Handawaka concerts: posters and dates coming from Yasith"
     },
     {
       "id": "2022-02-26-angunakolapelessa-concert",
-      "title": "",
-      "title_sinhala": "(title on poster, to confirm)",
+      "title": "Concert at Angunakolapelessa Town Hall",
       "date": "2022-02-26",
       "time": "7.00 pm",
       "day": "Saturday",
@@ -61,8 +61,7 @@
       ],
       "image_captions": {
         "images/2022-02-26-angunakolapelessa-concert-poster.webp": "Concert poster, Angunakolapelessa Town Hall, 26 February 2022"
-      },
-      "needs": "English concert name"
+      }
     },
     {
       "id": "secret-mega-blast-ambalantota",
@@ -179,7 +178,6 @@
       "broadcast_live": true,
       "description": "Chathurya sang at the fifth edition of Sonduru Sihina Ra, an open-air theatre concert that was broadcast live.",
       "images": [],
-      "needs": "which open-air theatre; how it was broadcast live (TV or online); poster/photos",
       "venue": "open-air theatre"
     },
     {
