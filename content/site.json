@@ -3,16 +3,14 @@
   "short_name": "Chathurya",
   "url": "https://chathurya.caeleon.net/",
   "hometown": "Tangalle, Sri Lanka",
-  "tagline": "Singer from Tangalle, heard on The Voice Sri Lanka.",
+  "tagline": "Singer from Tangalle, Sri Lanka.",
   "secondary": "Also an aerospace engineer.",
   "description": "Chathurya Sandabarana is a Sri Lankan singer from Tangalle. The Voice Sri Lanka Live Shows, The Voice Global Best of the Week, and concerts across Sri Lanka and in Dubai.",
-  "proof": [
-    {"icon": "chair", "text": "Three chairs turned on The Voice Sri Lanka"},
-    {"icon": "globe", "text": "Chosen for The Voice Global \"Best of the Week\", representing Sri Lanka"},
-    {"icon": "mic", "text": "Through to the Live Shows, Season 1"},
-    {"icon": "pin", "text": "On stage across Sri Lanka and in Dubai since 2022"}
+  "formats": [
+    "Solo with a live band",
+    "Duets",
+    "Concerts in Sri Lanka and overseas"
   ],
-  "formats": ["Solo with a live band", "Duets", "Concerts in Sri Lanka and overseas"],
   "availability": "Available for concerts, musical shows, school and community events across Sri Lanka and overseas.",
   "contact": {
     "email": "",
@@ -23,11 +21,11 @@
     "youtube": "https://www.youtube.com/@chathuryasandabaranaofficial",
     "imdb": "https://www.imdb.com/name/nm16989301/"
   },
-  "watch": [
-    {"type": "youtube", "id": "JatYDHP0ARc", "start": 211, "end": 337, "title": "Hithala Wanniye", "label": "The Voice Global, Best of the Week"},
-    {"type": "youtube", "id": "Kg2N7YGMPvo", "title": "Mathaka Mandira", "label": "Live at Handawaka, with Malith Perera"},
-    {"type": "file", "src": "content/concerts-and-events/videos/2025-06-03-handawaka-havelock-1.mp4", "poster": "content/concerts-and-events/videos/2025-06-03-handawaka-havelock-1.jpg", "title": "Live at Handawaka", "label": "Havelock grounds, June 2025"},
-    {"type": "youtube", "id": "4JqXkidcFCc", "title": "Sayam Heene", "label": "Official music video"},
-    {"type": "youtube", "id": "8pR_vEtabqI", "title": "A vocal coach reacts", "label": "Adam Baruell on Hithala Wanniye"}
+  "lede": "The Voice Sri Lanka, trained under Umaria Sinhawansa. Selected for The Voice Global \"Best of the Week\". Four Handawaka shows.",
+  "facts": [
+    "The Voice Sri Lanka, Season 1: trained under Umaria Sinhawansa and reached the Live Shows",
+    "Selected for The Voice Global \"Best of the Week\", representing Sri Lanka",
+    "Four Handawaka shows: Colombo, Kandy, Havelock grounds and Galle",
+    "Concerts across Sri Lanka and in Dubai since 2022"
   ]
 }

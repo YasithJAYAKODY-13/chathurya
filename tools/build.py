@@ -173,86 +173,25 @@ whatsapp = "".join(ch for ch in contact.get("whatsapp", "") if ch.isdigit())
 email = contact.get("email", "").strip()
 
 
-def section_hero():
-    portrait = img_tag("assets/chathurya-stage.webp", "Chathurya Sandabarana singing on stage in a green gown",
-                       sizes="(max-width: 860px) 88vw, 520px", cls="portrait", eager=True)
-    return f'''
-<section class="hero" id="top" aria-label="Introduction">
-  <canvas id="waves" aria-hidden="true"></canvas>
-  <div class="wrap hero-grid">
-    <div class="intro">
-      <h1 class="name"><span>Chathurya</span><span>Sandabarana</span></h1>
-      <p class="lede">{e(site["tagline"])}</p>
-      <p class="also">{e(site["secondary"])}</p>
-      <div class="actions">
-        <a class="btn primary" href="#watch">{icon("play")}Watch her sing</a>
-        <a class="btn ghost" href="#invite">Invite to perform</a>
-      </div>
-    </div>
-    <div class="stage">{portrait}</div>
-  </div>
-</section>'''
+def gal(gid, title, desc, slides):
+    galleries[gid] = {"title": title, "desc": desc, "s": slides}
+    return gid
 
 
-def section_proof():
-    items = "".join(f'<li>{icon(p["icon"])}<span>{e(p["text"])}</span></li>' for p in site["proof"])
-    return f'<section class="proof" aria-label="Highlights"><div class="wrap"><ul>{items}</ul></div></section>'
-
-
-def section_press_card():
-    out = []
-    for p in press:
-        if not p.get("featured_on_home"):
-            continue
-        rel = f"content/press/{p['images'][0]}"
-        gid = "press-" + p["id"]
-        galleries[gid] = {"title": p["outlet"], "desc": p.get("summary", ""), "s": slides_for(p, "press")}
-        _, pretty = parse_date(p["date"])
-        quotes = "".join(f'<li><span lang="si">{e(si)}</span><em>{e(en)}</em></li>'
-                         for si, en in zip(p.get("pull_quotes_sinhala", []), p.get("pull_quotes_english", [])))
-        out.append(f'''
-<section class="press" aria-labelledby="press-title"><div class="wrap">
-  <article class="press-card">
-    <button class="press-img" data-gallery="{gid}" aria-label="Open the newspaper page">{img_tag(rel, "Silumina Rasaduna feature page about Chathurya", sizes="(max-width: 700px) 40vw, 260px")}</button>
-    <div>
-      <p class="kicker">As featured in {e(p["outlet"])}, {e(p["section"])}, {e(pretty)}</p>
-      <h2 id="press-title" class="h3"><span lang="si">{e(p["headline_sinhala"])}</span></h2>
-      <p class="tr">{e(p["headline_english"])}</p>
-      <ul class="pull">{quotes}</ul>
-      <button class="link" data-gallery="{gid}">Read the article</button>
-    </div>
-  </article>
-</div></section>''')
-    return "".join(out)
-
-
-def video_facade(v, cls="vcard"):
-    if v["type"] == "youtube":
-        thumb = yt_thumb(v["id"])
-        data = f'data-yt="{e(v["id"])}" data-start="{v.get("start", "")}" data-end="{v.get("end", "")}"'
+def video_facade(vid_type, ref, title, sub, poster=None, start="", end="", cls="video"):
+    if vid_type == "youtube":
+        thumb = yt_thumb(ref)
+        data = f'data-yt="{e(ref)}" data-start="{start}" data-end="{end}"'
     else:
-        used_media.add(os.path.normpath(v["src"]))
-        used_media.add(os.path.normpath(v["poster"]))
-        thumb = v["poster"]
-        data = f'data-mp4="{e(v["src"])}"'
-    return f'''<figure class="{cls}">
-  <button class="facade" {data} aria-label="Play {e(v["title"])}, {e(v["label"])}">
-    <img src="{e(thumb)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">
-    <span class="play">{icon("play")}</span>
-  </button>
-  <figcaption><strong>{e(v["title"])}</strong><span>{e(v["label"])}</span></figcaption>
-</figure>'''
-
-
-def section_watch():
-    cards = "".join(video_facade(v) for v in site["watch"])
-    n = len(site["watch"])
-    return f'''
-<section class="watch" id="watch" aria-labelledby="watch-title"><div class="wrap">
-  <h2 id="watch-title">Watch and listen</h2>
-  <p class="sub">Swipe to see more. Videos load only when you tap play.</p>
-  <div class="row" tabindex="0" aria-label="Videos, {n} items">{cards}</div>
-</div></section>'''
+        used_media.add(os.path.normpath(ref))
+        if poster:
+            used_media.add(os.path.normpath(poster))
+        thumb = poster or ""
+        data = f'data-mp4="{e(ref)}"'
+    return f'''<button class="{cls} facade" {data} aria-label="Play {e(title)}{(', ' + e(sub)) if sub else ''}">
+  <img src="{e(thumb)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+  <span class="play">{icon("play")}</span>{f'<span class="cap">{e(title)}</span>' if cls == "video" else ''}
+</button>'''
 
 
 def upcoming():
@@ -264,24 +203,239 @@ def upcoming():
     return sorted(ups, key=lambda x: x[0])
 
 
+def section_hero():
+    portrait = img_tag("assets/chathurya-stage.webp", "Chathurya Sandabarana singing on stage in a green gown",
+                       sizes="(max-width: 860px) 92vw, 520px", cls="portrait", eager=True)
+    return f'''
+<section class="hero" aria-label="Introduction">
+  <canvas id="waves" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="intro">
+      <h1 class="name"><span>Chathurya</span><span>Sandabarana</span></h1>
+      <p class="lede"><strong>{e(site["tagline"])}</strong> {e(site["lede"])}</p>
+      <div class="actions">
+        <a class="btn primary" href="#performances">Performances</a>
+        <a class="btn ghost" href="#invite">Invite to perform</a>
+      </div>
+    </div>
+    <div class="stage">{portrait}</div>
+  </div>
+</section>'''
+
+
 def section_next():
     ups = upcoming()
     if not ups:
-        return '<section class="next" aria-label="Invitations"><div class="wrap"><div class="card"><div><span class="label">Invitations</span><h3>Now accepting invitations for upcoming concerts and events</h3></div><a class="btn ghost" href="#invite">Invite to perform</a></div></div></section>'
+        return ""
     d, c = ups[0]
     where = ", ".join(x for x in [c.get("venue"), c.get("city")] if x)
     return f'''
 <section class="next" aria-label="Next performance" data-date="{d.isoformat()}"><div class="wrap"><div class="card">
   <div class="date" aria-hidden="true"><b>{MONTHS[d.month-1][:3].upper()}</b><span>{d.day}</span></div>
-  <div><span class="label">Next performance</span><h3>{e(c["title"])}</h3>
+  <div class="ninfo"><span class="label">Next performance</span><h3>{e(c["title"])}</h3>
   <p>{icon("pin")}{e(where)}. {d.strftime("%A")} {d.day} {MONTHS[d.month-1]} {d.year}</p></div>
+  <a class="btn ghost" href="#concerts">All concerts</a>
 </div></div></section>'''
 
 
+def section_music():
+    s = next((x for x in singing if x.get("featured")), singing[0])
+    return f'''
+<section class="music" id="music" aria-labelledby="music-title"><div class="wrap music-grid">
+  {video_facade("youtube", s["youtube"], s["title"], s.get("type", ""))}
+  <div class="lead">
+    <span class="kicker">{e(s.get("type", ""))}</span>
+    <h2 id="music-title">{e(s["title"])}</h2>
+    <p>{e(s.get("description", ""))}</p>
+    <div class="links"><a class="btn primary" href="{e(contact["youtube"])}" target="_blank" rel="noopener">{icon("yt")}YouTube channel</a></div>
+  </div>
+</div></section>'''
+
+
+def section_press():
+    out = []
+    for p in press:
+        if not p.get("featured_on_home"):
+            continue
+        rel = f"content/press/{p['images'][0]}"
+        gid = gal("press-" + p["id"], p["outlet"], p.get("summary", ""), slides_for(p, "press"))
+        _, pretty = parse_date(p["date"])
+        out.append(f'''
+<section class="press" aria-labelledby="press-title"><div class="wrap"><article class="press-card">
+  <button class="press-img" data-gallery="{gid}" aria-label="Open the newspaper page">{img_tag(rel, "Silumina Rasaduna feature page about Chathurya", sizes="(max-width: 700px) 34vw, 200px")}</button>
+  <div>
+    <span class="kicker">As featured in {e(p["outlet"])}, {e(p["section"])}, {e(pretty)}</span>
+    <h2 id="press-title" class="h3" lang="si">{e(p["headline_sinhala"])}</h2>
+    <p class="tr">{e(p["headline_english"])}</p>
+    <button class="link" data-gallery="{gid}">Read the article</button>
+  </div>
+</article></div></section>''')
+    return "".join(out)
+
+
+def section_about():
+    facts = "".join(f"<li>{e(f)}</li>" for f in site.get("facts", []))
+    return f'''
+<section class="about" id="about" aria-labelledby="about-title"><div class="wrap about-grid">
+  <h2 id="about-title">About Chathurya</h2>
+  <div>
+    <p>Chathurya Sandabarana is a singer from Tangalle, on Sri Lanka's southern coast. She came to national attention on The Voice Sri Lanka, Season 1, where she trained under Umaria Sinhawansa and reached the Live Shows. Her Blind Audition was selected for The Voice Global's "Best of the Week", representing Sri Lanka.</p>
+    <p>Since then she has sung at concerts across Sri Lanka and in Dubai, including four Handawaka shows, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she is an aerospace engineering graduate.</p>
+    <ul class="facts">{facts}</ul>
+  </div>
+</div></section>'''
+
+
+# ---------- tab: singing
+def tab_singing():
+    items = []
+    for sg in singing:
+        if not sg.get("youtube"):
+            continue
+        extra = " ".join(x for x in [("With " + sg["with"] + ".") if sg.get("with") else "", (sg["credits"] + ".") if sg.get("credits") else ""] if x)
+        items.append(f'''<div class="item"><span class="when">{e(sg.get("type", ""))}</span><h4>{e(sg["title"])}</h4>
+{f'<p>{e(extra)}</p>' if extra else ''}{video_facade("youtube", sg["youtube"], sg["title"], sg.get("type", ""), cls="video small")}</div>''')
+    for c in concerts:
+        for v in c.get("videos_youtube", []):
+            if v.get("short"):
+                continue
+            items.append(f'''<div class="item"><span class="when">Live duet with {e(", ".join(c.get("with", [])))}</span><h4>{e(c.get("song") or v["title"])}</h4>
+<p>{e(c["title"])}</p>{video_facade("youtube", v["id"], c.get("song") or v["title"], c["title"], cls="video small")}</div>''')
+    songs, seen = [], set()
+    for vid in VOICE_ORDER:
+        it = voice.get(vid)
+        if it and vid != "best-of-the-week":
+            t = it.get("song") or it.get("title")
+            if t and t.lower() not in seen:
+                seen.add(t.lower()); songs.append(t)
+    for sg in singing:
+        if sg["title"].lower() not in seen:
+            seen.add(sg["title"].lower()); songs.append(sg["title"])
+    for c in concerts:
+        if c.get("song") and c["song"].lower() not in seen:
+            seen.add(c["song"].lower()); songs.append(c["song"])
+    sl = "".join(f"<li>{e(t)}</li>" for t in songs)
+    fm = "".join(f"<li>{e(f)}</li>" for f in site.get("formats", []))
+    return f'''<div class="lead"><h3>Singing</h3>
+<p>Singing is at the heart of everything Chathurya does, from her own releases and duets to concert stages, television and community celebrations.</p>
+<div class="rep"><h4>Songs she has performed</h4><ul class="songs">{sl}</ul>
+<h4>Performance formats</h4><ul class="songs">{fm}</ul><p class="avail">{e(site.get("availability", ""))}</p></div></div>
+<div class="items">{"".join(items)}</div>'''
+
+
+# ---------- tab: concerts
+def handawaka_steps():
+    hand = [c for c in concerts if c.get("series") == "Handawaka" and parse_date(c.get("date"))[0]]
+    hand.sort(key=lambda c: parse_date(c["date"])[0])
+    past = [c for c in hand if not (date_obj(c["date"]) and date_obj(c["date"]) >= TODAY)]
+    up = [c for c in hand if c not in past]
+    groups = []
+    for c in past:
+        key = (c.get("city"), str(c.get("date"))[:7])
+        if groups and groups[-1]["key"] == key:
+            groups[-1]["items"].append(c)
+        else:
+            groups.append({"key": key, "items": [c]})
+    steps = []
+    for n, g in enumerate(groups, 1):
+        first = g["items"][0]
+        city = first.get("city", "")
+        venue = first.get("venue", "")
+        _, pretty = parse_date(first["date"])
+        slides, descs, nphoto, nvid = [], [], 0, 0
+        for c in g["items"]:
+            sl = slides_for(c, "concerts-and-events")
+            day = ""
+            if "Day" in c["title"]:
+                day = c["title"][c["title"].index("Day"):].rstrip(")")
+                for s in sl:
+                    s["cap"] = f'{day}: {s.get("cap", "")}'
+            slides += sl
+            descs.append(c.get("description", ""))
+            nphoto += len(c.get("images", []))
+            nvid += len(c.get("videos", [])) + len(c.get("videos_youtube", []))
+        nights = len(g["items"])
+        place = first["title"].replace("Handawaka, ", "").split(" (")[0]
+        title = f"Handawaka {n}, {place}"
+        gid = gal(f"handawaka-{n}", title, " ".join([pretty] + descs), slides)
+        cover_rel = first["images"][0]
+        cover = img_tag(f"content/concerts-and-events/{cover_rel}", f"Chathurya at Handawaka, {city}",
+                        sizes="(max-width: 860px) 92vw, 260px", cls="hcover")
+        counts = [f"{nphoto} photos"] + ([f"{nvid} video" + ("s" if nvid > 1 else "")] if nvid else [])
+        sub = ", ".join(x for x in [venue if venue and venue not in place else (city if city not in place else ""), ("two nights" if nights == 2 else "")] if x)
+        steps.append(f'''<li class="hstep"><button class="hbtn" data-gallery="{gid}" aria-label="Open Handawaka {n}, {e(place)}">
+  <span class="hnum">{n}</span>{cover}
+  <span class="htext"><strong>{e(place)}</strong><span>{e(pretty)}{(" · " + e(sub)) if sub else ""}</span><span class="badge">{" · ".join(counts)}. View all</span></span>
+</button></li>''')
+    for c in up:
+        d = date_obj(c["date"])
+        steps.append(f'''<li class="hstep next-step"><div class="hbtn"><span class="hnum">{icon("pin")}</span>
+  <span class="hcover blank"><b>{MONTHS[d.month-1][:3].upper()}</b><span>{d.day}</span></span>
+  <span class="htext"><strong>{e(c.get("city", ""))}</strong><span>{d.day} {MONTHS[d.month-1]} {d.year}</span><span class="upcoming">Next show</span></span></div></li>''')
+    return len(groups), "".join(steps)
+
+
+def concert_card(c):
+    _, pretty = parse_date(c.get("date"))
+    gid = gal("concert-" + c["id"], c["title"], " ".join(x for x in [pretty, c.get("description", "")] if x),
+              slides_for(c, "concerts-and-events"))
+    venue, city = c.get("venue") or "", c.get("city") or ""
+    where = ", ".join(x for x in [venue, city if city and city not in venue else ""] if x)
+    n_img = len(c.get("images", []))
+    n_vid = len(c.get("videos", [])) + len(c.get("videos_youtube", []))
+    badges = []
+    if n_img:
+        badges.append(f"{n_img} photo" + ("s" if n_img > 1 else ""))
+    if n_vid:
+        badges.append(f"{n_vid} video" + ("s" if n_vid > 1 else ""))
+    cover = (img_tag(f'content/concerts-and-events/{c["images"][0]}', c["title"], sizes="(max-width: 700px) 38vw, 200px", cls="ccover")
+             if n_img else f'<span class="ccover blank">{icon("mic")}</span>')
+    with_line = ""
+    if c.get("with"):
+        names = [w.split(" (")[0] for w in c["with"]][:4]
+        with_line = f'<p class="with">With {e(", ".join(names))}</p>'
+    tag, attr = ("button", f'data-gallery="{gid}" aria-label="Open {e(c["title"])}"') if (n_img or n_vid) else ("div", "")
+    return f'''<li><{tag} class="item feature" {attr}>{cover}<span class="ctext">
+<span class="when">{e(pretty)}</span><strong>{e(c["title"])}</strong><span class="where">{e(where)}</span>{with_line}
+{f'<span class="badge">{" · ".join(badges)}</span>' if badges else ''}</span></{tag}></li>'''
+
+
+def tab_concerts():
+    n, steps = handawaka_steps()
+    others = [c for c in concerts if c.get("series") != "Handawaka" and parse_date(c.get("date"))[0]
+              and not (date_obj(c["date"]) and date_obj(c["date"]) >= TODAY)]
+    others.sort(key=lambda c: parse_date(c["date"])[0], reverse=True)
+    cards = "".join(concert_card(c) for c in others)
+    return f'''<div class="wide">
+<div class="hhead"><h3>Handawaka</h3><p>Chathurya has sung at {n} Handawaka shows. Tap a show to see all its photos and videos.</p></div>
+<ol class="htimeline">{steps}</ol>
+<h3 class="sub-h">Concerts and events</h3>
+<p class="muted">Shows across Sri Lanka and overseas, newest first. Tap a poster for photos.</p>
+<ul class="clist">{cards}</ul></div>'''
+
+
+# ---------- tab: television
+def tab_tv():
+    son = next((c for c in concerts if "sonduru" in c["id"]), None)
+    son_html = ""
+    if son:
+        _, pretty = parse_date(son["date"])
+        son_html = f'<div class="item"><span class="when">{e(pretty)}</span><h4>{e(son["title"])}</h4><p>{e(son.get("description", ""))}</p></div>'
+    return f'''<div class="lead"><h3>Television</h3>
+<p>Chathurya first reached audiences across Sri Lanka on The Voice Sri Lanka on Sirasa TV, and her Blind Audition was later featured in The Voice Global's international highlights. She has also sung on television and been a guest on television podcasts.</p>
+<a class="link" href="#voice" data-tab="t-voice">See her journey on The Voice</a></div>
+<div class="items">
+<div class="item"><span class="when">8 January 2021</span><h4>The Voice Global, Best of the Week</h4><p>Her Blind Audition of Hithala Wanniye, chosen to represent Sri Lanka.</p>
+{video_facade("youtube", "JatYDHP0ARc", "Hithala Wanniye", "The Voice Global, Best of the Week", start=211, end=337, cls="video small")}</div>
+{son_html}
+<div class="item"><h4>Television podcasts</h4><p>Guest appearances, conversation and live singing.</p></div></div>'''
+
+
+# ---------- tab: the voice
 VOICE_ORDER = ["blind-audition", "best-of-the-week", "battles", "knockouts", "road-to-lives", "live-shows"]
 
 
-def section_voice():
+def tab_voice():
     rows = []
     for vid in VOICE_ORDER:
         it = voice.get(vid)
@@ -289,200 +443,88 @@ def section_voice():
             continue
         _, pretty = parse_date(it.get("date"))
         song = "Hithala Wanniye" if vid == "best-of-the-week" else (it.get("song") or it.get("title"))
-        meta = []
-        if vid == "blind-audition":
-            meta.append(f'Season {it.get("season", 1)}. Three chairs turned; joined Team {e(it.get("coach", ""))}')
-        if vid == "best-of-the-week":
-            meta.append("Chosen to represent Sri Lanka in The Voice's international highlights")
-        if vid == "battles":
-            meta.append(f'Won her battle against {e(it.get("opponent", ""))}')
-        if vid == "knockouts" and it.get("original_artist"):
-            meta.append(f'Original by {e(it["original_artist"])}')
-        if vid == "road-to-lives":
-            meta.append("Showcase programme before the Live Shows")
-        if vid == "live-shows":
-            meta.append("Reached the Live Shows")
-        if pretty:
-            meta.append(pretty)
-        gid = "voice-" + vid
+        meta = {"blind-audition": f'Season {it.get("season", 1)}. Joined Team {it.get("coach", "")}',
+                "best-of-the-week": "Selected to represent Sri Lanka in The Voice's international highlights",
+                "battles": f'Won her battle against {it.get("opponent", "")}',
+                "knockouts": f'Original by {it.get("original_artist", "")}' if it.get("original_artist") else "",
+                "road-to-lives": "Showcase programme before the Live Shows",
+                "live-shows": "Reached the Live Shows"}.get(vid, "")
         sl = slides_for(it, "the-voice")
         if it.get("youtube"):
-            sl = [{"t": "yt", "id": it["youtube"], "start": it.get("start", ""), "end": it.get("end", ""),
-                   "cap": f'{it["round"]}: {song}'}] + sl
-        galleries[gid] = {"title": f'{it["round"]}: {song}', "desc": " ".join(meta), "s": sl}
+            sl = [{"t": "yt", "id": it["youtube"], "start": it.get("start", ""), "end": it.get("end", ""), "cap": f'{it["round"]}: {song}'}] + sl
+        gid = gal("voice-" + vid, f'{it["round"]}: {song}', " ".join(x for x in [meta, pretty] if x), sl)
         if it.get("images"):
-            thumb = img_tag(f'content/the-voice/{it["images"][0]}', f'{it["round"]}', sizes="96px", cls="tthumb")
+            thumb = img_tag(f'content/the-voice/{it["images"][0]}', it["round"], sizes="110px", cls="tthumb")
         elif it.get("youtube"):
             thumb = f'<img class="tthumb" src="{yt_thumb(it["youtube"])}" alt="" loading="lazy" width="480" height="360" onerror="this.remove()">'
         else:
             thumb = ""
-        badge = []
-        if it.get("youtube"):
-            badge.append("video")
-        if it.get("images"):
-            n = len(it["images"])
-            badge.append(f"{n} photo" + ("s" if n > 1 else ""))
-        extra = ""
-        if vid == "best-of-the-week" and it.get("quote"):
-            extra = f'<blockquote class="quote">"{e(it["quote"])}"<cite>Chathurya</cite></blockquote>'
-        rows.append(f'''<li class="step{' hl' if it.get('highlight') else ''}">
-  <button class="tcard" data-gallery="{gid}" aria-label="Open {e(it['round'])}">
-    {thumb}
-    <span class="ttext"><span class="round">{e(it['round'])}</span><strong lang="si-Latn">{e(song)}</strong>
-    <span class="meta">{"<br>".join(meta)}</span><span class="badge">{" + ".join(badge)}</span></span>
-  </button>{extra}
-</li>''')
+        thumb = f'<span class="tthumbw">{thumb}</span>'
+        badge = (["video"] if it.get("youtube") else []) + ([f'{len(it["images"])} photo' + ("s" if len(it["images"]) > 1 else "")] if it.get("images") else [])
+        rows.append(f'''<li class="step{' hl' if it.get('highlight') else ''}"><button class="tcard" data-gallery="{gid}" aria-label="Open {e(it['round'])}">{thumb}
+<span class="ttext"><span class="round">{e(it['round'])}{(' · ' + e(pretty)) if pretty else ''}</span><strong>{e(song)}</strong><span class="meta">{e(meta)}</span>
+<span class="badge">{" + ".join(badge)}</span></span></button></li>''')
+    bw = voice.get("best-of-the-week", {})
     coach = voice.get("coach-reaction-adam-baruell")
     coach_html = ""
     if coach:
         qs = "".join(f"<li>\"{e(q)}\"</li>" for q in coach.get("quotes", [])[:3])
-        coach_html = f'''<aside class="coach"><h3>A vocal coach's view</h3><p>{e(coach.get("description", ""))}</p>
-<ul>{qs}</ul><p class="cite">Adam Baruell, vocal coach, on her Blind Audition</p></aside>'''
-    return f'''
-<section class="voice" id="voice" aria-labelledby="voice-title"><div class="wrap">
-  <h2 id="voice-title">The Voice Sri Lanka</h2>
-  <p class="sub">Season 1 on Sirasa TV, round by round. Tap a round for photos and video.</p>
-  <ol class="timeline">{"".join(rows)}</ol>
-  {coach_html}
-</div></section>'''
+        coach_html = f'''<div class="coach"><h4>A vocal coach's view</h4><p>{e(coach.get("description", ""))}</p><ul>{qs}</ul>
+{video_facade("youtube", coach["youtube"], "Vocal coach reaction", "Adam Baruell", cls="video small")}</div>'''
+    return f'''<div class="lead"><h3>The Voice Sri Lanka</h3>
+<p>On Season 1 of The Voice Sri Lanka on Sirasa TV, Chathurya trained under Umaria Sinhawansa and went through every round to the Live Shows.</p>
+<div class="global">{icon("globe")}<p><strong>A proud moment for Sri Lanka.</strong> Her Blind Audition of <em>Hithala Wanniye</em> was selected for The Voice Global's "Best of the Week" on 8 January 2021, representing Sri Lanka among standout performances from the international Voice franchise.</p></div>
+<blockquote class="quote">"{e(bw.get("quote", ""))}"<cite>Chathurya</cite></blockquote>
+{coach_html}</div>
+<ol class="timeline">{"".join(rows)}</ol>'''
 
 
-def concert_card(c, big=False):
-    gid = "concert-" + c["id"]
-    _, pretty = parse_date(c.get("date"))
-    galleries[gid] = {"title": c["title"], "desc": " ".join(x for x in [pretty, c.get("description", "")] if x), "s": slides_for(c, "concerts-and-events")}
-    where = c.get("city") or c.get("venue") or ""
-    n_img = len(c.get("images", []))
-    n_vid = len(c.get("videos", [])) + len(c.get("videos_youtube", []))
-    badges = []
-    if n_vid:
-        badges.append(f"▶ {n_vid} video" + ("s" if n_vid > 1 else ""))
-    if n_img:
-        badges.append(f"{n_img} photo" + ("s" if n_img > 1 else ""))
-    d = date_obj(c.get("date"))
-    up = d and d >= TODAY
-    if n_img:
-        cover = img_tag(f'content/concerts-and-events/{c["images"][0]}', c["title"],
-                        sizes="(max-width: 700px) 46vw, 260px", cls="cover")
-    else:
-        cover = f'<span class="cover blank">{icon("mic")}</span>'
-    clickable = bool(galleries[gid]["s"])
-    tag = "button" if clickable else "div"
-    attr = f'data-gallery="{gid}" aria-label="Open {e(c["title"])}"' if clickable else ""
-    return f'''<li class="ccard{' up' if up else ''}"><{tag} class="cbtn" {attr}>
-  {cover}<span class="cinfo"><strong>{e(c["title"])}</strong><span>{e(pretty)}{(" · " + e(where)) if where else ""}</span>
-  {('<span class="upcoming">Upcoming</span>' if up else '')}<span class="badge">{" · ".join(badges)}</span></span>
-</{tag}></li>'''
+# ---------- tab: film
+def tab_film():
+    f = film[0]
+    gid = gal("film", f["title"], "", slides_for(f, "film"))
+    cover = img_tag(f'content/film/{f["images"][0]}', f'{f["title"]} poster', sizes="(max-width: 700px) 60vw, 300px", cls="fposter") if f.get("images") else ""
+    return f'''<div class="lead"><h3>Film</h3><p>Alongside her music, Chathurya made her screen debut in a Sinhala feature film.</p></div>
+<div class="items"><div class="item filmcard"><button data-gallery="{gid}" aria-label="Open poster">{cover}</button>
+<div><span class="when">Screen debut, {e(f.get("year", ""))}</span><h4>{e(f["title"])}</h4>
+<p>Directed by {e(f.get("director", ""))}, produced by {e(f.get("producer", ""))}.</p>
+<a class="link" href="{e(contact["imdb"])}" target="_blank" rel="noopener">{icon("film")}Her profile on IMDb</a></div></div></div>'''
 
 
-def section_concerts():
-    real = [c for c in concerts if parse_date(c.get("date"))[0]]
-    hand = sorted([c for c in real if c.get("series") == "Handawaka"], key=lambda c: parse_date(c["date"])[0], reverse=True)
-    rest = sorted([c for c in real if c.get("series") != "Handawaka"], key=lambda c: parse_date(c["date"])[0], reverse=True)
-    hand_cards = "".join(concert_card(c) for c in hand)
-    rest_cards = "".join(concert_card(c) for c in rest)
-    cover_src = next((c for c in hand if c.get("images")), None)
-    hcover = img_tag(f'content/concerts-and-events/{cover_src["images"][0]}', "Chathurya at Handawaka",
-                     sizes="(max-width: 700px) 92vw, 560px", cls="hcover") if cover_src else ""
-    total = len(real)
-    return f'''
-<section class="concerts" id="concerts" aria-labelledby="concerts-title"><div class="wrap">
-  <h2 id="concerts-title">Concerts and events</h2>
-  <p class="sub">{total} concerts and events since 2022, newest first. Tap any poster for photos and videos.</p>
-  <details class="hgroup" open>
-    <summary>{hcover}<span class="hlabel"><span class="kicker">A returning voice</span><strong>Handawaka</strong><span>{len(hand)} shows across Colombo, Kandy, Galle and Anuradhapura</span></span></summary>
-    <ul class="grid">{hand_cards}</ul>
-  </details>
-  <ul class="grid more" id="concert-grid">{rest_cards}</ul>
-  <button class="btn ghost showall" id="showall" hidden>Show all {len(rest)} concerts</button>
-</div></section>'''
-
-
-def section_repertoire():
-    songs = []
-    for vid in VOICE_ORDER:
-        it = voice.get(vid)
-        if it and vid != "best-of-the-week":
-            t = it.get("song") or it.get("title")
-            if t:
-                songs.append((t, f'The Voice Sri Lanka, {it["round"]}', "voice-" + vid if it.get("youtube") else ""))
-    for sg in singing:
-        gid = ""
-        if sg.get("youtube"):
-            gid = "song-" + sg["id"]
-            galleries[gid] = {"title": sg["title"], "desc": " ".join(x for x in [sg.get("description", ""), ("With " + sg["with"] + ".") if sg.get("with") else "", (sg["credits"] + ".") if sg.get("credits") else ""] if x),
-                              "s": [{"t": "yt", "id": sg["youtube"], "cap": sg["title"] + ", " + sg.get("type", "")}]}
-        songs.append((sg["title"], sg.get("type", ""), gid))
-    for c in concerts:
-        if c.get("song"):
-            songs.append((c["song"], c["title"], "concert-" + c["id"]))
-    seen, uniq = set(), []
-    for t, w, g in songs:
-        if t.lower() not in seen:
-            seen.add(t.lower())
-            uniq.append((t, w, g))
-    def li(t, w, g):
-        inner = f'<strong>{e(t)}</strong><span>{e(w)}</span>'
-        if g:
-            return f'<li><button class="songbtn" data-gallery="{g}" aria-label="Play {e(t)}">{icon("play")}<span>{inner}</span></button></li>'
-        return f'<li><span class="nob">{icon("mic")}<span>{inner}</span></span></li>'
-    lis = "".join(li(*x) for x in uniq)
-    fm = "".join(f"<li>{e(f)}</li>" for f in site.get("formats", []))
-    return f'''
-<section class="rep" id="songs" aria-labelledby="rep-title"><div class="wrap rep-grid">
-  <div><h2 id="rep-title">What she sings</h2><p class="sub">Songs Chathurya has performed on stage and on television.</p>
-  <ul class="songs">{lis}</ul></div>
-  <aside class="formats"><h3>Performance formats</h3><ul>{fm}</ul><p>{e(site.get("availability", ""))}</p>
-  <a class="btn primary" href="#invite">Invite to perform</a></aside>
-</div></section>'''
-
-
-def section_about():
-    f = film[0] if film else None
-    ed = education[0] if education else None
-    film_html = ""
-    if f:
-        gid = "film"
-        galleries[gid] = {"title": f["title"], "desc": "", "s": slides_for(f, "film")}
-        cover = img_tag(f'content/film/{f["images"][0]}', "Man Hoyanne Premayak poster", sizes="120px", cls="fcover") if f.get("images") else ""
-        film_html = f'''<article class="mini"><button class="mini-img" data-gallery="{gid}" aria-label="Open film poster">{cover}</button>
-<div><span class="kicker">Screen debut, {e(f.get("year", ""))}</span><h3 lang="si-Latn">{e(f["title"])}</h3>
-<p>Sinhala feature film directed by {e(f.get("director", ""))}, produced by {e(f.get("producer", ""))}.</p>
-<a class="link" href="{e(contact["imdb"])}" target="_blank" rel="noopener">{icon("film")}Her profile on IMDb</a></div></article>'''
-    ed_html = ""
-    if ed:
-        gid = "education"
-        galleries[gid] = {"title": ed["title"], "desc": "", "s": slides_for(ed, "education")}
-        photo = img_tag(f'content/education/{ed["images"][0]}', "Chathurya at her graduation", sizes="(max-width: 700px) 40vw, 220px", cls="grad") if ed.get("images") else ""
-        why = "".join(f'<li>{icon(w["icon"])}<div><strong>{e(w["title"])}</strong><p>{e(w["text"])}</p></div></li>' for w in ed.get("why_it_matters", []))
-        areas = "".join(f"<li>{e(a)}</li>" for a in ed.get("research_areas", []))
-        ed_html = f'''<article class="edu">
+# ---------- tab: education
+def tab_education():
+    ed = education[0]
+    gid = gal("education", ed["title"], "", slides_for(ed, "education"))
+    photo = img_tag(f'content/education/{ed["images"][0]}', "Chathurya at her graduation", sizes="(max-width: 700px) 60vw, 300px", cls="grad")
+    why = "".join(f'<li>{icon(w["icon"])}<div><strong>{e(w["title"])}</strong><p>{e(w["text"])}</p></div></li>' for w in ed.get("why_it_matters", []))
+    areas = "".join(f"<li>{e(a)}</li>" for a in ed.get("research_areas", []))
+    return f'''<div class="lead edu">
 <svg class="edu-bg" viewBox="0 0 600 300" aria-hidden="true"><defs><linearGradient id="trail" x1="0" x2="1"><stop offset="0" stop-color="#D4A53A" stop-opacity="0"/><stop offset="1" stop-color="#ECCF85" stop-opacity=".5"/></linearGradient></defs>
-<path d="M-20 260 C 200 230, 380 150, 470 90" stroke="url(#trail)" stroke-width="26" fill="none" stroke-linecap="round"/>
-<path d="M455 70 l40 -18 q22 22 8 52 l-40 10z" fill="#ECCF85" fill-opacity=".35"/>
-<circle cx="470" cy="90" r="46" fill="none" stroke="#D4A53A" stroke-opacity=".25"/>
-<path d="M0 290 Q 300 200 600 230" stroke="#D4A53A" stroke-opacity=".15" fill="none"/></svg>
-<div class="edu-in">
-<button class="mini-img" data-gallery="{gid}" aria-label="Open graduation photo">{photo}</button>
-<div><span class="kicker">Education</span><h3>{e(ed["title"])}</h3>
-<p class="cls">{e(ed.get("classification", ""))}, {e(ed.get("institution", ""))}, {e(ed.get("year", ""))}</p>
-<p>{e(ed.get("plain_language", ""))}</p>
-<details class="why"><summary>Why her work matters to everyone</summary><ul>{why}</ul>
-<p class="areas-h">Research areas</p><ul class="areas">{areas}</ul></details></div></div></article>'''
+<path d="M-20 260 C 200 230, 380 150, 470 90" stroke="url(#trail)" stroke-width="26" fill="none" stroke-linecap="round"/><path d="M455 70 l40 -18 q22 22 8 52 l-40 10z" fill="#ECCF85" fill-opacity=".35"/>
+<circle cx="470" cy="90" r="46" fill="none" stroke="#D4A53A" stroke-opacity=".25"/></svg>
+<h3>Education</h3><p class="cls">{e(ed["title"])}<br>{e(ed.get("classification", ""))}, {e(ed.get("institution", ""))}, {e(ed.get("year", ""))}</p>
+<p>{e(ed.get("plain_language", ""))}</p><h4>Research areas</h4><ul class="areas">{areas}</ul></div>
+<div class="items"><button class="item gradbtn" data-gallery="{gid}" aria-label="Open graduation photo">{photo}</button>
+<div class="item"><h4>Why her work matters to everyone</h4><ul class="why">{why}</ul></div></div>'''
+
+
+TABS = [("singing", "Singing", tab_singing), ("concerts", "Concerts and events", tab_concerts), ("tv", "Television", tab_tv),
+        ("voice", "The Voice", tab_voice), ("film", "Film", tab_film), ("education", "Education", tab_education)]
+
+
+def section_performances():
+    btns, panels = [], []
+    for i, (key, label, fn) in enumerate(TABS):
+        sel = "true" if key == "concerts" else "false"
+        btns.append(f'<button class="tab" role="tab" id="t-{key}" aria-controls="p-{key}" aria-selected="{sel}" tabindex="{0 if sel == "true" else -1}">{e(label)}</button>')
+        panels.append(f'<div class="panel" role="tabpanel" id="p-{key}" aria-labelledby="t-{key}" tabindex="0"{"" if sel == "true" else " hidden"}>{fn()}</div>')
     return f'''
-<section class="about" id="about" aria-labelledby="about-title"><div class="wrap">
-  <h2 id="about-title">About Chathurya</h2>
-  <div class="bio"><p>Chathurya Sandabarana is a singer from Tangalle, on Sri Lanka's southern coast. She came to national attention on The Voice Sri Lanka, Season 1, where three coaches turned for her Blind Audition and her performance was chosen for The Voice Global's "Best of the Week". She went on to the Live Shows.</p>
-  <p>Since then she has sung at concerts across Sri Lanka and in Dubai, including the Handawaka series, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she is an aerospace engineering graduate, a balance the Sunday Silumina featured in October 2026.</p></div>
-  {film_html}
-  {ed_html}
+<section class="perf" id="performances" aria-labelledby="perf-title"><div class="wrap">
+  <h2 id="perf-title">Performances</h2>
+  <p class="sub">Choose a category to see Chathurya's work.</p>
+  <div class="tablist" role="tablist" aria-label="Performance categories">{"".join(btns)}</div>
+  {"".join(panels)}
 </div></section>'''
-
-
-def section_gallery():
-    if not gallery_items:
-        return ""
-    return ""
 
 
 def section_invite():
@@ -505,7 +547,7 @@ def section_invite():
 <section class="invite" id="invite" aria-labelledby="invite-title"><div class="wrap"><div class="icard">
   <h2 id="invite-title">Invite to perform</h2>
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
-  <p>For concerts, musical shows, school and community events, television and media, in Sri Lanka or overseas. Fill in what you know and your message will be ready to send.</p>
+  <p>For concerts, musical shows, school and community events, television and media, in Sri Lanka or overseas.</p>
   <form id="inviteForm" novalidate data-wa="{whatsapp}" data-mail="{e(email)}" data-fb="{e(contact.get("messenger", ""))}">
     <label><span class="lt">Your name <span class="req">required</span></span><input name="name" autocomplete="name" required></label>
     <label><span class="lt">Organisation or event</span><input name="event" autocomplete="organization"></label>
@@ -525,21 +567,18 @@ def section_invite():
 CSS = open(os.path.join(ROOT, "tools", "site.css"), encoding="utf-8").read()
 JS = open(os.path.join(ROOT, "tools", "site.js"), encoding="utf-8").read()
 
-hero = section_hero()
-body = "".join([hero, section_proof(), section_press_card(), section_watch(), section_next(), section_voice(),
-                section_concerts(), section_repertoire(), section_about(), section_gallery(), section_invite()])
+body = "".join([section_hero(), section_next(), section_music(), section_press(), section_about(),
+                section_performances(), section_invite()])
 
-# structured data
-person = {"@context": "https://schema.org", "@type": "Person", "name": site["name"], "url": site["url"],
-          "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": site["hometown"]},
-          "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"},
-          "sameAs": [contact["facebook"], contact["youtube"], contact["imdb"]],
-          "image": site["url"] + "assets/share.jpg"}
-ld = [person]
+person_ld = {"@context": "https://schema.org", "@type": "Person", "name": site["name"], "url": site["url"],
+             "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": site["hometown"]},
+             "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"},
+             "sameAs": [contact["facebook"], contact["youtube"], contact["imdb"]], "image": site["url"] + "assets/share.jpg"}
+ld = [person_ld]
 for d, c in upcoming():
     if c.get("venue") and c.get("city"):
-        ld.append({"@context": "https://schema.org", "@type": "MusicEvent", "name": c["title"],
-                   "startDate": d.isoformat(), "eventStatus": "https://schema.org/EventScheduled",
+        ld.append({"@context": "https://schema.org", "@type": "MusicEvent", "name": c["title"], "startDate": d.isoformat(),
+                   "eventStatus": "https://schema.org/EventScheduled",
                    "location": {"@type": "Place", "name": c["venue"], "address": {"@type": "PostalAddress", "addressLocality": c["city"], "addressCountry": "LK"}},
                    "performer": {"@type": "Person", "name": site["name"], "url": site["url"]}})
 
@@ -548,7 +587,7 @@ page = f'''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{e(site["name"])} | Singer, The Voice Sri Lanka</title>
+<title>{e(site["name"])} | Singer</title>
 <meta name="description" content="{e(site["description"])}">
 <link rel="canonical" href="{site["url"]}">
 <meta property="og:type" content="website">
@@ -565,20 +604,12 @@ page = f'''<!doctype html>
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>
-<a class="skip" href="#watch">Skip to videos</a>
 <header class="bar" id="bar"><div class="wrap">
   <a class="mark" href="#top">Chathurya</a>
-  <nav class="desk" aria-label="Main"><a href="#watch">Watch</a><a href="#voice">The Voice</a><a href="#concerts">Concerts</a><a href="#about">About</a><a href="#invite" class="cta">Invite to perform</a></nav>
-  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">{icon("menu")}<span>Menu</span></button>
+  <nav aria-label="Main"><a href="#about" class="hide-xs">About</a><a href="#performances">Performances</a><a href="#invite" class="cta">Invite</a></nav>
 </div></header>
-<div class="menu" id="menu" hidden>
-  <button class="menu-close" id="menuClose" aria-label="Close menu">{icon("close")}</button>
-  <nav aria-label="Menu"><a href="#watch">Watch</a><a href="#voice">The Voice</a><a href="#concerts">Concerts</a><a href="#songs">What she sings</a><a href="#about">About</a><a href="#invite">Invite to perform</a></nav>
-  <div class="menu-foot">{''.join(x for x in [f'<a href="https://wa.me/{whatsapp}">{icon("wa")}WhatsApp</a>' if whatsapp else '', f'<a href="mailto:{e(email)}">{icon("mail")}Email</a>' if email else '', f'<a href="{e(contact["facebook"])}" target="_blank" rel="noopener">{icon("fb")}Facebook</a>'])}</div>
-</div>
-<main>{body}</main>
-<footer><div class="wrap"><span>&copy; <span id="yr">{TODAY.year}</span> {e(site["name"])}</span><span>Photographs credited to their photographers.</span><a href="#top">Back to top</a></div></footer>
-<div class="sticky" id="sticky"><a class="btn primary" href="#invite">Invite to perform</a>{f'<a class="wa" href="https://wa.me/{whatsapp}" aria-label="WhatsApp">{icon("wa")}</a>' if whatsapp else ''}</div>
+<main id="top">{body}</main>
+<footer><div class="wrap"><span>&copy; {TODAY.year} {e(site["name"])}</span><span>Photographs credited to their photographers.</span><a href="#top">Back to top</a></div></footer>
 <dialog id="lightbox" aria-label="Gallery">
   <div class="lb-top"><span id="lbCount" aria-live="polite"></span><button id="lbClose" aria-label="Close gallery">{icon("close")}</button></div>
   <div class="lb-track" id="lbTrack"></div>
@@ -591,16 +622,13 @@ page = f'''<!doctype html>
 </html>
 '''
 
-os.makedirs(OUT_IMG, exist_ok=True)
 with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
     f.write(page)
-
 with open(os.path.join(ROOT, "sitemap.xml"), "w") as f:
     f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{site["url"]}</loc><lastmod>{TODAY.isoformat()}</lastmod></url></urlset>\n')
 with open(os.path.join(ROOT, "robots.txt"), "w") as f:
     f.write(f"User-agent: *\nAllow: /\nDisallow: /content/inbox/\nDisallow: /tools/\nSitemap: {site['url']}sitemap.xml\n")
 
-# report media in content/ that the page does not use
 all_media = []
 for dp, _, fs in os.walk(C):
     if "inbox" in dp or "sources" in dp:
