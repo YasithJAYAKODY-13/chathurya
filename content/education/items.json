@@ -31,15 +31,11 @@
       ],
       "images": [
         "images/2026-graduation-kingston-class-of-2026.webp",
-        "images/2026-graduation-bsc-aerospace-engineering.webp",
-        "images/2026-graduation-celebration-london-sunset.webp",
-        "images/2026-graduation-celebration-london-evening.webp"
+        "images/2026-graduation-bsc-aerospace-engineering.webp"
       ],
       "image_captions": {
         "images/2026-graduation-kingston-class-of-2026.webp": "Graduation day, Kingston University London, Class of 2026",
-        "images/2026-graduation-bsc-aerospace-engineering.webp": "With her degree certificate, BSc (Hons) Aerospace Engineering, First Class Honours",
-        "images/2026-graduation-celebration-london-sunset.webp": "Celebrating her graduation in London",
-        "images/2026-graduation-celebration-london-evening.webp": "Celebrating her graduation in London"
+        "images/2026-graduation-bsc-aerospace-engineering.webp": "With her degree certificate, BSc (Hons) Aerospace Engineering, First Class Honours"
       },
       "country": "United Kingdom",
       "intro": "Aerospace Engineering in the UK, First Class Honours",

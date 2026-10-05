@@ -566,12 +566,18 @@ def tab_voice():
 def tab_film():
     f = film[0]
     gid = gal("film", f["title"], "", slides_for(f, "film"))
-    cover = img_tag(f'content/film/{f["images"][0]}', f'{f["title"]} poster', sizes="(max-width: 700px) 60vw, 300px", cls="fposter") if f.get("images") else ""
-    return f'''<div class="lead"><h3>Film</h3><p>Alongside her music, Chathurya made her screen debut in a Sinhala feature film.</p></div>
-<div class="items"><div class="item filmcard"><button data-gallery="{gid}" aria-label="Open poster">{cover}</button>
-<div><span class="when">Screen debut, {e(f.get("year", ""))}</span><h4>{e(f["title"])}</h4>
+    caps = f.get("image_captions", {})
+    lead = img_tag(f'content/film/{f["images"][0]}', caps.get(f["images"][0], f["title"]), sizes="(max-width: 700px) 86vw, 360px", cls="fprofile")
+    thumbs = "".join(
+        f'<button class="fthumb" data-gallery="{gid}" data-index="{i}" aria-label="Open {e(caps.get(rel, "photo"))}">'
+        f'{img_tag(f"content/film/{rel}", caps.get(rel, f["title"]), sizes="(max-width: 700px) 40vw, 170px")}<span>{e("Red carpet" if "red-carpet" in rel else "Official poster" if "poster" in rel else "")}</span></button>'
+        for i, rel in enumerate(f["images"]) if i)
+    return f'''<div class="lead"><h3>Film</h3><p>Alongside her music, Chathurya made her screen debut in the Sinhala feature film {e(f["title"])}.</p></div>
+<div class="items"><div class="item filmcard2">
+<button class="fmain" data-gallery="{gid}" data-index="0" aria-label="Open film photos">{lead}</button>
+<div class="finfo"><span class="when">Screen debut</span><h4>{e(f["title"])}</h4>
 <p>Directed by {e(f.get("director", ""))}, produced by {e(f.get("producer", ""))}.</p>
-<a class="link" href="{e(contact["imdb"])}" target="_blank" rel="noopener">{icon("film")}Her profile on IMDb</a></div></div></div>'''
+<div class="fthumbs">{thumbs}</div></div></div></div>'''
 
 
 # ---------- tab: education
@@ -716,7 +722,7 @@ body = "".join([section_hero(), section_next(), section_highlights(), section_pl
 person_ld = {"@context": "https://schema.org", "@type": "Person", "name": site["name"], "url": site["url"],
              "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": site["hometown"]},
              "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"},
-             "sameAs": [contact["facebook"], contact["youtube"], contact["imdb"]], "image": site["url"] + "assets/share.jpg"}
+             "sameAs": [contact["facebook"], contact["youtube"]], "image": site["url"] + "assets/share.jpg"}
 ld = [person_ld]
 for d, c in upcoming():
     if c.get("venue") and c.get("city"):
