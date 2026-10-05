@@ -1,6 +1,28 @@
 {
   "items": [
     {
+      "id": "swarnavahini-rasa-handawaka",
+      "title": "Rasa Handawaka",
+      "channel": "Swarnavahini",
+      "description": "Chathurya sings live in the studio on Rasa Handawaka, telecast on Swarnavahini.",
+      "videos": [
+        {
+          "file": "videos/swarnavahini-rasa-handawaka-1.mp4",
+          "poster": "videos/swarnavahini-rasa-handawaka-1.jpg",
+          "caption": "Live on Rasa Handawaka, Swarnavahini",
+          "length": "60 seconds"
+        },
+        {
+          "file": "videos/swarnavahini-rasa-handawaka-2.mp4",
+          "poster": "videos/swarnavahini-rasa-handawaka-2.jpg",
+          "caption": "Live on Rasa Handawaka, Swarnavahini",
+          "length": "40 seconds"
+        }
+      ],
+      "images": [],
+      "source_note": "Clips sent by Yasith, 5 Oct 2026"
+    },
+    {
       "id": "charana-tv-youth-art-beat",
       "title": "Youth Art Beat",
       "channel": "Charana TV",

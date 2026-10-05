@@ -500,8 +500,17 @@ def tab_concerts():
 
 # ---------- tab: television
 def tab_tv():
-    tv_items = [x for x in load("television") if x.get("youtube")]
-    son_html = "".join(
+    tv_all = load("television")
+    vid_html = ""
+    for x in [x for x in tv_all if x.get("videos")]:
+        gid = gal("tv-" + x["id"], x["title"], x.get("description", ""), slides_for(x, "television"))
+        v0 = x["videos"][0]
+        poster = f'<img src="content/television/{e(v0["poster"])}" alt="{e(x["title"])} on {e(x.get("channel", ""))}" loading="lazy" decoding="async">'
+        vid_html += (f'<div class="item"><span class="when">{e(x.get("channel", ""))}</span><h4>{e(x["title"])}</h4><p>{e(x.get("description", ""))}</p>'
+                     f'<button class="tvclip" data-gallery="{gid}" aria-label="Play {e(x["title"])} clips">{poster}<span class="play">{icon("play")}</span>'
+                     f'<span class="badge">{len(x["videos"])} clips</span></button></div>')
+    tv_items = [x for x in tv_all if x.get("youtube")]
+    son_html = vid_html + "".join(
         f'<div class="item"><span class="when">{e(x.get("channel", ""))}</span><h4>{e(x["title"])}</h4><p>{e(x.get("description", ""))}</p>'
         f'{video_facade("youtube", x["youtube"], x["title"], x.get("channel", ""), start=x.get("start", ""), cls="video small")}</div>'
         for x in tv_items)
