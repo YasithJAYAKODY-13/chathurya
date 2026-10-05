@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "id": "charana-tv-youth-art-beat",
+      "title": "Youth Art Beat",
+      "channel": "Charana TV",
+      "description": "Chathurya sings with her sisters Hansi, Chathurtha and Tharanya on Youth Art Beat, Charana TV.",
+      "youtube": "qExKk7FxCGQ",
+      "start": 3487,
+      "images": [],
+      "source_note": "Link and start time (58:07) from Yasith, 5 Oct 2026. Replaces the Sonduru Sihina Ra entry at his request."
+    },
+    {
       "id": "tv-podcasts",
       "title": "Television podcasts",
       "description": "Guest appearances, conversation and live singing.",

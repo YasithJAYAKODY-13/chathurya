@@ -36,7 +36,7 @@
   },
   "sinhala_terms": {
     "_note": "Words that are not English are shown in Sinhala script on the page. Left side: the English spelling used in content files. Right side: Sinhala shown on the site.",
-    "Handawaka": "හඬවක",
+    "Handawaka": "හැන්දෑවක",
     "Mathaka Mandira": "මතක මන්දිර",
     "Ethera Nimnada": "එතෙර නිම්නද",
     "Beliatthapura Wasantha Udanaya": "බෙලිඅතුපුර වසන්ත උදානය",
@@ -49,6 +49,6 @@
     "Dadubasnamanaya": "දඬුබස්නාමානය",
     "Ada Ipadunu": "අද ඉපදුණු",
     "Bala Walapemi": "බලා වැලපෙමි",
-    "_unconfirmed": "Kept in English until the Sinhala spelling is confirmed: Sayam Heene, Pun Sanda Raaka, Sonduru Sihina Ra, Chanchala"
+    "_unconfirmed": "Kept in English until the Sinhala spelling is confirmed: Sayam Heene, Pun Sanda Raaka, Chanchala"
   }
 }

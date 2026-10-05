@@ -498,11 +498,11 @@ def tab_concerts():
 
 # ---------- tab: television
 def tab_tv():
-    son = next((c for c in concerts if "sonduru" in c["id"]), None)
-    son_html = ""
-    if son:
-        _, pretty = parse_date(son["date"])
-        son_html = f'<div class="item"><span class="when">{e(pretty)}</span><h4>{e(son["title"])}</h4><p>{e(son.get("description", ""))}</p></div>'
+    tv_items = [x for x in load("television") if x.get("youtube")]
+    son_html = "".join(
+        f'<div class="item"><span class="when">{e(x.get("channel", ""))}</span><h4>{e(x["title"])}</h4><p>{e(x.get("description", ""))}</p>'
+        f'{video_facade("youtube", x["youtube"], x["title"], x.get("channel", ""), start=x.get("start", ""), cls="video small")}</div>'
+        for x in tv_items)
     return f'''<div class="lead"><h3>Television</h3>
 <p>Chathurya first reached audiences across Sri Lanka on The Voice Sri Lanka on Sirasa TV, and her Blind Audition was later featured in The Voice Global's international highlights. She has also sung on television and been a guest on television podcasts.</p>
 <a class="link" href="#voice" data-tab="t-voice">See her journey on The Voice</a></div>
