@@ -62,11 +62,11 @@ let scrollT;
 track.addEventListener('scroll', () => { clearTimeout(scrollT); scrollT = setTimeout(() => {
   const i = Math.round(track.scrollLeft / track.clientWidth);
   if (i !== idx) { track.querySelectorAll('video').forEach(v => v.pause()); track.querySelectorAll('iframe').forEach(f => f.remove()); show(i); } }, 80); }, {passive:true});
-function open(id, btn){ meta = G[id] || {}; cur = meta.s || []; if (!cur.length) return; opener = btn; track.innerHTML = '';
+function open(id, btn, start = 0){ meta = G[id] || {}; cur = meta.s || []; if (!cur.length) return; opener = btn; track.innerHTML = '';
   cur.forEach(() => { const d = document.createElement('div'); d.className = 'lb-slide'; track.appendChild(d); });
-  stopAll(); lb.showModal(); history.pushState({lb:1}, ''); track.scrollLeft = 0; show(0); }
+  stopAll(); lb.showModal(); history.pushState({lb:1}, ''); start = Math.min(start, cur.length-1); track.scrollLeft = start * track.clientWidth; show(start); }
 function close(){ if (!lb.open) return; track.innerHTML = ''; lb.close(); opener?.focus(); }
-$$('[data-gallery]').forEach(b => b.addEventListener('click', ev => { ev.preventDefault(); open(b.dataset.gallery, b); }));
+$$('[data-gallery]').forEach(b => b.addEventListener('click', ev => { ev.preventDefault(); open(b.dataset.gallery, b, +b.dataset.index || 0); }));
 $('#lbClose').addEventListener('click', () => history.state?.lb ? history.back() : close());
 $('#lbPrev').addEventListener('click', () => go(idx-1));
 $('#lbNext').addEventListener('click', () => go(idx+1));

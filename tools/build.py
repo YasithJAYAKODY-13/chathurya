@@ -155,6 +155,7 @@ ICONS = {
     "menu": '<path d="M4 7h16M4 12h16M4 17h16"/>',
     "close": '<path d="M6 6l12 12M18 6L6 18"/>',
     "film": '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+    "cap": '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M21 9v6" stroke="currentColor" stroke-width="1.8"/>',
     "trophy": '<path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8M9 18h6"/>',
     "copy": '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>',
 }
@@ -215,6 +216,7 @@ def section_hero():
     <div class="intro">
       <h1 class="name"><span>Chathurya</span><span>Sandabarana</span></h1>
       <p class="lede"><strong>{e(site["tagline"])}</strong> {e(site["lede"])}</p>
+      <a class="edu-chip" href="education.html">{icon("cap")}<span>{e(site.get("secondary", ""))}</span><b aria-hidden="true">›</b></a>
       <div class="actions">
         <a class="btn primary" href="#performances">Performances</a>
         <a class="btn ghost" href="#invite">Invite to perform</a>
@@ -362,7 +364,7 @@ def section_about():
   <h2 id="about-title">About Chathurya</h2>
   <div>
     <p>Chathurya Sandabarana is a singer from Tangalle, on Sri Lanka's southern coast. She came to national attention on The Voice Sri Lanka, Season 1, where she trained under Umaria Sinhawansa and reached the Live Shows. Her Blind Audition was selected for The Voice Global's "Best of the Week", representing Sri Lanka.</p>
-    <p>Since then she has sung at concerts across Sri Lanka, from Colombo, Kandy and Galle to Ambalantota, Beliatta and Tissamaharama, and overseas in Dubai. She has performed at four Handawaka shows, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she is an aerospace engineering graduate.</p>
+    <p>Since then she has sung at concerts across Sri Lanka, from Colombo, Kandy and Galle to Ambalantota, Beliatta and Tissamaharama, and overseas in Dubai. She has performed at four Handawaka shows, released her single <em>Sayam Heene</em>, and made her screen debut in a Sinhala feature film. Alongside music, she studied Aerospace Engineering in the United Kingdom and graduated with First Class Honours. <a class="link" href="education.html">Read about her education</a></p>
     <ul class="facts">{facts}</ul>
   </div>
 </div></section>'''
@@ -585,9 +587,68 @@ def tab_education():
 <path d="M-20 260 C 200 230, 380 150, 470 90" stroke="url(#trail)" stroke-width="26" fill="none" stroke-linecap="round"/><path d="M455 70 l40 -18 q22 22 8 52 l-40 10z" fill="#ECCF85" fill-opacity=".35"/>
 <circle cx="470" cy="90" r="46" fill="none" stroke="#D4A53A" stroke-opacity=".25"/></svg>
 <h3>Education</h3><p class="cls">{e(ed["title"])}<br>{e(ed.get("classification", ""))}, {e(ed.get("institution", ""))}, {e(ed.get("year", ""))}</p>
-<p>{e(ed.get("plain_language", ""))}</p><h4>Research areas</h4><ul class="areas">{areas}</ul></div>
+<p>{e(ed.get("plain_language", ""))}</p><h4>Research areas</h4><ul class="areas">{areas}</ul>
+<a class="btn primary" href="education.html">Open her education page</a></div>
 <div class="items"><button class="item gradbtn" data-gallery="{gid}" aria-label="Open graduation photo">{photo}</button>
 <div class="item"><h4>Why her work matters to everyone</h4><ul class="why">{why}</ul></div></div>'''
+
+
+def education_body():
+    ed = education[0]
+    st = ed.get("statement", {})
+    rp = ed.get("research_paper", {})
+    slides = slides_for(ed, "education")
+    gid = gal("education-page", ed["title"], ed.get("intro", ""), slides)
+    lead_photo = img_tag(f'content/education/{ed["images"][0]}', "Chathurya at her graduation, Kingston University London",
+                         sizes="(max-width: 860px) 80vw, 440px", cls="eportrait", eager=True)
+    thumbs = "".join(
+        f'<button class="eg-item" data-gallery="{gid}" data-index="{i}" aria-label="Open photo {i + 1}">'
+        f'{img_tag(f"content/education/{rel}", ed.get("image_captions", {}).get(rel, ed["title"]), sizes="(max-width: 700px) 46vw, 280px")}</button>'
+        for i, rel in enumerate(ed["images"]))
+    why = "".join(f'<li>{icon(w["icon"])}<div><strong>{e(w["title"])}</strong><p>{e(w["text"])}</p></div></li>' for w in ed.get("why_it_matters", []))
+    areas = "".join(f"<li>{e(a)}</li>" for a in ed.get("research_areas", []))
+    tiles = [("First Class", "Honours degree", f'{ed["title"]}, {ed.get("year", "")}'),
+             ("UK", "Studied in England", ed.get("institution", "")),
+             ("Research", rp.get("status", ""), rp.get("topic", ""))]
+    t = "".join(f'<div class="hl-tile"><span class="big">{e(a)}</span><strong>{e(b)}</strong><span>{e(c)}</span></div>' for a, b, c in tiles)
+    return f'''
+<section class="hero ehero" aria-label="Education">
+  <canvas id="waves" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="intro">
+      <span class="kicker">Education</span>
+      <h1 class="ename">Aerospace Engineering<span>United Kingdom</span></h1>
+      <p class="efirst">First Class Honours</p>
+      <p class="lede">{e(ed["title"])}, {e(ed.get("institution", ""))}, {e(ed.get("year", ""))}.</p>
+      <div class="actions"><a class="btn primary" href="#words">In her words</a><a class="btn ghost" href="./#performances">Her music</a></div>
+    </div>
+    <div class="stage"><button class="eframe" data-gallery="{gid}" data-index="0" aria-label="Open graduation photos">{lead_photo}</button></div>
+  </div>
+</section>
+<section class="highlights"><div class="wrap"><div class="hl-grid e3">{t}</div></div></section>
+{divider()}
+<section class="words" id="words" aria-labelledby="words-title"><div class="wrap">
+  <span class="kicker">In her words</span>
+  <h2 id="words-title">Music and engineering, side by side</h2>
+  <blockquote class="wquote"><p>{e(st.get("english", ""))}</p><cite>Chathurya Sandabarana</cite></blockquote>
+  <blockquote class="wquote si-q" lang="si"><p>{e(st.get("sinhala", ""))}</p></blockquote>
+</div></section>
+{divider()}
+<section class="eresearch" aria-labelledby="res-title"><div class="wrap">
+  <div class="er-grid">
+    <div><span class="kicker">Her research</span><h2 id="res-title">Bringing spacecraft home safely</h2>
+      <p>{e(ed.get("plain_language", ""))}</p>
+      <p class="paper">{icon("shield")}<span><strong>Research paper, {e(rp.get("status", "").lower())}</strong>{e(rp.get("topic", ""))}</span></p>
+      <h4>Research areas</h4><ul class="areas">{areas}</ul></div>
+    <div class="item"><h4>Why her work matters to everyone</h4><ul class="why">{why}</ul></div>
+  </div>
+</div></section>
+{divider()}
+<section class="egallery" aria-labelledby="eg-title"><div class="wrap">
+  <span class="kicker">Graduation, 2026</span><h2 id="eg-title">Class of 2026</h2>
+  <div class="eg-grid">{thumbs}</div>
+  <div class="eback"><a class="btn primary" href="./#invite">Invite to perform</a><a class="btn ghost" href="./">Back to the main page</a></div>
+</div></section>'''
 
 
 TABS = [("singing", "Singing", tab_singing), ("concerts", "Concerts and events", tab_concerts), ("tv", "Television", tab_tv),
@@ -665,18 +726,19 @@ for d, c in upcoming():
                    "location": {"@type": "Place", "name": c["venue"], "address": {"@type": "PostalAddress", "addressLocality": c["city"], "addressCountry": "LK"}},
                    "performer": {"@type": "Person", "name": site["name"], "url": site["url"]}})
 
-page = f'''<!doctype html>
+def make_page(body, title, desc, canonical, nav, home="", ld_list=None):
+    return f'''<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{e(site["name"])} | Singer</title>
-<meta name="description" content="{e(site["description"])}">
-<link rel="canonical" href="{site["url"]}">
+<title>{e(title)}</title>
+<meta name="description" content="{e(desc)}">
+<link rel="canonical" href="{canonical}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="{site["url"]}">
-<meta property="og:title" content="{e(site["name"])} | Singer">
-<meta property="og:description" content="{e(site["description"])}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(desc)}">
 <meta property="og:image" content="{site["url"]}assets/share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0C241F">
@@ -684,12 +746,12 @@ page = f'''<!doctype html>
 <link rel="preload" href="assets/fonts/rozha-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/hanken-grotesk-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>{CSS}</style>
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(ld_list or [], ensure_ascii=False)}</script>
 </head>
 <body>
 <header class="bar" id="bar"><div class="wrap">
-  <a class="mark" href="#top">Chathurya</a>
-  <nav aria-label="Main"><a href="#about" class="hide-xs">About</a><a href="#performances">Performances</a><a href="#invite" class="cta">Invite</a></nav>
+  <a class="mark" href="{home}#top">Chathurya</a>
+  <nav aria-label="Main">{nav}</nav>
 </div></header>
 <main id="top">{body}</main>
 <footer><div class="wrap"><span>&copy; {TODAY.year} {e(site["name"])}</span><span>Photographs credited to their photographers.</span><a href="#top">Back to top</a></div></footer>
@@ -705,9 +767,12 @@ page = f'''<!doctype html>
 </html>
 '''
 
+
 # Show non-English words in Sinhala script (visible text and gallery captions only; head, attributes and JSON-LD stay English)
-SI = {k: v for k, v in site.get("sinhala_terms", {}).items() if not k.startswith("_")}
-if SI:
+def sinhalise(page):
+    SI = {k: v for k, v in site.get("sinhala_terms", {}).items() if not k.startswith("_")}
+    if not SI:
+        return page
     term_re = re.compile("|".join(re.escape(k) for k in sorted(SI, key=len, reverse=True)))
     head, sep, rest = page.partition("<body")
     parts = re.split(r'(<script[\s\S]*?</script>|<style[\s\S]*?</style>|<[^>]+>)', rest)
@@ -716,12 +781,20 @@ if SI:
             parts[i] = term_re.sub(lambda m: SI[m.group(0)], part)
         elif part and not part.startswith("<"):
             parts[i] = term_re.sub(lambda m: f'<span lang="si" class="si-t" title="{m.group(0)}">{SI[m.group(0)]}</span>', part)
-    page = head + sep + "".join(parts)
+    return head + sep + "".join(parts)
 
+
+page = sinhalise(make_page(body, site["name"] + " | Singer", site["description"], site["url"], '<a href="#about" class="hide-xs">About</a><a href="education.html" class="hide-xs">Education</a><a href="#performances">Performances</a><a href="#invite" class="cta">Invite</a>', ld_list=ld))
+edu_page = sinhalise(make_page(education_body(), "Education | " + site["name"],
+    site["name"] + " graduated in Aerospace Engineering in the United Kingdom with First Class Honours.", site["url"] + "education.html",
+    '<a href="./#about" class="hide-xs">About</a><a href="./#performances">Performances</a><a href="./#invite" class="cta">Invite</a>', home="./",
+    ld_list=[person_ld]))
+with open(os.path.join(ROOT, "education.html"), "w", encoding="utf-8") as f:
+    f.write(edu_page)
 with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
     f.write(page)
 with open(os.path.join(ROOT, "sitemap.xml"), "w") as f:
-    f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{site["url"]}</loc><lastmod>{TODAY.isoformat()}</lastmod></url></urlset>\n')
+    f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{site["url"]}</loc><lastmod>{TODAY.isoformat()}</lastmod></url><url><loc>{site["url"]}education.html</loc><lastmod>{TODAY.isoformat()}</lastmod></url></urlset>\n')
 with open(os.path.join(ROOT, "robots.txt"), "w") as f:
     f.write(f"User-agent: *\nAllow: /\nDisallow: /content/inbox/\nDisallow: /tools/\nSitemap: {site['url']}sitemap.xml\n")
 

@@ -30,10 +30,27 @@
         }
       ],
       "images": [
-        "images/2026-graduation-bsc-aerospace-engineering.webp"
+        "images/2026-graduation-kingston-class-of-2026.webp",
+        "images/2026-graduation-bsc-aerospace-engineering.webp",
+        "images/2026-graduation-celebration-london-sunset.webp",
+        "images/2026-graduation-celebration-london-evening.webp"
       ],
       "image_captions": {
-        "images/2026-graduation-bsc-aerospace-engineering.webp": "Graduation, BSc (Hons) Aerospace Engineering, First Class Honours, 2026"
+        "images/2026-graduation-kingston-class-of-2026.webp": "Graduation day, Kingston University London, Class of 2026",
+        "images/2026-graduation-bsc-aerospace-engineering.webp": "With her degree certificate, BSc (Hons) Aerospace Engineering, First Class Honours",
+        "images/2026-graduation-celebration-london-sunset.webp": "Celebrating her graduation in London",
+        "images/2026-graduation-celebration-london-evening.webp": "Celebrating her graduation in London"
+      },
+      "country": "United Kingdom",
+      "intro": "Aerospace Engineering in the UK, First Class Honours",
+      "research_paper": {
+        "topic": "The intense heat faced by spacecraft returning from space to Earth at very high speed",
+        "status": "Under peer review"
+      },
+      "statement": {
+        "english": "Alongside my music and everything that came with it, I pursued my higher education in Aerospace Engineering in the United Kingdom, and I recently completed my Bachelor of Science degree with First Class Honours. At the same time, my research paper on the intense heat faced by spacecraft returning from space to Earth at very high speed is now under peer review.",
+        "sinhala": "කලාව සහ අමතර දේවල් ඒ විදියට ගලාගෙන යන ගමන්, මගේ උසස් අධ්‍යාපනය සිද්ධ වුණේ එක්සත් රාජධානියේ, ගුවන් සහ අභ්‍යවකාශ ඉංජිනේරු විද්‍යාව (Aerospace Engineering) සම්බන්ධයෙන්. ළඟදී මට මගේ විද්‍යාවේදී උපාධිය First Class එකක් එක්ක සාර්ථකව නිම කරන්න පුළුවන් වුණා. ඒකත් එක්කම, අභ්‍යවකාශයේ ඉඳන් පෘථිවියට විශාල වේගයෙන් එන යානවලට වෙන භයානක තාපය ගැන මගේ research paper එක දැන් peer review වෙනවා.",
+        "source_note": "Chathurya's own words in Sinhala, sent by Yasith 5 Oct 2026; spelling tidied, English translation by Claude."
       }
     }
   ]
