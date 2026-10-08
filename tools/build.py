@@ -679,7 +679,10 @@ def tab_modelling():
                          f'{img_tag(f"content/modelling/{rel}", m["image_captions"].get(rel, m["title"]), sizes="(max-width: 700px) 46vw, 220px")}</button>'
                          for i, rel in enumerate(m["images"]))
         rows += f'<div class="mrow"><h4>{e(m["title"])}</h4><p class="credit">{e(m.get("credit", ""))}</p><div class="eg-grid">{thumbs}</div></div>'
-    return f'''<div class="lead"><h3>Modelling</h3><p>Commercial advertising and bridal shoots, taken on selectively. A few examples are shown here.</p></div>
+    ag = site.get("agency", {})
+    agency = (f'<p class="agency">{icon("globe")}<span>Signed model with <strong>{e(ag["name"])}</strong></span></p>'
+              f'<a class="btn ghost agbtn" href="{e(ag["url"])}" target="_blank" rel="noopener">{e(ag.get("label", ag["name"]))}</a>') if ag.get("name") else ""
+    return f'''<div class="lead"><h3>Modelling</h3>{agency}<p>Commercial advertising and bridal shoots, taken on selectively. A few examples are shown here.</p></div>
 <div class="items mitems">{rows}</div>'''
 
 
