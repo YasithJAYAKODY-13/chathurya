@@ -674,11 +674,11 @@ def education_body():
 def tab_modelling():
     rows = ""
     for m in modelling:
-        gid = gal("modelling-" + m["id"], m["title"], "Photography: " + m.get("photographer", ""), slides_for(m, "modelling"))
+        gid = gal("modelling-" + m["id"], m["title"], m.get("credit", ""), slides_for(m, "modelling"))
         thumbs = "".join(f'<button class="eg-item" data-gallery="{gid}" data-index="{i}" aria-label="Open photo {i + 1}">'
                          f'{img_tag(f"content/modelling/{rel}", m["image_captions"].get(rel, m["title"]), sizes="(max-width: 700px) 46vw, 220px")}</button>'
                          for i, rel in enumerate(m["images"]))
-        rows += f'<div class="mrow"><h4>{e(m["title"])}</h4><p class="credit">Photography: {e(m.get("photographer", ""))}</p><div class="eg-grid">{thumbs}</div></div>'
+        rows += f'<div class="mrow"><h4>{e(m["title"])}</h4><p class="credit">{e(m.get("credit", ""))}</p><div class="eg-grid">{thumbs}</div></div>'
     return f'''<div class="lead"><h3>Modelling</h3><p>Commercial advertising and bridal shoots, taken on selectively. A few examples are shown here.</p></div>
 <div class="items mitems">{rows}</div>'''
 

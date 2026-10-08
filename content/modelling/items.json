@@ -1,22 +1,20 @@
 {
   "items": [
     {
-      "id": "fashion-shivantha-nirmal",
-      "title": "Fashion and lifestyle shoot",
-      "photographer": "Shivantha Nirmal Photography",
+      "id": "bridal-lavanya-eugine",
+      "title": "Bridal look",
+      "credit": "Makeup and photo: Lavanya Eugine, makeup artist",
       "images": [
-        "images/shivantha-nirmal-standing.webp",
-        "images/shivantha-nirmal-seated.webp",
-        "images/shivantha-nirmal-studio-shelves.webp",
-        "images/shivantha-nirmal-profile.webp"
+        "images/lavanya-eugine-bridal-seated.webp",
+        "images/lavanya-eugine-bridal-portrait.webp",
+        "images/lavanya-eugine-bridal-black-and-white.webp"
       ],
       "image_captions": {
-        "images/shivantha-nirmal-standing.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
-        "images/shivantha-nirmal-seated.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
-        "images/shivantha-nirmal-studio-shelves.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
-        "images/shivantha-nirmal-profile.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography"
+        "images/lavanya-eugine-bridal-seated.webp": "Bridal look. Makeup and photo: Lavanya Eugine, makeup artist",
+        "images/lavanya-eugine-bridal-portrait.webp": "Bridal look. Makeup and photo: Lavanya Eugine, makeup artist",
+        "images/lavanya-eugine-bridal-black-and-white.webp": "Bridal look. Makeup and photo: Lavanya Eugine, makeup artist"
       },
-      "source_note": "Sent by Yasith, 8 Oct 2026. 4 of 8 photos chosen to keep the section selective."
+      "source_note": "Sent by Yasith, 8 Oct 2026"
     },
     {
       "id": "saree-shoot-ravindu-wanigasekara",
@@ -33,6 +31,40 @@
         "images/ravindu-wanigasekara-saree-shoot-oil-lamp-seated.webp": "Traditional saree shoot. Photography: Ravindu Wanigasekara Photography",
         "images/ravindu-wanigasekara-saree-shoot-stone-arch.webp": "Traditional saree shoot. Photography: Ravindu Wanigasekara Photography",
         "images/ravindu-wanigasekara-saree-shoot-oil-lamp-portrait.webp": "Traditional saree shoot. Photography: Ravindu Wanigasekara Photography"
+      },
+      "source_note": "Sent by Yasith, 8 Oct 2026",
+      "credit": "Photography: Ravindu Wanigasekara Photography"
+    },
+    {
+      "id": "fashion-shivantha-nirmal",
+      "title": "Fashion and lifestyle shoot",
+      "photographer": "Shivantha Nirmal Photography",
+      "images": [
+        "images/shivantha-nirmal-standing.webp",
+        "images/shivantha-nirmal-seated.webp",
+        "images/shivantha-nirmal-studio-shelves.webp",
+        "images/shivantha-nirmal-profile.webp"
+      ],
+      "image_captions": {
+        "images/shivantha-nirmal-standing.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
+        "images/shivantha-nirmal-seated.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
+        "images/shivantha-nirmal-studio-shelves.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
+        "images/shivantha-nirmal-profile.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography"
+      },
+      "source_note": "Sent by Yasith, 8 Oct 2026. 4 of 8 photos chosen to keep the section selective.",
+      "credit": "Photography: Shivantha Nirmal Photography"
+    },
+    {
+      "id": "portrait-vintage-soul-90s",
+      "title": "Black and white portraits",
+      "credit": "Photography: Vintage_Soul_90s",
+      "images": [
+        "images/vintage-soul-90s-portrait-1.webp",
+        "images/vintage-soul-90s-portrait-2.webp"
+      ],
+      "image_captions": {
+        "images/vintage-soul-90s-portrait-1.webp": "Black and white portraits. Photography: Vintage_Soul_90s",
+        "images/vintage-soul-90s-portrait-2.webp": "Black and white portraits. Photography: Vintage_Soul_90s"
       },
       "source_note": "Sent by Yasith, 8 Oct 2026"
     }
