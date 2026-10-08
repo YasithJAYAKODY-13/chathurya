@@ -81,11 +81,14 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   const need = ['name','phone','event','date','msg'].find(k => !v(k)); if (need) { $('#formErr').hidden = false; form[need].focus(); return; }
   $('#formErr').hidden = true;
   let phone = v('phone').replace(/[^\d+]/g, ''); if (!phone.startsWith('+')) phone = v('cc') + phone.replace(/^0+/, '');
-  const lines = ['New enquiry from ' + v('name') + ', ' + phone, '', 'Name: ' + v('name'), 'Phone / WhatsApp: ' + phone, 'Reply on WhatsApp: https://wa.me/' + phone.replace(/\D/g, ''), '', 'Event: ' + v('event')];
+  const lines = ['New enquiry from ' + v('name') + ', ' + phone, '', 'Name: ' + v('name'), 'Phone / WhatsApp: ' + phone, '', 'Event: ' + v('event')];
   lines.push('Possible date: ' + v('date'), '', 'Description: ' + v('msg'));
-  lines.push('', 'Sent from chathurya.caeleon.net');
+  lines.push('', 'Sent from Chathurya website');
   const text = lines.join('\n').slice(0, 1500); const done = $('#formDone'); const btn = form.querySelector('[data-send]');
   btn.disabled = true;
+  try { JSON.parse(form.dataset.alerts || '[]').forEach(([ph, k], i) => setTimeout(() => {
+    const u = 'https://api.callmebot.com/whatsapp.php?phone=' + ph.replace(/\D/g, '') + '&apikey=' + encodeURIComponent(k) + '&text=' + encodeURIComponent(text);
+    (window.__beacons = window.__beacons || []).push(Object.assign(new Image(), { src: u })); }, i * 400)); } catch (e) {}
   if (!form.dataset.key && form.dataset.mail && !f.get('botcheck')) {
     try { await fetch('https://formsubmit.co/ajax/' + form.dataset.mail, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ _subject: 'New enquiry: ' + v('event') + ' (' + v('name') + ')', _template: 'table', _captcha: 'false',
@@ -96,8 +99,6 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
       body: JSON.stringify({ access_key: form.dataset.key, subject: 'Invitation: ' + v('event') + ' (' + v('name') + ')', from_name: 'Chathurya website',
         name: v('name'), phone, event: v('event'), date: v('date'), message: v('msg'), page: location.href }) }); } catch (e) {}
   }
-  try { JSON.parse(form.dataset.alerts || '[]').forEach(([ph, k]) => {
-    fetch('https://api.callmebot.com/whatsapp.php?phone=' + encodeURIComponent(ph) + '&apikey=' + encodeURIComponent(k) + '&text=' + encodeURIComponent(text), { mode: 'no-cors' }).catch(() => {}); }); } catch (e) {}
   btn.disabled = false;
   if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
     done.textContent = 'Thank you. WhatsApp has opened with your message ready. Press send there and we will reply on WhatsApp.'; }
