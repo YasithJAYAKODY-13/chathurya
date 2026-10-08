@@ -1,6 +1,24 @@
 {
   "items": [
     {
+      "id": "fashion-shivantha-nirmal",
+      "title": "Fashion and lifestyle shoot",
+      "photographer": "Shivantha Nirmal Photography",
+      "images": [
+        "images/shivantha-nirmal-standing.webp",
+        "images/shivantha-nirmal-seated.webp",
+        "images/shivantha-nirmal-studio-shelves.webp",
+        "images/shivantha-nirmal-profile.webp"
+      ],
+      "image_captions": {
+        "images/shivantha-nirmal-standing.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
+        "images/shivantha-nirmal-seated.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
+        "images/shivantha-nirmal-studio-shelves.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography",
+        "images/shivantha-nirmal-profile.webp": "Fashion and lifestyle shoot. Photography: Shivantha Nirmal Photography"
+      },
+      "source_note": "Sent by Yasith, 8 Oct 2026. 4 of 8 photos chosen to keep the section selective."
+    },
+    {
       "id": "saree-shoot-ravindu-wanigasekara",
       "title": "Traditional saree shoot",
       "photographer": "Ravindu Wanigasekara Photography",

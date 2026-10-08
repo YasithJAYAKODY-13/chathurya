@@ -496,3 +496,4 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .cbtns .ico{width:18px;height:18px}
 .icard .quiet{color:var(--mist);font-size:.92rem;margin-top:-6px}
 .mitems{grid-column:1/-1}.mrow h4{margin:0}.mrow .credit{color:var(--gold);font-size:.85rem;letter-spacing:.06em;margin:4px 0 0}.mrow .eg-grid{margin-top:16px}
+.mrow+.mrow{margin-top:34px}
