@@ -47,7 +47,7 @@
       {
         "who": "direct",
         "phone": "+447474363075",
-        "apikey": ""
+        "apikey": "2263435"
       }
     ],
     "_alerts_note": "Each person activates CallMeBot once on their own WhatsApp and pastes the apikey here. Every form enquiry is then pushed to all numbers with a key, at the same moment."
