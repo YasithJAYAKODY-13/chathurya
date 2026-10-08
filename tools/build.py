@@ -710,7 +710,7 @@ def section_invite():
     cards = "".join(f'''<div class="ccard"><span class="crole">{e(p["role"])}</span><span class="crole-si" lang="si">{e(p.get("role_si", ""))}</span>
   {f'<strong>{e(p["name"])}</strong>' if p.get("name") else ""}<span class="cnum">{e(p["display"])}</span>
   <span class="cbtns"><a href="tel:{e(p["number"])}">{icon("phone")}Call</a><a href="https://wa.me/{"".join(ch for ch in p["number"] if ch.isdigit())}" target="_blank" rel="noopener">{icon("wa")}WhatsApp</a></span></div>''' for p in people)
-    form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-to="{e(form_person["name"] if form_person else "")}" data-key="{e(key)}" data-alerts="{e(json.dumps([[a["phone"], a["apikey"]] for a in contact.get("whatsapp_alerts", []) if a.get("apikey")]))}">
+    form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-to="{e(form_person["name"] if form_person else "")}" data-key="{e(key)}" data-mail="{e(email)}" data-alerts="{e(json.dumps([[a["phone"], a["apikey"]] for a in contact.get("whatsapp_alerts", []) if a.get("apikey")]))}">
     <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label><span class="lt">Your name <span class="req">required</span></span><input name="name" autocomplete="name" required></label>
     <label><span class="lt">Your phone or WhatsApp <span class="req">required</span></span>
@@ -722,6 +722,7 @@ def section_invite():
     <p class="err" id="formErr" role="alert" hidden>Please fill in your name, phone number, event, possible date and a short description.</p>
     <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send message</button></div>
     <p class="fine">Your message is sent directly and we will get back to you as soon as possible.</p>
+    {f'<p class="fine mailline">Prefer email? <a href="mailto:{e(email)}">{e(email)}</a></p>' if email else ""}
     <p class="done" id="formDone" role="status" hidden></p>
   </form>'''
     return f'''

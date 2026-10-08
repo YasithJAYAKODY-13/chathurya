@@ -86,6 +86,11 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   lines.push('', 'Sent from chathurya.caeleon.net');
   const text = lines.join('\n').slice(0, 1500); const done = $('#formDone'); const btn = form.querySelector('[data-send]');
   btn.disabled = true;
+  if (!form.dataset.key && form.dataset.mail && !f.get('botcheck')) {
+    try { await fetch('https://formsubmit.co/ajax/' + form.dataset.mail, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ _subject: 'New enquiry: ' + v('event') + ' (' + v('name') + ')', _template: 'table', _captcha: 'false',
+        Name: v('name'), Phone: phone, Event: v('event'), 'Possible date': v('date'), Description: v('msg'), Page: location.href }) }); } catch (e) {}
+  }
   if (form.dataset.key && !f.get('botcheck')) {
     try { await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ access_key: form.dataset.key, subject: 'Invitation: ' + v('event') + ' (' + v('name') + ')', from_name: 'Chathurya website',

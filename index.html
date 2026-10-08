@@ -518,6 +518,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .agency{display:flex;gap:10px;align-items:center;color:var(--pearl);margin:8px 0 12px}.agency .ico{width:20px;height:20px;color:var(--gold);flex:none}.agency strong{color:var(--gold);font-weight:600}
 .agbtn{margin-bottom:16px}
 .icard .howto{color:var(--gold);font-weight:500}
+.mailline{margin-top:4px}.mailline a{color:var(--gold)}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/", "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": "Tangalle, Sri Lanka"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"}, "sameAs": ["https://www.facebook.com/chathuryasandabaranaofficial", "https://www.youtube.com/@chathuryasandabaranaofficial"], "image": "https://chathurya.caeleon.net/assets/share.jpg"}, {"@context": "https://schema.org", "@type": "MusicEvent", "name": "Handawaka, Anuradhapura", "startDate": "2026-10-17", "eventStatus": "https://schema.org/EventScheduled", "location": {"@type": "Place", "name": "Irrigation Ground", "address": {"@type": "PostalAddress", "addressLocality": "Anuradhapura", "addressCountry": "LK"}}, "performer": {"@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/"}}]</script>
 </head>
@@ -694,7 +695,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
   <p>For concerts, musical shows, television and talk show programmes, school and community events, in Sri Lanka or overseas.</p>
   <p class="howto">Please fill in the details below with as much information as possible. We will contact you on WhatsApp.</p>
   <p class="quiet">Commercial and bridal modelling considered selectively.</p>
-    <form id="inviteForm" novalidate data-wa="" data-to="" data-key="" data-alerts="[[&quot;+447474363075&quot;, &quot;2263435&quot;], [&quot;+447404334893&quot;, &quot;3361966&quot;]]">
+    <form id="inviteForm" novalidate data-wa="" data-to="" data-key="" data-mail="sandabarana@gmail.com" data-alerts="[[&quot;+447474363075&quot;, &quot;2263435&quot;], [&quot;+447404334893&quot;, &quot;3361966&quot;]]">
     <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label><span class="lt">Your name <span class="req">required</span></span><input name="name" autocomplete="name" required></label>
     <label><span class="lt">Your phone or WhatsApp <span class="req">required</span></span>
@@ -706,6 +707,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
     <p class="err" id="formErr" role="alert" hidden>Please fill in your name, phone number, event, possible date and a short description.</p>
     <div class="send"><button type="submit" class="btn primary big" data-send="wa"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 19z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 1c-1 0-3-2-3-3l1-1-1-2z" fill="currentColor" stroke="none"/></svg>Send message</button></div>
     <p class="fine">Your message is sent directly and we will get back to you as soon as possible.</p>
+    <p class="fine mailline">Prefer email? <a href="mailto:sandabarana@gmail.com">sandabarana@gmail.com</a></p>
     <p class="done" id="formDone" role="status" hidden></p>
   </form>
   <div class="direct"><a href="https://www.youtube.com/@chathuryasandabaranaofficial" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9v6l5-3z" fill="currentColor" stroke="none"/></svg>YouTube</a></div>
@@ -806,6 +808,11 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   lines.push('', 'Sent from chathurya.caeleon.net');
   const text = lines.join('\n').slice(0, 1500); const done = $('#formDone'); const btn = form.querySelector('[data-send]');
   btn.disabled = true;
+  if (!form.dataset.key && form.dataset.mail && !f.get('botcheck')) {
+    try { await fetch('https://formsubmit.co/ajax/' + form.dataset.mail, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ _subject: 'New enquiry: ' + v('event') + ' (' + v('name') + ')', _template: 'table', _captcha: 'false',
+        Name: v('name'), Phone: phone, Event: v('event'), 'Possible date': v('date'), Description: v('msg'), Page: location.href }) }); } catch (e) {}
+  }
   if (form.dataset.key && !f.get('botcheck')) {
     try { await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ access_key: form.dataset.key, subject: 'Invitation: ' + v('event') + ' (' + v('name') + ')', from_name: 'Chathurya website',
