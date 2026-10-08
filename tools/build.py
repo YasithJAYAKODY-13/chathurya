@@ -720,7 +720,7 @@ def section_invite():
     <label><span class="lt">Possible date or week <span class="req">required</span></span><input name="date" placeholder="e.g. 14 December, or the week of 20 January" required></label>
     <label><span class="lt">Short description <span class="req">required</span></span><textarea name="msg" rows="5" placeholder="Please share as much information as possible: the event, venue or town, audience, how many songs, timings and any other details." required></textarea></label>
     <p class="err" id="formErr" role="alert" hidden>Please fill in your name, phone number, event, possible date and a short description.</p>
-    <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send message</button></div>
+    <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send message on WhatsApp</button></div>
     <p class="fine">Your message is sent directly and we will get back to you as soon as possible.</p>
     {f'<p class="fine mailline">Prefer email? <a href="mailto:{e(email)}">{e(email)}</a></p>' if email else ""}
     <p class="done" id="formDone" role="status" hidden></p>

@@ -714,7 +714,7 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   const need = ['name','phone','event','date','msg'].find(k => !v(k)); if (need) { $('#formErr').hidden = false; form[need].focus(); return; }
   $('#formErr').hidden = true;
   let phone = v('phone').replace(/[^\d+]/g, ''); if (!phone.startsWith('+')) phone = v('cc') + phone.replace(/^0+/, '');
-  const lines = ['Invitation for Chathurya Sandabarana', '', 'Name: ' + v('name'), 'Phone / WhatsApp: ' + phone, 'Event: ' + v('event')];
+  const lines = ['New enquiry from ' + v('name') + ', ' + phone, '', 'Name: ' + v('name'), 'Phone / WhatsApp: ' + phone, 'Reply on WhatsApp: https://wa.me/' + phone.replace(/\D/g, ''), '', 'Event: ' + v('event')];
   lines.push('Possible date: ' + v('date'), '', 'Description: ' + v('msg'));
   lines.push('', 'Sent from chathurya.caeleon.net');
   const text = lines.join('\n').slice(0, 1500); const done = $('#formDone'); const btn = form.querySelector('[data-send]');
