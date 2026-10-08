@@ -176,7 +176,7 @@ def yt_thumb(vid):
 # ---------------------------------------------------------------- sections
 contact = site["contact"]
 people = contact.get("people", [])
-form_person = next((p for p in people if p["id"] == contact.get("form_to")), people[0] if people else None)
+form_person = next((p for p in people if p["id"] == contact.get("form_to")), None)
 whatsapp = "".join(ch for ch in form_person["number"] if ch.isdigit()) if form_person else ""
 email = contact.get("enquiry_email", "").strip()
 
@@ -716,20 +716,20 @@ def section_invite():
     <label><span class="lt">Your phone or WhatsApp <span class="req">required</span></span>
       <span class="phone"><select name="cc" aria-label="Country code"><option value="+94" selected>🇱🇰 +94</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+1">🇺🇸 +1</option><option value="+91">🇮🇳 +91</option><option value="+65">🇸🇬 +65</option><option value="+974">🇶🇦 +974</option><option value="+966">🇸🇦 +966</option><option value="+33">🇫🇷 +33</option><option value="+49">🇩🇪 +49</option><option value="+39">🇮🇹 +39</option><option value="+82">🇰🇷 +82</option><option value="+81">🇯🇵 +81</option><option value="+60">🇲🇾 +60</option><option value="+">Other</option></select>
       <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7X XXX XXXX" required></span></label>
-    <label><span class="lt">Event or organisation <span class="req">required</span></span><input name="event" autocomplete="organization" placeholder="Wedding, concert, school event, TV show" required></label>
+    <label><span class="lt">Event or organisation <span class="req">required</span></span><input name="event" autocomplete="organization" placeholder="e.g. Singing at a concert, TV show, talk show programme" required></label>
     <label><span class="lt">Possible date or week <span class="req">required</span></span><input name="date" placeholder="e.g. 14 December, or the week of 20 January" required></label>
-    <label><span class="lt">Short description <span class="req">required</span></span><textarea name="msg" rows="3" placeholder="What the event is and what you would like Chathurya to perform" required></textarea></label>
+    <label><span class="lt">Short description <span class="req">required</span></span><textarea name="msg" rows="5" placeholder="Please share as much information as possible: the event, venue or town, audience, how many songs, timings and any other details." required></textarea></label>
     <p class="err" id="formErr" role="alert" hidden>Please fill in your name, phone number, event, possible date and a short description.</p>
-    <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send message on WhatsApp</button></div>
-    <p class="fine">Your message goes to {e(form_person["name"] if form_person else "our team")}, who handles Chathurya's bookings.</p>
+    <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send message</button></div>
+    <p class="fine">Your message is sent directly and we will get back to you as soon as possible.</p>
     <p class="done" id="formDone" role="status" hidden></p>
   </form>'''
     return f'''
 <section class="invite" id="invite" aria-labelledby="invite-title"><div class="wrap"><div class="icard">
   <h2 id="invite-title">Invite Chathurya to perform</h2>
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
-  <p>For concerts, musical shows, weddings, school and community events, television and media, in Sri Lanka or overseas.</p>
-  <p class="howto">Fill in the details below with as much information as possible and press the button. We will contact you and reply on WhatsApp.</p>
+  <p>For concerts, musical shows, television and talk show programmes, school and community events, in Sri Lanka or overseas.</p>
+  <p class="howto">Please fill in the details below with as much information as possible. We will contact you on WhatsApp.</p>
   <p class="quiet">Commercial and bridal modelling considered selectively.</p>
   {form_html}
   <div class="direct"><a href="{e(contact["youtube"])}" target="_blank" rel="noopener">{icon("yt")}YouTube</a></div>

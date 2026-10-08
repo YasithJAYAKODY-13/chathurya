@@ -728,7 +728,7 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   btn.disabled = false;
   if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
     done.textContent = 'Thank you. WhatsApp has opened with your message ready. Press send there and we will reply on WhatsApp.'; }
-  else { done.textContent = 'Thank you. Your invitation has been sent. We will reply within a day.'; }
+  else { done.textContent = 'Thank you. Your message has been sent directly. We will get back to you on WhatsApp as soon as possible.'; form.reset(); }
   done.hidden = false; done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
 
 /* portrait tilt */
