@@ -112,6 +112,7 @@ concerts = load("concerts-and-events")
 singing = load("singing")
 film = load("film")
 education = load("education")
+modelling = load("modelling")
 press = load("press")
 gallery_items = load("gallery")
 
@@ -670,8 +671,20 @@ def education_body():
 </div></section>'''
 
 
+def tab_modelling():
+    rows = ""
+    for m in modelling:
+        gid = gal("modelling-" + m["id"], m["title"], "Photography: " + m.get("photographer", ""), slides_for(m, "modelling"))
+        thumbs = "".join(f'<button class="eg-item" data-gallery="{gid}" data-index="{i}" aria-label="Open photo {i + 1}">'
+                         f'{img_tag(f"content/modelling/{rel}", m["image_captions"].get(rel, m["title"]), sizes="(max-width: 700px) 46vw, 220px")}</button>'
+                         for i, rel in enumerate(m["images"]))
+        rows += f'<div class="mrow"><h4>{e(m["title"])}</h4><p class="credit">Photography: {e(m.get("photographer", ""))}</p><div class="eg-grid">{thumbs}</div></div>'
+    return f'''<div class="lead"><h3>Modelling</h3><p>Commercial advertising and bridal shoots, taken on selectively. A few examples are shown here.</p></div>
+<div class="items mitems">{rows}</div>'''
+
+
 TABS = [("singing", "Singing", tab_singing), ("concerts", "Concerts and events", tab_concerts), ("tv", "Television", tab_tv),
-        ("voice", "The Voice", tab_voice), ("film", "Film", tab_film), ("education", "Education", tab_education)]
+        ("voice", "The Voice", tab_voice), ("film", "Film", tab_film), ("education", "Education", tab_education), ("modelling", "Modelling", tab_modelling)]
 
 
 def section_performances():
@@ -713,7 +726,7 @@ def section_invite():
   <h2 id="invite-title">Invite Chathurya to perform</h2>
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
   <p>For concerts, musical shows, weddings, school and community events, television and media, in Sri Lanka or overseas.</p>
-  <p class="quiet">Modelling and brand work are considered selectively.</p>
+  <p class="quiet">Commercial and bridal modelling considered selectively.</p>
   {form_html}
   <div class="orcall"><span>or get in touch directly</span></div>
   <div class="ccards">{cards}</div>

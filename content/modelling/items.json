@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": "saree-shoot-ravindu-wanigasekara",
+      "title": "Traditional saree shoot",
+      "photographer": "Ravindu Wanigasekara Photography",
+      "images": [
+        "images/ravindu-wanigasekara-saree-shoot-steps.webp",
+        "images/ravindu-wanigasekara-saree-shoot-oil-lamp-seated.webp",
+        "images/ravindu-wanigasekara-saree-shoot-stone-arch.webp",
+        "images/ravindu-wanigasekara-saree-shoot-oil-lamp-portrait.webp"
+      ],
+      "image_captions": {
+        "images/ravindu-wanigasekara-saree-shoot-steps.webp": "Traditional saree shoot. Photography: Ravindu Wanigasekara Photography",
+        "images/ravindu-wanigasekara-saree-shoot-oil-lamp-seated.webp": "Traditional saree shoot. Photography: Ravindu Wanigasekara Photography",
+        "images/ravindu-wanigasekara-saree-shoot-stone-arch.webp": "Traditional saree shoot. Photography: Ravindu Wanigasekara Photography",
+        "images/ravindu-wanigasekara-saree-shoot-oil-lamp-portrait.webp": "Traditional saree shoot. Photography: Ravindu Wanigasekara Photography"
+      },
+      "source_note": "Sent by Yasith, 8 Oct 2026"
+    }
+  ]
+}
