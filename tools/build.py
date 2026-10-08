@@ -404,11 +404,11 @@ def tab_singing():
             seen.add(c["song"].lower()); songs.append(c["song"])
     sl = "".join(f"<li>{e(t)}</li>" for t in songs)
     fm = "".join(f"<li>{e(f)}</li>" for f in site.get("formats", []))
-    return f'''<div class="lead"><h3>Singing</h3>
-<p>Singing is at the heart of everything Chathurya does, from her own releases and duets to concert stages, television and community celebrations.</p>
+    return f'''<div class="lead slead"><h3>Singing and concerts</h3>
+<p>Singing is at the heart of everything Chathurya does: her own releases and duets, and the concert stages, television and community celebrations below.</p>
 <div class="rep"><h4>Songs she has performed</h4><ul class="songs">{sl}</ul>
 <h4>Performance formats</h4><ul class="songs">{fm}</ul><p class="avail">{e(site.get("availability", ""))}</p></div></div>
-<div class="items">{"".join(items)}</div>'''
+<div class="items vgrid">{"".join(items)}</div>'''
 
 
 # ---------- tab: concerts
@@ -494,7 +494,7 @@ def tab_concerts():
               and not (date_obj(c["date"]) and date_obj(c["date"]) >= TODAY)]
     others.sort(key=lambda c: parse_date(c["date"])[0], reverse=True)
     cards = "".join(concert_card(c) for c in others)
-    return f'''<div class="wide">
+    return tab_singing() + f'''<div class="wide merged">
 <div class="hhead"><h3>Handawaka</h3><p>Chathurya has sung at {n} Handawaka shows. Tap a show to see all its photos and videos.</p>{('<span class="hawards">' + icon("trophy") + e(site["handawaka_award"]["text"]) + '</span>') if site.get("handawaka_award", {}).get("text") else ""}</div>
 <ol class="htimeline">{steps}</ol>
 <h3 class="sub-h">Concerts and events</h3>
@@ -686,7 +686,7 @@ def tab_modelling():
 <div class="items mitems">{rows}</div>'''
 
 
-TABS = [("singing", "Singing", tab_singing), ("concerts", "Concerts and events", tab_concerts), ("tv", "Television", tab_tv),
+TABS = [("concerts", "Singing and concerts", tab_concerts), ("tv", "Television", tab_tv),
         ("voice", "The Voice", tab_voice), ("film", "Film", tab_film), ("education", "Education", tab_education), ("modelling", "Modelling", tab_modelling)]
 
 

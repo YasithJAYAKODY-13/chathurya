@@ -37,7 +37,7 @@ tabs.forEach((t,i) => {
     if (e.key === 'Home') j = 0; if (e.key === 'End') j = tabs.length-1;
     if (j !== null) { e.preventDefault(); select(tabs[j], true); } });
 });
-function fromHash(){ const t = document.getElementById('t-' + location.hash.slice(1));
+function fromHash(){ const t = document.getElementById('t-' + (location.hash.slice(1) === 'singing' ? 'concerts' : location.hash.slice(1)));
   if (t) { select(t); $('#performances').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); } }
 addEventListener('hashchange', fromHash); fromHash();
 $$('[data-tab]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const t = document.getElementById(a.dataset.tab); if (t) { select(t); history.replaceState(null,'','#'+t.id.slice(2)); } }));

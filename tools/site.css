@@ -513,3 +513,11 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .confirm .btn{margin-top:12px}
 #inviteForm[hidden],.confirm[hidden]{display:none!important}
 @media (max-width:520px){.confirm dl{grid-template-columns:1fr;gap:2px}.confirm dd{margin-bottom:10px}}
+.merged{grid-column:1/-1;margin-top:clamp(36px,5vw,60px);padding-top:clamp(28px,4vw,44px);border-top:1px solid rgba(212,165,58,.3)}
+
+#p-concerts .slead{grid-column:1/-1;max-width:none}
+#p-concerts .slead .rep{display:block;max-width:900px}
+.vgrid{grid-column:1/-1;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:980px){.vgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.vgrid{grid-template-columns:1fr}}
+.vgrid .item{margin:0}
