@@ -474,3 +474,23 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .tvclip .play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;display:grid;place-items:center;color:#14251F;background:linear-gradient(145deg,#FFF3CC,#ECCF85 45%,#B9862A);box-shadow:0 0 0 8px rgba(236,207,133,.18)}
 .tvclip .play .ico{width:24px;height:24px;fill:currentColor}
 .tvclip .badge{position:absolute;right:12px;bottom:12px;padding:4px 12px;border-radius:999px;background:rgba(6,20,16,.8);color:var(--gold);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+
+/* ---- contact: form + cards ---- */
+.hp{position:absolute;left:-9999px;opacity:0}
+.phone{display:grid;grid-template-columns:118px 1fr;gap:10px}
+.phone select{min-height:50px;border-radius:12px;border:1px solid rgba(212,165,58,.4);background:#0B211B;color:var(--pearl);padding:0 10px;font:inherit}
+.btn.big{min-height:58px;font-size:1.08rem;width:100%;justify-content:center}
+.send{grid-template-columns:1fr}
+.fine{margin:12px 0 0;color:var(--mist);font-size:.9rem}
+.orcall{display:flex;align-items:center;gap:16px;margin:34px 0 22px;color:var(--mist);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase}
+.orcall::before,.orcall::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,165,58,.5),transparent)}
+.ccards{display:grid;gap:14px}@media (min-width:620px){.ccards{grid-template-columns:1fr 1fr}}
+.ccard{display:flex;flex-direction:column;gap:4px;padding:20px 22px;border-radius:20px;border:1px solid rgba(212,165,58,.4);background:linear-gradient(155deg,rgba(236,207,133,.1),rgba(255,255,255,0))}
+.crole{color:var(--gold);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.crole-si{color:var(--mist);font-size:.9rem;margin-top:-2px}
+.ccard strong{font-family:var(--display);font-weight:400;font-size:1.45rem;margin-top:6px;color:var(--pearl)}
+.cnum{color:var(--pearl);font-size:1.05rem;letter-spacing:.02em}
+.cbtns{display:flex;gap:10px;margin-top:12px}
+.cbtns a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;color:#14251F;background:linear-gradient(145deg,#FFF3CC,#ECCF85 45%,#C9952E);text-decoration:none;font-weight:600;font-size:.95rem}
+.cbtns a:last-child{background:none;color:var(--gold);border:1px solid rgba(212,165,58,.55)}
+.cbtns .ico{width:18px;height:18px}

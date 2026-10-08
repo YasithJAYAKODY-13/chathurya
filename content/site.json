@@ -13,12 +13,29 @@
   ],
   "availability": "Available for concerts, musical shows, school and community events across Sri Lanka and overseas.",
   "contact": {
-    "email": "",
-    "whatsapp": "",
-    "contact_person": "",
+    "_how_to_update": "Edit the people below. 'number' must be international with country code and no spaces. 'form_to' says which person receives the WhatsApp from the invite form. 'web3forms_key' turns on email copies of every enquiry; 'enquiry_email' is where they go.",
+    "people": [
+      {
+        "id": "hansi",
+        "name": "Hansi Sandabarana",
+        "role": "Bookings, Sri Lanka",
+        "role_si": "වැඩසටහන් වෙන්කිරීම්",
+        "number": "+94702132141",
+        "display": "+94 70 213 2141"
+      },
+      {
+        "id": "yasith",
+        "name": "Yasith Jayakody",
+        "role": "Contact Chathurya directly",
+        "role_si": "සෘජුව සම්බන්ධ වන්න",
+        "number": "+447474363075",
+        "display": "+44 7474 363075"
+      }
+    ],
+    "form_to": "hansi",
+    "web3forms_key": "",
+    "enquiry_email": "",
     "facebook": "https://www.facebook.com/chathuryasandabaranaofficial",
-    "messenger": "",
-    "coming_soon": "Contact details will be updated here soon.",
     "youtube": "https://www.youtube.com/@chathuryasandabaranaofficial",
     "imdb": "https://www.imdb.com/name/nm16989301/"
   },

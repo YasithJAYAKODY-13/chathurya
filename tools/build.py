@@ -157,6 +157,7 @@ ICONS = {
     "close": '<path d="M6 6l12 12M18 6L6 18"/>',
     "film": '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>',
     "cap": '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M21 9v6" stroke="currentColor" stroke-width="1.8"/>',
+    "phone": '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
     "trophy": '<path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8M9 18h6"/>',
     "copy": '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>',
 }
@@ -173,8 +174,10 @@ def yt_thumb(vid):
 
 # ---------------------------------------------------------------- sections
 contact = site["contact"]
-whatsapp = "".join(ch for ch in contact.get("whatsapp", "") if ch.isdigit())
-email = contact.get("email", "").strip()
+people = contact.get("people", [])
+form_person = next((p for p in people if p["id"] == contact.get("form_to")), people[0] if people else None)
+whatsapp = "".join(ch for ch in form_person["number"] if ch.isdigit()) if form_person else ""
+email = contact.get("enquiry_email", "").strip()
 
 
 def gal(gid, title, desc, slides):
@@ -687,39 +690,33 @@ def section_performances():
 
 
 def section_invite():
-    btns = []
-    if whatsapp:
-        btns.append(f'<button type="submit" class="btn primary" data-send="wa">{icon("wa")}Send via WhatsApp</button>')
-    if email:
-        btns.append(f'<button type="submit" class="btn {"ghost" if whatsapp else "primary"}" data-send="mail">{icon("mail")}Send via email</button>')
-    direct = []
-    if whatsapp:
-        direct.append(f'<a href="https://wa.me/{whatsapp}">{icon("wa")}WhatsApp +{whatsapp}</a>')
-    if email:
-        direct.append(f'<a href="mailto:{e(email)}">{icon("mail")}{e(email)}</a>')
-    direct.append(f'<a href="{e(contact["youtube"])}" target="_blank" rel="noopener">{icon("yt")}YouTube</a>')
-    if btns:
-        form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-mail="{e(email)}">
+    key = contact.get("web3forms_key", "").strip()
+    cards = "".join(f'''<div class="ccard"><span class="crole">{e(p["role"])}</span><span class="crole-si" lang="si">{e(p.get("role_si", ""))}</span>
+  <strong>{e(p["name"])}</strong><span class="cnum">{e(p["display"])}</span>
+  <span class="cbtns"><a href="tel:{e(p["number"])}">{icon("phone")}Call</a><a href="https://wa.me/{"".join(ch for ch in p["number"] if ch.isdigit())}" target="_blank" rel="noopener">{icon("wa")}WhatsApp</a></span></div>''' for p in people)
+    form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-to="{e(form_person["name"] if form_person else "")}" data-key="{e(key)}">
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label><span class="lt">Your name <span class="req">required</span></span><input name="name" autocomplete="name" required></label>
-    <label><span class="lt">Organisation or event</span><input name="event" autocomplete="organization"></label>
-    <div class="two"><label><span class="lt">Date</span><input name="date" type="date"></label><label><span class="lt">Town or city</span><input name="town" autocomplete="address-level2"></label></div>
-    <label><span class="lt">Your phone or WhatsApp <span class="req">required</span></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" required></label>
-    <label><span class="lt">Message <span class="opt">optional</span></span><textarea name="msg" rows="3"></textarea></label>
-    <p class="err" id="formErr" role="alert" hidden>Please add your name and a phone number so she can reply.</p>
-    <div class="send">{"".join(btns)}</div>
+    <label><span class="lt">Your phone or WhatsApp <span class="req">required</span></span>
+      <span class="phone"><select name="cc" aria-label="Country code"><option value="+94" selected>🇱🇰 +94</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+1">🇺🇸 +1</option><option value="+91">🇮🇳 +91</option><option value="+65">🇸🇬 +65</option><option value="+974">🇶🇦 +974</option><option value="+966">🇸🇦 +966</option><option value="+33">🇫🇷 +33</option><option value="+49">🇩🇪 +49</option><option value="+39">🇮🇹 +39</option><option value="+82">🇰🇷 +82</option><option value="+81">🇯🇵 +81</option><option value="+60">🇲🇾 +60</option><option value="+">Other</option></select>
+      <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7X XXX XXXX" required></span></label>
+    <label><span class="lt">Event or organisation <span class="req">required</span></span><input name="event" autocomplete="organization" placeholder="Wedding, concert, school event, TV show" required></label>
+    <div class="two"><label><span class="lt">Event date</span><input name="date" type="date"></label><label><span class="lt">Town or city</span><input name="town" autocomplete="address-level2"></label></div>
+    <label><span class="lt">Tell us about the event <span class="opt">optional</span></span><textarea name="msg" rows="3" placeholder="Type of performance, audience, budget if known"></textarea></label>
+    <p class="err" id="formErr" role="alert" hidden>Please add your name, phone number and the event so we can reply.</p>
+    <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send invitation on WhatsApp</button></div>
+    <p class="fine">Your message goes to {e(form_person["name"] if form_person else "our team")}, who handles Chathurya's bookings. We reply within a day.</p>
     <p class="done" id="formDone" role="status" hidden></p>
   </form>'''
-    else:
-        form_html = f'<p class="soon">{e(contact.get("coming_soon") or "Contact details will be updated here soon.")}</p>'
-    person = f'<p class="person">Enquiries handled by {e(contact["contact_person"])}</p>' if contact.get("contact_person") else ""
     return f'''
 <section class="invite" id="invite" aria-labelledby="invite-title"><div class="wrap"><div class="icard">
-  <h2 id="invite-title">Invite to perform</h2>
+  <h2 id="invite-title">Invite Chathurya to perform</h2>
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
-  <p>For concerts, musical shows, school and community events, television and media, in Sri Lanka or overseas.</p>
+  <p>For concerts, musical shows, weddings, school and community events, television and media, in Sri Lanka or overseas.</p>
   {form_html}
-  {person}
-  <div class="direct">{"".join(direct)}</div>
+  <div class="orcall"><span>or get in touch directly</span></div>
+  <div class="ccards">{cards}</div>
+  <div class="direct"><a href="{e(contact["youtube"])}" target="_blank" rel="noopener">{icon("yt")}YouTube</a></div>
 </div></div></section>'''
 
 

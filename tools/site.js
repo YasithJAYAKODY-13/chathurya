@@ -74,19 +74,28 @@ lb.addEventListener('cancel', ev => { ev.preventDefault(); history.state?.lb ? h
 lb.addEventListener('keydown', ev => { if (ev.key === 'ArrowRight') go(idx+1); if (ev.key === 'ArrowLeft') go(idx-1); });
 addEventListener('popstate', () => close());
 
-/* invite form */
+/* invite form: WhatsApp to the bookings contact, plus an email copy when a key is set */
 const form = $('#inviteForm');
-if (form) form.addEventListener('submit', ev => { ev.preventDefault();
-  const how = ev.submitter?.dataset.send || ''; const f = new FormData(form), v = k => (f.get(k) || '').toString().trim();
-  if (!v('name') || !v('phone')) { $('#formErr').hidden = false; (v('name') ? form.phone : form.name).focus(); return; }
+if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
+  const f = new FormData(form), v = k => (f.get(k) || '').toString().trim();
+  if (!v('name') || !v('phone') || !v('event')) { $('#formErr').hidden = false; (!v('name') ? form.name : !v('phone') ? form.phone : form.event).focus(); return; }
   $('#formErr').hidden = true;
-  const lines = ['Invitation for Chathurya Sandabarana', '', 'Name: ' + v('name')];
-  if (v('event')) lines.push('Organisation / event: ' + v('event')); if (v('date')) lines.push('Date: ' + v('date'));
-  if (v('town')) lines.push('Town: ' + v('town')); lines.push('Phone / WhatsApp: ' + v('phone')); if (v('msg')) lines.push('', v('msg'));
-  const text = lines.join('\n').slice(0, 1500); const done = $('#formDone');
-  if (how === 'wa' && form.dataset.wa) { location.href = 'https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text); done.textContent = 'Your message is ready in WhatsApp. Press send there.'; }
-  else if (how === 'mail' && form.dataset.mail) { location.href = 'mailto:' + form.dataset.mail + '?subject=' + encodeURIComponent('Invitation to perform') + '&body=' + encodeURIComponent(text.replace(/\n/g, '\r\n')); done.textContent = 'Your message is ready in your email app. Press send there.'; }
-  done.hidden = false; });
+  let phone = v('phone').replace(/[^\d+]/g, ''); if (!phone.startsWith('+')) phone = v('cc') + phone.replace(/^0+/, '');
+  const lines = ['Invitation for Chathurya Sandabarana', '', 'Name: ' + v('name'), 'Phone / WhatsApp: ' + phone, 'Event: ' + v('event')];
+  if (v('date')) lines.push('Date: ' + v('date')); if (v('town')) lines.push('Town: ' + v('town')); if (v('msg')) lines.push('', v('msg'));
+  lines.push('', 'Sent from chathurya.caeleon.net');
+  const text = lines.join('\n').slice(0, 1500); const done = $('#formDone'); const btn = form.querySelector('[data-send]');
+  btn.disabled = true;
+  if (form.dataset.key && !f.get('botcheck')) {
+    try { await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ access_key: form.dataset.key, subject: 'Invitation: ' + v('event') + ' (' + v('name') + ')', from_name: 'Chathurya website',
+        name: v('name'), phone, event: v('event'), date: v('date'), town: v('town'), message: v('msg'), page: location.href }) }); } catch (e) {}
+  }
+  btn.disabled = false;
+  if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    done.textContent = 'Thank you. WhatsApp has opened with your invitation ready for ' + form.dataset.to + '. Press send there and we will reply within a day.'; }
+  else { done.textContent = 'Thank you. Your invitation has been sent. We will reply within a day.'; }
+  done.hidden = false; done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
 
 /* portrait tilt */
 const portrait = $('.portrait');
