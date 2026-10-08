@@ -91,8 +91,8 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
     (window.__beacons = window.__beacons || []).push(Object.assign(new Image(), { src: u })); }, i * 2500)); } catch (e) {}
   if (!form.dataset.key && form.dataset.mail && !f.get('botcheck')) {
     try { await fetch('https://formsubmit.co/ajax/' + form.dataset.mail, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ _subject: 'New enquiry: ' + v('event') + ' (' + v('name') + ')', _template: 'table', _captcha: 'false',
-        Name: v('name'), Phone: phone, Event: v('event'), 'Possible date': v('date'), Description: v('msg'), Page: location.href }) }); } catch (e) {}
+      body: JSON.stringify({ _subject: 'New enquiry: ' + v('event') + ' (' + v('name') + ')', _template: 'table', _captcha: 'false', _autoresponse: 'Thank you for contacting Chathurya Sandabarana. We have received your message and will get back to you on WhatsApp as soon as possible.',
+        Name: v('name'), Phone: phone, email: v('email'), Event: v('event'), 'Possible date': v('date'), Description: v('msg'), Page: location.href }) }); } catch (e) {}
   }
   if (form.dataset.key && !f.get('botcheck')) {
     try { await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -102,8 +102,16 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   btn.disabled = false;
   if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
     done.textContent = 'Thank you. WhatsApp has opened with your message ready. Press send there and we will reply on WhatsApp.'; }
-  else { done.textContent = 'Thank you. Your message has been sent directly. We will get back to you on WhatsApp as soon as possible.'; form.reset(); }
+  else {
+    const cf = $('#formConfirm'), dl = $('#cfList'); dl.innerHTML = '';
+    [['Name', v('name')], ['Phone / WhatsApp', phone], ['Event', v('event')], ['Possible date', v('date')], ['Description', v('msg')]].forEach(([k, val]) => {
+      const dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = k; dd.textContent = val; dl.append(dt, dd); });
+    $('#cfTitle').textContent = 'Thank you, ' + v('name') + '. Your message has been sent.';
+    $('#cfLead').textContent = 'We will contact you on WhatsApp at ' + phone + ' as soon as possible. Here is what you sent:';
+    $('#cfNote').textContent = v('email') ? 'A confirmation copy is also on its way to ' + v('email') + '.' : 'Please keep WhatsApp open on this number so we can reach you.';
+    form.hidden = true; cf.hidden = false; cf.focus(); cf.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); form.reset(); return; }
   done.hidden = false; done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
+const again = $('#cfAgain'); if (again) again.addEventListener('click', () => { $('#formConfirm').hidden = true; form.hidden = false; form.name.focus(); });
 
 /* portrait tilt */
 const portrait = $('.portrait');

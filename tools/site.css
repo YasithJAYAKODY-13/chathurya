@@ -501,3 +501,15 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .agbtn{margin-bottom:16px}
 .icard .howto{color:var(--gold);font-weight:500}
 .mailline{margin-top:4px}.mailline a{color:var(--gold)}
+
+.confirm{margin-top:24px;padding:clamp(22px,4vw,34px);border-radius:22px;border:1px solid var(--gold);background:linear-gradient(155deg,rgba(236,207,133,.16),rgba(255,255,255,0));outline:none}
+.confirm .tick{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;font-size:1.6rem;font-weight:700;color:#14251F;background:linear-gradient(145deg,#FFF3CC,#ECCF85 45%,#C9952E);box-shadow:0 0 0 8px rgba(236,207,133,.15)}
+.confirm h3{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,3vw,1.8rem);margin:18px 0 6px;color:var(--pearl)}
+.confirm p{color:#D8E2DC;margin:6px 0}
+.confirm dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:16px 0;padding:16px 18px;border-radius:14px;background:rgba(6,20,16,.5)}
+.confirm dt{color:var(--gold);font-size:.85rem;letter-spacing:.04em}
+.confirm dd{margin:0;color:var(--pearl);overflow-wrap:anywhere}
+.confirm .cfnote{color:var(--mist);font-size:.92rem}
+.confirm .btn{margin-top:12px}
+#inviteForm[hidden],.confirm[hidden]{display:none!important}
+@media (max-width:520px){.confirm dl{grid-template-columns:1fr;gap:2px}.confirm dd{margin-bottom:10px}}
