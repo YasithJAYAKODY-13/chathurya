@@ -692,16 +692,16 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
   <p>For concerts, musical shows, weddings, school and community events, television and media, in Sri Lanka or overseas.</p>
   <p class="quiet">Commercial and bridal modelling considered selectively.</p>
-    <form id="inviteForm" novalidate data-wa="94702132141" data-to="Hansi Sandabarana" data-key="">
+    <form id="inviteForm" novalidate data-wa="94702132141" data-to="Hansi Sandabarana" data-key="" data-alerts="[]">
     <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label><span class="lt">Your name <span class="req">required</span></span><input name="name" autocomplete="name" required></label>
     <label><span class="lt">Your phone or WhatsApp <span class="req">required</span></span>
       <span class="phone"><select name="cc" aria-label="Country code"><option value="+94" selected>🇱🇰 +94</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+1">🇺🇸 +1</option><option value="+91">🇮🇳 +91</option><option value="+65">🇸🇬 +65</option><option value="+974">🇶🇦 +974</option><option value="+966">🇸🇦 +966</option><option value="+33">🇫🇷 +33</option><option value="+49">🇩🇪 +49</option><option value="+39">🇮🇹 +39</option><option value="+82">🇰🇷 +82</option><option value="+81">🇯🇵 +81</option><option value="+60">🇲🇾 +60</option><option value="+">Other</option></select>
       <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7X XXX XXXX" required></span></label>
     <label><span class="lt">Event or organisation <span class="req">required</span></span><input name="event" autocomplete="organization" placeholder="Wedding, concert, school event, TV show" required></label>
-    <div class="two"><label><span class="lt">Event date</span><input name="date" type="date"></label><label><span class="lt">Town or city</span><input name="town" autocomplete="address-level2"></label></div>
-    <label><span class="lt">Tell us about the event <span class="opt">optional</span></span><textarea name="msg" rows="3" placeholder="Type of performance, audience, budget if known"></textarea></label>
-    <p class="err" id="formErr" role="alert" hidden>Please add your name, phone number and the event so we can reply.</p>
+    <label><span class="lt">Possible date or week <span class="req">required</span></span><input name="date" placeholder="e.g. 14 December, or the week of 20 January" required></label>
+    <label><span class="lt">Short description <span class="req">required</span></span><textarea name="msg" rows="3" placeholder="What the event is and what you would like Chathurya to perform" required></textarea></label>
+    <p class="err" id="formErr" role="alert" hidden>Please fill in your name, phone number, event, possible date and a short description.</p>
     <div class="send"><button type="submit" class="btn primary big" data-send="wa"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 19z"/><path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 1c-1 0-3-2-3-3l1-1-1-2z" fill="currentColor" stroke="none"/></svg>Send invitation on WhatsApp</button></div>
     <p class="fine">Your message goes to Hansi Sandabarana, who handles Chathurya's bookings. We reply within a day.</p>
     <p class="done" id="formDone" role="status" hidden></p>
@@ -802,19 +802,21 @@ addEventListener('popstate', () => close());
 const form = $('#inviteForm');
 if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   const f = new FormData(form), v = k => (f.get(k) || '').toString().trim();
-  if (!v('name') || !v('phone') || !v('event')) { $('#formErr').hidden = false; (!v('name') ? form.name : !v('phone') ? form.phone : form.event).focus(); return; }
+  const need = ['name','phone','event','date','msg'].find(k => !v(k)); if (need) { $('#formErr').hidden = false; form[need].focus(); return; }
   $('#formErr').hidden = true;
   let phone = v('phone').replace(/[^\d+]/g, ''); if (!phone.startsWith('+')) phone = v('cc') + phone.replace(/^0+/, '');
   const lines = ['Invitation for Chathurya Sandabarana', '', 'Name: ' + v('name'), 'Phone / WhatsApp: ' + phone, 'Event: ' + v('event')];
-  if (v('date')) lines.push('Date: ' + v('date')); if (v('town')) lines.push('Town: ' + v('town')); if (v('msg')) lines.push('', v('msg'));
+  lines.push('Possible date: ' + v('date'), '', 'Description: ' + v('msg'));
   lines.push('', 'Sent from chathurya.caeleon.net');
   const text = lines.join('\n').slice(0, 1500); const done = $('#formDone'); const btn = form.querySelector('[data-send]');
   btn.disabled = true;
   if (form.dataset.key && !f.get('botcheck')) {
     try { await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ access_key: form.dataset.key, subject: 'Invitation: ' + v('event') + ' (' + v('name') + ')', from_name: 'Chathurya website',
-        name: v('name'), phone, event: v('event'), date: v('date'), town: v('town'), message: v('msg'), page: location.href }) }); } catch (e) {}
+        name: v('name'), phone, event: v('event'), date: v('date'), message: v('msg'), page: location.href }) }); } catch (e) {}
   }
+  try { JSON.parse(form.dataset.alerts || '[]').forEach(([ph, k]) => {
+    fetch('https://api.callmebot.com/whatsapp.php?phone=' + encodeURIComponent(ph) + '&apikey=' + encodeURIComponent(k) + '&text=' + encodeURIComponent(text), { mode: 'no-cors' }).catch(() => {}); }); } catch (e) {}
   btn.disabled = false;
   if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
     done.textContent = 'Thank you. WhatsApp has opened with your invitation ready for ' + form.dataset.to + '. Press send there and we will reply within a day.'; }

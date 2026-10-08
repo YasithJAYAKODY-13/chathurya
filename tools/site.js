@@ -78,19 +78,21 @@ addEventListener('popstate', () => close());
 const form = $('#inviteForm');
 if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   const f = new FormData(form), v = k => (f.get(k) || '').toString().trim();
-  if (!v('name') || !v('phone') || !v('event')) { $('#formErr').hidden = false; (!v('name') ? form.name : !v('phone') ? form.phone : form.event).focus(); return; }
+  const need = ['name','phone','event','date','msg'].find(k => !v(k)); if (need) { $('#formErr').hidden = false; form[need].focus(); return; }
   $('#formErr').hidden = true;
   let phone = v('phone').replace(/[^\d+]/g, ''); if (!phone.startsWith('+')) phone = v('cc') + phone.replace(/^0+/, '');
   const lines = ['Invitation for Chathurya Sandabarana', '', 'Name: ' + v('name'), 'Phone / WhatsApp: ' + phone, 'Event: ' + v('event')];
-  if (v('date')) lines.push('Date: ' + v('date')); if (v('town')) lines.push('Town: ' + v('town')); if (v('msg')) lines.push('', v('msg'));
+  lines.push('Possible date: ' + v('date'), '', 'Description: ' + v('msg'));
   lines.push('', 'Sent from chathurya.caeleon.net');
   const text = lines.join('\n').slice(0, 1500); const done = $('#formDone'); const btn = form.querySelector('[data-send]');
   btn.disabled = true;
   if (form.dataset.key && !f.get('botcheck')) {
     try { await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ access_key: form.dataset.key, subject: 'Invitation: ' + v('event') + ' (' + v('name') + ')', from_name: 'Chathurya website',
-        name: v('name'), phone, event: v('event'), date: v('date'), town: v('town'), message: v('msg'), page: location.href }) }); } catch (e) {}
+        name: v('name'), phone, event: v('event'), date: v('date'), message: v('msg'), page: location.href }) }); } catch (e) {}
   }
+  try { JSON.parse(form.dataset.alerts || '[]').forEach(([ph, k]) => {
+    fetch('https://api.callmebot.com/whatsapp.php?phone=' + encodeURIComponent(ph) + '&apikey=' + encodeURIComponent(k) + '&text=' + encodeURIComponent(text), { mode: 'no-cors' }).catch(() => {}); }); } catch (e) {}
   btn.disabled = false;
   if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
     done.textContent = 'Thank you. WhatsApp has opened with your invitation ready for ' + form.dataset.to + '. Press send there and we will reply within a day.'; }

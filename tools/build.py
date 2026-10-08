@@ -710,16 +710,16 @@ def section_invite():
     cards = "".join(f'''<div class="ccard"><span class="crole">{e(p["role"])}</span><span class="crole-si" lang="si">{e(p.get("role_si", ""))}</span>
   {f'<strong>{e(p["name"])}</strong>' if p.get("name") else ""}<span class="cnum">{e(p["display"])}</span>
   <span class="cbtns"><a href="tel:{e(p["number"])}">{icon("phone")}Call</a><a href="https://wa.me/{"".join(ch for ch in p["number"] if ch.isdigit())}" target="_blank" rel="noopener">{icon("wa")}WhatsApp</a></span></div>''' for p in people)
-    form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-to="{e(form_person["name"] if form_person else "")}" data-key="{e(key)}">
+    form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-to="{e(form_person["name"] if form_person else "")}" data-key="{e(key)}" data-alerts="{e(json.dumps([[a["phone"], a["apikey"]] for a in contact.get("whatsapp_alerts", []) if a.get("apikey")]))}">
     <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label><span class="lt">Your name <span class="req">required</span></span><input name="name" autocomplete="name" required></label>
     <label><span class="lt">Your phone or WhatsApp <span class="req">required</span></span>
       <span class="phone"><select name="cc" aria-label="Country code"><option value="+94" selected>🇱🇰 +94</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+1">🇺🇸 +1</option><option value="+91">🇮🇳 +91</option><option value="+65">🇸🇬 +65</option><option value="+974">🇶🇦 +974</option><option value="+966">🇸🇦 +966</option><option value="+33">🇫🇷 +33</option><option value="+49">🇩🇪 +49</option><option value="+39">🇮🇹 +39</option><option value="+82">🇰🇷 +82</option><option value="+81">🇯🇵 +81</option><option value="+60">🇲🇾 +60</option><option value="+">Other</option></select>
       <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7X XXX XXXX" required></span></label>
     <label><span class="lt">Event or organisation <span class="req">required</span></span><input name="event" autocomplete="organization" placeholder="Wedding, concert, school event, TV show" required></label>
-    <div class="two"><label><span class="lt">Event date</span><input name="date" type="date"></label><label><span class="lt">Town or city</span><input name="town" autocomplete="address-level2"></label></div>
-    <label><span class="lt">Tell us about the event <span class="opt">optional</span></span><textarea name="msg" rows="3" placeholder="Type of performance, audience, budget if known"></textarea></label>
-    <p class="err" id="formErr" role="alert" hidden>Please add your name, phone number and the event so we can reply.</p>
+    <label><span class="lt">Possible date or week <span class="req">required</span></span><input name="date" placeholder="e.g. 14 December, or the week of 20 January" required></label>
+    <label><span class="lt">Short description <span class="req">required</span></span><textarea name="msg" rows="3" placeholder="What the event is and what you would like Chathurya to perform" required></textarea></label>
+    <p class="err" id="formErr" role="alert" hidden>Please fill in your name, phone number, event, possible date and a short description.</p>
     <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send invitation on WhatsApp</button></div>
     <p class="fine">Your message goes to {e(form_person["name"] if form_person else "our team")}, who handles Chathurya's bookings. We reply within a day.</p>
     <p class="done" id="formDone" role="status" hidden></p>

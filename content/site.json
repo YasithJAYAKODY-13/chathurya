@@ -37,7 +37,20 @@
     "enquiry_email": "",
     "facebook": "https://www.facebook.com/chathuryasandabaranaofficial",
     "youtube": "https://www.youtube.com/@chathuryasandabaranaofficial",
-    "imdb": "https://www.imdb.com/name/nm16989301/"
+    "imdb": "https://www.imdb.com/name/nm16989301/",
+    "whatsapp_alerts": [
+      {
+        "who": "hansi",
+        "phone": "+94702132141",
+        "apikey": ""
+      },
+      {
+        "who": "direct",
+        "phone": "+447474363075",
+        "apikey": ""
+      }
+    ],
+    "_alerts_note": "Each person activates CallMeBot once on their own WhatsApp and pastes the apikey here. Every form enquiry is then pushed to all numbers with a key, at the same moment."
   },
   "lede": "The Voice Sri Lanka, trained under Umaria Sinhawansa. Recognised internationally on The Voice Global, and on stage in Dubai. Four Handawaka shows.",
   "handawaka_award": {
