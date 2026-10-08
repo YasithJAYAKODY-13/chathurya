@@ -713,6 +713,7 @@ def section_invite():
   <h2 id="invite-title">Invite Chathurya to perform</h2>
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
   <p>For concerts, musical shows, weddings, school and community events, television and media, in Sri Lanka or overseas.</p>
+  <p class="quiet">Modelling and brand work are considered selectively.</p>
   {form_html}
   <div class="orcall"><span>or get in touch directly</span></div>
   <div class="ccards">{cards}</div>
