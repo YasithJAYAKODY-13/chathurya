@@ -721,7 +721,7 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
   btn.disabled = true;
   try { JSON.parse(form.dataset.alerts || '[]').forEach(([ph, k], i) => setTimeout(() => {
     const u = 'https://api.callmebot.com/whatsapp.php?phone=' + ph.replace(/\D/g, '') + '&apikey=' + encodeURIComponent(k) + '&text=' + encodeURIComponent(text);
-    (window.__beacons = window.__beacons || []).push(Object.assign(new Image(), { src: u })); }, i * 400)); } catch (e) {}
+    (window.__beacons = window.__beacons || []).push(Object.assign(new Image(), { src: u })); }, i * 2500)); } catch (e) {}
   if (!form.dataset.key && form.dataset.mail && !f.get('botcheck')) {
     try { await fetch('https://formsubmit.co/ajax/' + form.dataset.mail, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ _subject: 'New enquiry: ' + v('event') + ' (' + v('name') + ')', _template: 'table', _captcha: 'false',
