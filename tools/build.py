@@ -720,8 +720,8 @@ def section_invite():
     <label><span class="lt">Possible date or week <span class="req">required</span></span><input name="date" placeholder="e.g. 14 December, or the week of 20 January" required></label>
     <label><span class="lt">Short description <span class="req">required</span></span><textarea name="msg" rows="3" placeholder="What the event is and what you would like Chathurya to perform" required></textarea></label>
     <p class="err" id="formErr" role="alert" hidden>Please fill in your name, phone number, event, possible date and a short description.</p>
-    <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send invitation on WhatsApp</button></div>
-    <p class="fine">Your message goes to {e(form_person["name"] if form_person else "our team")}, who handles Chathurya's bookings. We reply within a day.</p>
+    <div class="send"><button type="submit" class="btn primary big" data-send="wa">{icon("wa")}Send message on WhatsApp</button></div>
+    <p class="fine">Your message goes to {e(form_person["name"] if form_person else "our team")}, who handles Chathurya's bookings.</p>
     <p class="done" id="formDone" role="status" hidden></p>
   </form>'''
     return f'''
@@ -729,10 +729,9 @@ def section_invite():
   <h2 id="invite-title">Invite Chathurya to perform</h2>
   <p class="si" lang="si">වැඩසටහනකට ආරාධනා කරන්න</p>
   <p>For concerts, musical shows, weddings, school and community events, television and media, in Sri Lanka or overseas.</p>
+  <p class="howto">Fill in the details below with as much information as possible and press the button. We will contact you and reply on WhatsApp.</p>
   <p class="quiet">Commercial and bridal modelling considered selectively.</p>
   {form_html}
-  <div class="orcall"><span>or get in touch directly</span></div>
-  <div class="ccards">{cards}</div>
   <div class="direct"><a href="{e(contact["youtube"])}" target="_blank" rel="noopener">{icon("yt")}YouTube</a></div>
 </div></div></section>'''
 

@@ -499,3 +499,4 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .mrow+.mrow{margin-top:34px}
 .agency{display:flex;gap:10px;align-items:center;color:var(--pearl);margin:8px 0 12px}.agency .ico{width:20px;height:20px;color:var(--gold);flex:none}.agency strong{color:var(--gold);font-weight:600}
 .agbtn{margin-bottom:16px}
+.icard .howto{color:var(--gold);font-weight:500}

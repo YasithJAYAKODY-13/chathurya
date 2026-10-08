@@ -95,7 +95,7 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
     fetch('https://api.callmebot.com/whatsapp.php?phone=' + encodeURIComponent(ph) + '&apikey=' + encodeURIComponent(k) + '&text=' + encodeURIComponent(text), { mode: 'no-cors' }).catch(() => {}); }); } catch (e) {}
   btn.disabled = false;
   if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
-    done.textContent = 'Thank you. WhatsApp has opened with your invitation ready for ' + form.dataset.to + '. Press send there and we will reply within a day.'; }
+    done.textContent = 'Thank you. WhatsApp has opened with your message ready. Press send there and we will reply on WhatsApp.'; }
   else { done.textContent = 'Thank you. Your invitation has been sent. We will reply within a day.'; }
   done.hidden = false; done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
 

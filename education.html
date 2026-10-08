@@ -517,6 +517,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .mrow+.mrow{margin-top:34px}
 .agency{display:flex;gap:10px;align-items:center;color:var(--pearl);margin:8px 0 12px}.agency .ico{width:20px;height:20px;color:var(--gold);flex:none}.agency strong{color:var(--gold);font-weight:600}
 .agbtn{margin-bottom:16px}
+.icard .howto{color:var(--gold);font-weight:500}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/", "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": "Tangalle, Sri Lanka"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"}, "sameAs": ["https://www.facebook.com/chathuryasandabaranaofficial", "https://www.youtube.com/@chathuryasandabaranaofficial"], "image": "https://chathurya.caeleon.net/assets/share.jpg"}]</script>
 </head>
@@ -726,7 +727,7 @@ if (form) form.addEventListener('submit', async ev => { ev.preventDefault();
     fetch('https://api.callmebot.com/whatsapp.php?phone=' + encodeURIComponent(ph) + '&apikey=' + encodeURIComponent(k) + '&text=' + encodeURIComponent(text), { mode: 'no-cors' }).catch(() => {}); }); } catch (e) {}
   btn.disabled = false;
   if (form.dataset.wa) { window.open('https://wa.me/' + form.dataset.wa + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
-    done.textContent = 'Thank you. WhatsApp has opened with your invitation ready for ' + form.dataset.to + '. Press send there and we will reply within a day.'; }
+    done.textContent = 'Thank you. WhatsApp has opened with your message ready. Press send there and we will reply on WhatsApp.'; }
   else { done.textContent = 'Thank you. Your invitation has been sent. We will reply within a day.'; }
   done.hidden = false; done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
 
