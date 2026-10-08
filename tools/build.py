@@ -692,7 +692,7 @@ def section_performances():
 def section_invite():
     key = contact.get("web3forms_key", "").strip()
     cards = "".join(f'''<div class="ccard"><span class="crole">{e(p["role"])}</span><span class="crole-si" lang="si">{e(p.get("role_si", ""))}</span>
-  <strong>{e(p["name"])}</strong><span class="cnum">{e(p["display"])}</span>
+  {f'<strong>{e(p["name"])}</strong>' if p.get("name") else ""}<span class="cnum">{e(p["display"])}</span>
   <span class="cbtns"><a href="tel:{e(p["number"])}">{icon("phone")}Call</a><a href="https://wa.me/{"".join(ch for ch in p["number"] if ch.isdigit())}" target="_blank" rel="noopener">{icon("wa")}WhatsApp</a></span></div>''' for p in people)
     form_html = f'''  <form id="inviteForm" novalidate data-wa="{whatsapp}" data-to="{e(form_person["name"] if form_person else "")}" data-key="{e(key)}">
     <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
