@@ -1,1 +1,4 @@
 content/inbox/hold/
+content/private.json
+tools/__pycache__/
+dist/

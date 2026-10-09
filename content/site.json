@@ -13,7 +13,7 @@
   ],
   "availability": "Available for concerts, musical shows, school and community events across Sri Lanka and overseas.",
   "contact": {
-    "_how_to_update": "Edit the people below. 'number' must be international with country code and no spaces. 'form_to' says which person receives the WhatsApp from the invite form. 'web3forms_key' turns on email copies of every enquiry; 'enquiry_email' is where they go. Leave form_to empty to send only through the WhatsApp alerts (the visitor's WhatsApp does not open). Hansi is parked under inactive_people and inactive_alerts until her key is ready.",
+    "_how_to_update": "Public settings only. Phone keys, the private endpoint and parked contacts live in content/private.json (not committed).",
     "people": [
       {
         "id": "yasith",
@@ -24,42 +24,10 @@
         "display": "+44 7474 363075 (UK and international)"
       }
     ],
-    "form_to": "",
-    "web3forms_key": "",
     "enquiry_email": "sandabarana@gmail.com",
     "facebook": "https://www.facebook.com/chathuryasandabaranaofficial",
     "youtube": "https://www.youtube.com/@chathuryasandabaranaofficial",
-    "imdb": "https://www.imdb.com/name/nm16989301/",
-    "whatsapp_alerts": [
-      {
-        "who": "direct",
-        "phone": "+447474363075",
-        "apikey": "2263435"
-      },
-      {
-        "who": "second",
-        "phone": "+447404334893",
-        "apikey": "7862768"
-      }
-    ],
-    "_alerts_note": "Each person activates CallMeBot once on their own WhatsApp and pastes the apikey here. Every form enquiry is then pushed to all numbers with a key, at the same moment.",
-    "inactive_people": [
-      {
-        "id": "hansi",
-        "name": "Hansi Sandabarana",
-        "role": "Bookings, Sri Lanka",
-        "role_si": "වැඩසටහන් වෙන්කිරීම්",
-        "number": "+94702132141",
-        "display": "+94 70 213 2141"
-      }
-    ],
-    "inactive_alerts": [
-      {
-        "who": "hansi",
-        "phone": "+94702132141",
-        "apikey": ""
-      }
-    ]
+    "imdb": "https://www.imdb.com/name/nm16989301/"
   },
   "lede": "The Voice Sri Lanka, trained under Umaria Sinhawansa. Recognised internationally on The Voice Global, and on stage in Dubai. Four Handawaka shows.",
   "handawaka_award": {
