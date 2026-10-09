@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+:root{--bg:#0E2C25;--deep:#0A201B;--gold:#ECCF85;--brass:#D4A53A;--pearl:#F4F2EA;--mist:#C3D3CC}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--pearl);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:1.9rem;margin:0;color:var(--gold)}
+.sub{color:var(--mist);margin:4px 0 18px}
+.range a{display:inline-block;margin-right:8px;padding:6px 14px;border:1px solid rgba(212,165,58,.45);border-radius:999px;color:var(--gold);text-decoration:none;font-size:.9rem}
+.range a.on{background:var(--gold);color:#14251F;font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+.kpi{padding:16px 18px;border-radius:18px;border:1px solid rgba(212,165,58,.4);background:linear-gradient(155deg,rgba(236,207,133,.14),rgba(255,255,255,0))}
+.kpi b{display:block;font-family:Georgia,serif;font-weight:400;font-size:2.1rem;line-height:1;color:var(--gold)}
+.kpi span{color:var(--mist);font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{padding:18px;border-radius:18px;border:1px solid rgba(212,165,58,.3);background:rgba(6,20,16,.45)}
+.card h2{font-family:Georgia,serif;font-weight:400;font-size:1.15rem;margin:0 0 4px;color:var(--pearl)}
+.card .hint{color:var(--mist);font-size:.82rem;margin:0 0 12px}
+.bars{display:grid;gap:7px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;font-size:.9rem}
+.bar i{display:block;height:8px;border-radius:4px;background:linear-gradient(90deg,#ECCF85,#D4A53A);margin-top:4px}
+.bar em{font-style:normal;color:var(--mist);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.bar b{font-weight:600;color:var(--gold);min-width:2.5em;text-align:right}
+.daily{display:flex;align-items:flex-end;gap:2px;height:110px;margin-top:8px}
+.daily i{flex:1;background:linear-gradient(180deg,#ECCF85,#B9862A);border-radius:3px 3px 0 0;min-height:2px;position:relative}
+.daily i:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#06140F;color:var(--gold);padding:3px 8px;border-radius:8px;white-space:nowrap;font-size:.75rem}
+.funnel{display:grid;gap:8px}
+.step{display:grid;grid-template-columns:150px 1fr auto;gap:10px;align-items:center;font-size:.9rem}
+.step i{display:block;height:22px;border-radius:6px;background:linear-gradient(90deg,#ECCF85,#D4A53A)}
+.step b{color:var(--gold)}
+.act{margin-top:18px;padding:16px 18px;border-radius:18px;border:1px solid var(--brass);background:rgba(212,165,58,.08)}
+.act h2{margin:0 0 8px;font-family:Georgia,serif;font-weight:400;color:var(--gold)}
+.act li{margin:6px 0}
+.empty{color:var(--mist);font-size:.9rem}
+</style></head><body><div class="wrap">
+<h1>Chathurya site: visitors</h1>
+<p class="sub">Private. Only this Google account can open this page. Numbers below are for the last <?= days ?> days.</p>
+<div class="range"><a href="?days=1" class="<?= days==1?'on':'' ?>">Today</a><a href="?days=7" class="<?= days==7?'on':'' ?>">7 days</a><a href="?days=30" class="<?= days==30?'on':'' ?>">30 days</a><a href="?days=90" class="<?= days==90?'on':'' ?>">90 days</a></div>
+<div id="app"></div>
+<script>
+const S = <?!= stats ?>;
+const $ = s => document.querySelector(s);
+const pct = (a, b) => b ? Math.round(100 * a / b) + '%' : '0%';
+const topN = (o, n = 8) => Object.entries(o || {}).sort((a, b) => b[1] - a[1]).slice(0, n);
+function bars(title, hint, o, n) {
+  const t = topN(o, n); if (!t.length) return `<div class="card"><h2>${title}</h2><p class="hint">${hint}</p><p class="empty">Nothing yet.</p></div>`;
+  const max = t[0][1];
+  return `<div class="card"><h2>${title}</h2><p class="hint">${hint}</p><div class="bars">${t.map(([k, v]) =>
+    `<div class="bar"><div><em title="${esc(k)}">${esc(k)}</em><i style="width:${Math.max(3, 100 * v / max)}%"></i></div><b>${v}</b></div>`).join('')}</div></div>`;
+}
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+const inv = S.inviteSessions || {}, started = inv['form started'] || 0, pressed = inv['send pressed'] || 0, sent = inv['sent successfully'] || 0, errs = inv['error shown'] || 0;
+const conv = pct(sent, S.visitors), drop = started ? Math.round(100 * (1 - sent / started)) : 0;
+const maxDay = Math.max(1, ...S.daily.map(d => d[1]));
+const advice = [];
+if (S.visitors && sent / S.visitors < 0.01) advice.push('Fewer than 1 in 100 visitors send an invitation. Try putting an Invite button higher on the page, or shortening the form.');
+if (started && drop > 50) advice.push(`${drop}% of people who start the form never send it. The most common error is "${esc((topN(S.errors, 1)[0] || ['none'])[0])}". That field needs to be easier.`);
+const tabs = topN(S.tabs, 1); if (tabs.length) advice.push(`The most opened tab is "${esc(tabs[0][0])}". Keep what people want first.`);
+const src = topN(S.sources, 1); if (src.length && S.visitors) advice.push(`${pct(src[0][1], S.visitors)} of visitors arrive from ${esc(src[0][0])}. Share the link more where the rest of the audience is.`);
+if (S.visitors && (S.videos ? Object.values(S.videos).reduce((a, b) => a + b, 0) : 0) / S.visitors < 0.2) advice.push('Fewer than 1 in 5 visitors play a video. A stronger cover image or a different first video may help.');
+if (!advice.length) advice.push('Nothing to act on yet. Share the link and check back in a week.');
+$('#app').innerHTML = `
+<div class="kpis">
+  <div class="kpi"><b>${S.visitors}</b><span>visitors</span></div>
+  <div class="kpi"><b>${S.pageviews}</b><span>page views</span></div>
+  <div class="kpi"><b>${pct(S.returning, S.visitors)}</b><span>returning visitors</span></div>
+  <div class="kpi"><b>${Math.round(S.medianSeconds / 60 * 10) / 10}</b><span>minutes on site (typical)</span></div>
+  <div class="kpi"><b>${sent}</b><span>invitations sent</span></div>
+  <div class="kpi"><b>${conv}</b><span>visitors who sent one</span></div>
+</div>
+<div class="card"><h2>Visitors per day</h2><p class="hint">Hover a bar for the date.</p>
+  <div class="daily">${S.daily.map(([d, v]) => `<i style="height:${Math.max(2, 100 * v / maxDay)}%" data-t="${d}: ${v}"></i>`).join('')}</div></div>
+<div class="card" style="margin-top:14px"><h2>Invite form, step by step</h2><p class="hint">People, not clicks. Each step counts a person once.</p>
+  <div class="funnel">${[['Reached the form', S.sections ? (S.sections['invite'] || 0) : 0], ['Started typing', started], ['Pressed send', pressed], ['Saw an error', errs], ['Sent successfully', sent]].map(([k, v], i, a) =>
+    `<div class="step"><span>${k}</span><i style="width:${Math.max(2, 100 * v / Math.max(1, a[0][1]))}%"></i><b>${v}</b></div>`).join('')}</div></div>
+<div class="grid" style="margin-top:14px">
+  ${bars('Where visitors come from', 'The link they tapped to get here.', S.sources)}
+  ${bars('Where they are', 'From the phone\'s time zone, not their exact location.', S.regions)}
+  ${bars('Sections people reach', 'How far down the page they scroll.', S.sections, 12)}
+  ${bars('Tabs opened', 'Which part of her work they open.', S.tabs)}
+  ${bars('Videos played', '', S.videos)}
+  ${bars('Photo galleries opened', '', S.galleries, 10)}
+  ${bars('Contact links tapped', 'Email, phone, WhatsApp, YouTube, Instagram.', S.links)}
+  ${bars('Form errors', 'What stopped people sending.', S.errors)}
+  ${bars('Devices', '', S.devices)}
+  ${bars('Pages', '', S.pages)}
+</div>
+<div class="act"><h2>What to do next</h2><ul>${advice.map(a => `<li>${a}</li>`).join('')}</ul></div>`;
+</script></div></body></html>

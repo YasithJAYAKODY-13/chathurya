@@ -192,10 +192,27 @@ if(!reduce&&!lowEnd&&ribs.length){ let last=0;
   (function loop(ts){ if(ts-last>33&&!document.hidden){ last=ts; ribs.forEach(r=>r.on&&rdraw(r,ts)); } requestAnimationFrame(loop); })(0); }
 })();
 
-/* ---- click analytics (Umami, cookieless). Every event is sent only if the tracker is loaded. ---- */
+/* ---- visitor analytics: our own, cookieless. Events go to the site's Google Apps Script collector. ---- */
 (function(){
-const T = (name, data) => { try { window.umami && window.umami.track(name, data); } catch (e) {} };
+const ep = (document.querySelector('meta[name="site-collector"]') || {}).content; if (!ep) return;
+let sid = ''; try { sid = sessionStorage.getItem('cs_sid'); if (!sid) { sid = Math.random().toString(36).slice(2, 12) + Date.now().toString(36); sessionStorage.setItem('cs_sid', sid); } } catch (e) { sid = 'x' + Date.now().toString(36); }
+let returning = false; try { returning = !!localStorage.getItem('cs_seen'); localStorage.setItem('cs_seen', '1'); } catch (e) {}
+let src = 'direct'; try { const r = document.referrer && new URL(document.referrer); if (r && r.hostname !== location.hostname) src = r.hostname.replace(/^www\./, ''); } catch (e) {}
+const u = new URLSearchParams(location.search); if (u.get('utm_source') || u.get('src')) src = u.get('utm_source') || u.get('src');
+const ctx = { kind: 'events', sid, path: location.pathname + (location.hash || ''), source: src, tz: (Intl.DateTimeFormat().resolvedOptions().timeZone || ''), lang: navigator.language || '',
+  device: matchMedia('(max-width: 700px)').matches ? 'phone' : matchMedia('(max-width: 1100px)').matches ? 'tablet' : 'computer', returning, width: innerWidth };
+let q = [], timer = null;
+function flush(beacon) { if (!q.length) return; const body = JSON.stringify(Object.assign({}, ctx, { events: q.splice(0, 40) }));
+  if (beacon && navigator.sendBeacon) { navigator.sendBeacon(ep, new Blob([body], { type: 'text/plain' })); return; }
+  fetch(ep, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body, keepalive: true }).catch(() => {}); }
+const T = (n, d) => { q.push({ n, d: d || {} }); clearTimeout(timer); timer = setTimeout(() => flush(false), 2500); if (q.length >= 20) flush(false); };
 window.__track = T;
+T('Page view');
+const t0 = Date.now(); let lastSent = 0;
+const tick = () => { const s = Math.round((Date.now() - t0) / 1000); if (s - lastSent >= 30) { lastSent = s; T('Time on page', { seconds: s }); } };
+setInterval(tick, 30000);
+addEventListener('pagehide', () => { const s = Math.round((Date.now() - t0) / 1000); q.push({ n: 'Time on page', d: { seconds: s } }); flush(true); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(true); });
 const label = el => (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60);
 document.addEventListener('click', ev => {
   const el = ev.target.closest('a, button'); if (!el) return;
@@ -219,8 +236,8 @@ const form = document.getElementById('inviteForm');
 if (form) {
   let started = false;
   form.addEventListener('input', () => { if (!started) { started = true; T('Invite: form started'); } });
-  new MutationObserver(() => { const cf = document.getElementById('formConfirm'); if (cf && !cf.hidden) T('Invite: sent successfully'); })
-    .observe(document.getElementById('formConfirm') || form, { attributes: true, attributeFilter: ['hidden'] });
+  const cf = document.getElementById('formConfirm');
+  if (cf) new MutationObserver(() => { if (!cf.hidden) T('Invite: sent successfully'); }).observe(cf, { attributes: true, attributeFilter: ['hidden'] });
   const err = document.getElementById('formErr');
   if (err) new MutationObserver(() => { if (!err.hidden) T('Invite: error shown', { message: err.textContent.slice(0, 60) }); }).observe(err, { attributes: true, childList: true });
 }
