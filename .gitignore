@@ -2,3 +2,5 @@ content/inbox/hold/
 content/private.json
 tools/__pycache__/
 dist/
+index.html
+education.html

@@ -13,4 +13,4 @@ Official website: https://chathurya.caeleon.net (GitHub Pages, served from the `
 
 1. Add or edit items in `content/<folder>/items.json` and put photos in that folder's `images/`.
 2. Run `python3 tools/build.py`. It reports any unused or missing media.
-3. Commit, then push `main` and `main:gh-pages`.
+3. Commit and push `main` (source only), then run `tools/deploy.sh`, which publishes just the built pages and media to `gh-pages`. Private settings (phone keys, endpoint) live in `content/private.json`, which is never committed.

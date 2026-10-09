@@ -10,8 +10,8 @@
  *   5. Logs it as a new row in the "Enquiries" sheet.
  *
  * Keys live in Project Settings > Script properties, never in this file:
- *   ALERTS       e.g.  447474363075:2263435,447404334893:7862768
- *   OWNER_EMAIL  e.g.  sandabarana@gmail.com
+ *   ALERTS       e.g.  447700900123:1234567,447700900456:7654321  (number:apikey pairs)
+ *   OWNER_EMAIL  the inbox that receives enquiries
  */
 
 var FIELDS = { name: 80, phone: 20, email: 120, event: 150, date: 80, msg: 1500, page: 200, botcheck: 5 };
