@@ -57,5 +57,9 @@
     "name": "GOYA Model Management",
     "url": "https://www.instagram.com/goyamodels/",
     "label": "GOYA Models on Instagram"
+  },
+  "analytics": {
+    "umami_website_id": "",
+    "_note": "Paste the Umami website ID here to switch on visitor and click tracking (cookieless)."
   }
 }

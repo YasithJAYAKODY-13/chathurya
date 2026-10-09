@@ -788,6 +788,7 @@ def make_page(body, title, desc, canonical, nav, home="", ld_list=None):
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0C241F">
 <link rel="icon" href="assets/icon.png">
+{(f'<script defer src="https://cloud.umami.is/script.js" data-website-id="{e(site.get("analytics", {}).get("umami_website_id", ""))}" data-do-not-track="true"></script>' if site.get("analytics", {}).get("umami_website_id") else "")}
 <link rel="preload" href="assets/fonts/rozha-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/hanken-grotesk-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>{CSS}</style>

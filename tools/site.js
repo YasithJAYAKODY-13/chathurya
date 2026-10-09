@@ -191,3 +191,40 @@ if(!reduce&&!lowEnd&&ribs.length){ let last=0;
   ribs.forEach(r=>vio.observe(r.cv));
   (function loop(ts){ if(ts-last>33&&!document.hidden){ last=ts; ribs.forEach(r=>r.on&&rdraw(r,ts)); } requestAnimationFrame(loop); })(0); }
 })();
+
+/* ---- click analytics (Umami, cookieless). Every event is sent only if the tracker is loaded. ---- */
+(function(){
+const T = (name, data) => { try { window.umami && window.umami.track(name, data); } catch (e) {} };
+window.__track = T;
+const label = el => (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+document.addEventListener('click', ev => {
+  const el = ev.target.closest('a, button'); if (!el) return;
+  const where = el.closest('section, header, footer, dialog'); const sec = where ? (where.id || where.className.split(' ')[0] || where.tagName.toLowerCase()) : 'page';
+  if (el.matches('.tab')) return T('Tab opened', { tab: label(el) });
+  if (el.matches('.facade, .tvclip')) return T('Video played', { video: label(el), section: sec });
+  if (el.dataset.gallery) return T('Gallery opened', { gallery: el.dataset.gallery, section: sec });
+  if (el.matches('[data-send]')) return T('Invite: send pressed');
+  if (el.matches('#cfAgain')) return T('Invite: send another');
+  if (el.matches('.edu-chip')) return T('Education chip');
+  const href = el.getAttribute('href') || '';
+  if (href.startsWith('mailto:')) return T('Email link', { section: sec });
+  if (href.startsWith('tel:')) return T('Phone call link', { section: sec });
+  if (/wa\.me|whatsapp/.test(href)) return T('WhatsApp link', { section: sec });
+  if (/youtube\.com|youtu\.be/.test(href)) return T('YouTube link', { section: sec });
+  if (/instagram\.com/.test(href)) return T('Instagram link', { section: sec });
+  if (href.startsWith('#') || href.includes('.html')) return T('Navigation', { to: href, from: sec, label: label(el) });
+  if (el.matches('a[href^="http"]')) return T('Outbound link', { url: href.slice(0, 80) });
+}, { capture: true });
+const form = document.getElementById('inviteForm');
+if (form) {
+  let started = false;
+  form.addEventListener('input', () => { if (!started) { started = true; T('Invite: form started'); } });
+  new MutationObserver(() => { const cf = document.getElementById('formConfirm'); if (cf && !cf.hidden) T('Invite: sent successfully'); })
+    .observe(document.getElementById('formConfirm') || form, { attributes: true, attributeFilter: ['hidden'] });
+  const err = document.getElementById('formErr');
+  if (err) new MutationObserver(() => { if (!err.hidden) T('Invite: error shown', { message: err.textContent.slice(0, 60) }); }).observe(err, { attributes: true, childList: true });
+}
+const seen = new Set();
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !seen.has(e.target.id)) { seen.add(e.target.id); T('Section viewed', { section: e.target.id }); } }), { threshold: .4 });
+document.querySelectorAll('main section[id]').forEach(s => io.observe(s));
+})();
