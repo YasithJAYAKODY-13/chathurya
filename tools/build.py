@@ -79,13 +79,16 @@ def variants(rel, widths=(480, 960, 1440)):
     out = []
     for w in widths:
         if w >= W and out:
-            break
+            if out[-1][1] < W:
+                w = W
+            else:
+                break
         tw = min(w, W)
         name = f"{base}-{tw}.webp"
         dest = os.path.join(OUT_IMG, name)
         if not os.path.exists(dest) or os.path.getmtime(dest) < os.path.getmtime(src_path):
             r = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB").resize((tw, round(H * tw / W)), Image.LANCZOS)
-            r.save(dest, quality=72, method=6)
+            r.save(dest, quality=88 if "stage" in rel else 72, method=6)
         out.append((f"assets/img/{name}", tw))
     srcset = ", ".join(f"{u} {w}w" for u, w in out)
     small = out[0][0]
