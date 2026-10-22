@@ -543,13 +543,14 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 .vgrid .item{margin:0}
 @media (min-width:861px){.hero .stage{margin-right:calc(-1 * min(90px, max(0px, (100vw - 1180px) / 2)))}.hero .portrait{height:min(74svh,640px,50vw)}}
 .preview-ribbon{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:8px 14px;text-align:center;font-size:.82rem;background:#B9862A;color:#14251F}.preview-ribbon a{color:#14251F;font-weight:700}
+.workhead{padding:120px 0 10px}.workhead .lede a{color:var(--gold)}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/", "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": "Tangalle, Sri Lanka"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"}, "sameAs": ["https://www.facebook.com/chathuryasandabaranaofficial", "https://www.youtube.com/@chathuryasandabaranaofficial"], "image": "https://chathurya.caeleon.net/assets/share.jpg"}]</script>
 </head>
 <body>
 <header class="bar" id="bar"><div class="wrap">
   <a class="mark" href="./#top">Chathurya</a>
-  <nav aria-label="Main"><a href="./#about" class="hide-xs">About</a><a href="./#performances">Performances</a><a href="./#invite" class="cta">Invite</a></nav>
+  <nav aria-label="Main"><a href="./" class="hide-xs">Home</a><a href="work.html">Performances</a><a href="work.html#invite" class="cta">Invite</a></nav>
 </div></header>
 <main id="top">
 <section class="hero ehero" aria-label="Education">
@@ -661,7 +662,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 
 const bar = $('#bar');
-const onScroll = () => bar.classList.toggle('solid', scrollY > 40);
+const onScroll = () => bar && bar.classList.toggle('solid', scrollY > 40);
 addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
 const nx = $('.next[data-date]');
