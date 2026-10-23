@@ -933,12 +933,28 @@ body{background:transparent!important}
   .stats{grid-template-columns:1fr 1fr;column-gap:1rem}.stats>div{padding:1.6rem 0}.stats>div:nth-child(2n){border-left:1px solid var(--line);padding-left:1rem}
   .stats dd{font-size:3.4rem}
 }
+
+/* scroll choreography */
+#sprog{position:fixed;top:0;left:0;z-index:60;height:2px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+.cnav::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(2,22,12,.85),rgba(2,22,12,0));opacity:0;transition:opacity .6s ease;pointer-events:none}
+.cnav.veil::before{opacity:1}
+.chero .name{--drift:0px;transform:translateY(calc(-50% + var(--drift)))}
+@media (max-width:639px){.chero .name{transform:translateY(calc(-50% + var(--drift)))}}
+.chero .por,.chero .top,.chero .name{will-change:transform,opacity}
+.liq img,.pth img{--py:0%;transform:translateY(var(--py)) scale(1.12);transition:transform 1.6s var(--expo)}
+.vcard:hover .liq img{transform:translateY(var(--py)) scale(1.16)}
+.prow:hover .pth img{transform:translateY(var(--py)) scale(1.18)}
+.unveil{clip-path:inset(100% 0 0 0);transition:clip-path 1.4s var(--expo)}
+.on .unveil,.unveil.on{clip-path:inset(0 0 0 0)}
+.rise.on .unveil{clip-path:inset(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){.unveil{clip-path:none}.liq img,.pth img{transform:none}}
 </style>
 <script type="importmap">{"imports":{"three":"./assets/js/three/three.module.js","three/addons/":"./assets/js/three/jsm/"}}</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/", "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": "Sri Lanka"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"}, "sameAs": ["https://www.facebook.com/chathuryasandabaranaofficial", "https://www.youtube.com/@chathuryasandabaranaofficial"], "image": "https://chathurya.caeleon.net/assets/share.jpg"}]</script>
 </head>
 <body>
 <canvas id="flow" aria-hidden="true"></canvas>
+<i id="sprog" aria-hidden="true"></i>
 <div class="pre" id="pre" aria-hidden="false"><span class="brand">Chathurya Sandabarana</span><span class="count"><span id="preNum">0</span><b>%</b></span></div><header class="cnav"><nav aria-label="Main">
   <a class="logo" href="#top"><span class="mono">CS</span><span class="nm">Chathurya Sandabarana</span></a>
   <ul><li><a href="#story">Story</a></li><li><a href="#performances">Performances</a></li><li><a href="#programme">Programme</a></li><li><a href="#voices">Voices</a></li><li><a href="#contact">Booking enquiry</a></li></ul>
@@ -966,19 +982,19 @@ body{background:transparent!important}
   <a class="lbl" href="#programme">Full programme &darr;</a></div>
   <ul class="vgrid2"><li class="rise" data-reveal data-delay="0"><button class="vcard" data-gallery="handawaka-4" data-filter="liq-card-0" aria-label="Open Handawaka, Galle">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liq-card-0" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1"/></filter></svg>
-  <figure class="liq" role="img" aria-label="Handawaka, Galle"><img src="assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-480.webp" srcset="assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-480.webp 480w, assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-960.webp 960w, assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-1080.webp 1080w" sizes="(max-width: 768px) 92vw, 46vw" width="1080" height="720" alt="Handawaka, Galle" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
+  <figure class="liq unveil" role="img" aria-label="Handawaka, Galle"><img src="assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-480.webp" srcset="assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-480.webp 480w, assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-960.webp 960w, assets/img/concerts-and-events__images__2025-10-handawaka-galle-day2-4-1080.webp 1080w" sizes="(max-width: 768px) 92vw, 46vw" width="1080" height="720" alt="Handawaka, Galle" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
   <div class="vrow"><div><h3><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span>, Galle</h3><p>Solo with the full <span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span> band and in duets with Malith Perera, across two days in Galle.</p></div><div class="meta"><span class="yr">2025</span><span class="out">Two days in Galle</span></div></div>
   <p class="vcat">Concert</p></button></li><li class="rise" data-reveal data-delay="120"><button class="vcard" data-gallery="handawaka-1" data-filter="liq-card-1" aria-label="Open Handawaka, Colombo">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liq-card-1" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1"/></filter></svg>
-  <figure class="liq" role="img" aria-label="Handawaka, Colombo"><img src="assets/img/concerts-and-events__images__2024-handawaka-colombo-3-480.webp" srcset="assets/img/concerts-and-events__images__2024-handawaka-colombo-3-480.webp 480w, assets/img/concerts-and-events__images__2024-handawaka-colombo-3-960.webp 960w, assets/img/concerts-and-events__images__2024-handawaka-colombo-3-1080.webp 1080w" sizes="(max-width: 768px) 92vw, 46vw" width="1080" height="720" alt="Handawaka, Colombo" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
+  <figure class="liq unveil" role="img" aria-label="Handawaka, Colombo"><img src="assets/img/concerts-and-events__images__2024-handawaka-colombo-3-480.webp" srcset="assets/img/concerts-and-events__images__2024-handawaka-colombo-3-480.webp 480w, assets/img/concerts-and-events__images__2024-handawaka-colombo-3-960.webp 960w, assets/img/concerts-and-events__images__2024-handawaka-colombo-3-1080.webp 1080w" sizes="(max-width: 768px) 92vw, 46vw" width="1080" height="720" alt="Handawaka, Colombo" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
   <div class="vrow"><div><h3><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span>, Colombo</h3><p>Her first <span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span>, at Arcade Independence Square, singing <span lang="si" class="si-t" title="Mathaka Mandira">මතක මන්දිර</span> with Malith Perera.</p></div><div class="meta"><span class="yr">2024</span><span class="out"><span lang="si" class="si-t" title="Mathaka Mandira">මතක මන්දිර</span>, live</span></div></div>
   <p class="vcat">Concert</p></button></li><li class="rise" data-reveal data-delay="0"><button class="vcard" data-gallery="handawaka-3" data-filter="liq-card-2" aria-label="Open Handawaka, Havelock grounds">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liq-card-2" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1"/></filter></svg>
-  <figure class="liq" role="img" aria-label="Handawaka, Havelock grounds"><img src="assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-480.webp" srcset="assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-480.webp 480w, assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-960.webp 960w, assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-1280.webp 1280w" sizes="(max-width: 768px) 92vw, 46vw" width="1280" height="854" alt="Handawaka, Havelock grounds" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
+  <figure class="liq unveil" role="img" aria-label="Handawaka, Havelock grounds"><img src="assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-480.webp" srcset="assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-480.webp 480w, assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-960.webp 960w, assets/img/concerts-and-events__images__2025-06-03-handawaka-havelock-1-1280.webp 1280w" sizes="(max-width: 768px) 92vw, 46vw" width="1280" height="854" alt="Handawaka, Havelock grounds" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
   <div class="vrow"><div><h3><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span>, Havelock grounds</h3><p>On stage in Colombo with the <span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span> artists, June 2025.</p></div><div class="meta"><span class="yr">2025</span><span class="out">June 2025</span></div></div>
   <p class="vcat">Concert</p></button></li><li class="rise" data-reveal data-delay="120"><button class="vcard" data-gallery="tv-swarnavahini-rasa-handawaka" data-filter="liq-card-3" aria-label="Open Rasa Handawaka">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="liq-card-3" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1"/></filter></svg>
-  <figure class="liq" role="img" aria-label="Rasa Handawaka"><img src="assets/img/television__videos__swarnavahini-rasa-handawaka-1-480.webp" srcset="assets/img/television__videos__swarnavahini-rasa-handawaka-1-480.webp 480w, assets/img/television__videos__swarnavahini-rasa-handawaka-1-960.webp 960w, assets/img/television__videos__swarnavahini-rasa-handawaka-1-1264.webp 1264w" sizes="(max-width: 768px) 92vw, 46vw" width="1264" height="704" alt="Rasa Handawaka" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
+  <figure class="liq unveil" role="img" aria-label="Rasa Handawaka"><img src="assets/img/television__videos__swarnavahini-rasa-handawaka-1-480.webp" srcset="assets/img/television__videos__swarnavahini-rasa-handawaka-1-480.webp 480w, assets/img/television__videos__swarnavahini-rasa-handawaka-1-960.webp 960w, assets/img/television__videos__swarnavahini-rasa-handawaka-1-1264.webp 1264w" sizes="(max-width: 768px) 92vw, 46vw" width="1264" height="704" alt="Rasa Handawaka" class="" loading="lazy" decoding="async"><span class="vig"></span></figure>
   <div class="vrow"><div><h3><span lang="si" class="si-t" title="Rasa Handawaka">රස හැන්දෑවක</span></h3><p>A talk show with music. Chathurya joined as a guest, in conversation and singing live.</p></div><div class="meta"><span class="yr">Swarnavahini</span><span class="out">Live in the studio</span></div></div>
   <p class="vcat">Television</p></button></li></ul></section><section class="sec prog" id="programme"><div class="vhead">
   <div><p class="eyebrow">03 &middot; Programme</p><h2 class="h-sec ser" data-reveal><span class="ln"><span class="in">Every photograph.</span></span><span class="ln"><span class="in">Every performance.</span></span></h2></div>
@@ -1305,7 +1321,7 @@ function applyAdaptiveGrid() {
 applyAdaptiveGrid(); addEventListener("resize", applyAdaptiveGrid);
 
 /* smooth scroll */
-const lenis = new Lenis({ smoothWheel: true }); window.lenis = lenis;
+const lenis = new Lenis({ smoothWheel: true, lerp: 0.085, wheelMultiplier: 0.9 }); window.lenis = lenis;
 (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
 $$('a[href^="#"]').forEach(a => a.addEventListener("click", ev => {
   const t = document.getElementById(a.getAttribute("href").slice(1)); if (!t) return; ev.preventDefault(); lenis.scrollTo(t, { offset: 0 });
@@ -1378,6 +1394,34 @@ if (minv) { const hero = $(".chero"); let pastHero = false, atForm = false;
   minv.addEventListener("click", ev => { ev.preventDefault(); lenis.scrollTo(contact, { offset: 0 }); }); }
 /* the corner monogram returns to the top */
 const mono = $(".cnav .logo"); if (mono) mono.addEventListener("click", ev => { ev.preventDefault(); lenis.scrollTo(0); });
+
+/* scroll choreography: hero drift, nav veil, progress hairline, photo parallax */
+(() => {
+  const por = $(".chero .por"), name = $(".chero .name"), top = $(".chero .top"), cue = $(".chero .cue"), nav = $(".cnav"), bar = $("#sprog");
+  const pics = $$(".liq img, .pth img");
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    const y = scrollY, h = innerHeight, max = document.documentElement.scrollHeight - h;
+    if (bar) bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
+    if (nav) nav.classList.toggle("veil", y > 40);
+    if (y < h * 1.2 && !reduce) {
+      const p = Math.min(1, y / h);
+      if (por) { por.style.transform = `translate(-50%, ${y * 0.22}px)`; por.style.opacity = 1 - p * 0.9; }
+      if (name) { name.style.setProperty("--drift", `${y * 0.10}px`); name.style.opacity = 1 - p * 1.1; }
+      if (top) { top.style.transform = `translateY(${y * 0.06}px)`; top.style.opacity = 1 - p * 1.4; }
+      if (cue) cue.style.opacity = Math.max(0, 1 - p * 3);
+    }
+    if (!reduce) for (const im of pics) {
+      const r = im.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > h) continue;
+      const t = (r.top + r.height / 2 - h / 2) / h; im.style.setProperty("--py", `${(-t * 6).toFixed(2)}%`);
+    }
+  }
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } };
+  lenis.on("scroll", onScroll); addEventListener("scroll", onScroll, { passive: true }); addEventListener("resize", onScroll); frame();
+})();
+/* programme rows stagger within each group */
+$$(".pgroup").forEach(g => $$("li[data-reveal]", g).forEach((li, i) => { if (!li.dataset.delay) li.dataset.delay = Math.min(i * 55, 330); }));
 </script>
 <script type="module">/* Flow Wave — Three.js r143 particle sea, fixed behind the page.
    Scene values are the Flow Wave spec verbatim; mobile tuning only touches pixel ratio,
