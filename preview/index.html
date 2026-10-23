@@ -954,11 +954,60 @@ body{background:transparent!important}
 .chero .por.on,.chero .por.in{opacity:1;transform:translate(-50%,0)}
 .chero .por.in{transition:none}
 @media (prefers-reduced-motion:reduce){.chero .por{opacity:1;transform:translate(-50%,0)}}
+
+/* lightbox share */
+.lb-acts{display:flex;align-items:center;gap:.75rem}
+#lbShare{font-size:var(--fs-eyebrow);text-transform:uppercase;letter-spacing:.2em;color:var(--accent);border:1px solid var(--accent);border-radius:9999px;padding:.45rem 1rem;transition:background .3s,color .3s}
+#lbShare:hover{background:var(--accent);color:var(--background)}
+#lbShare:disabled{opacity:.6}
+
+/* latest strip */
+.next .lt{text-align:left;color:var(--foreground);text-transform:uppercase;letter-spacing:.22em;font-size:var(--fs-eyebrow);transition:color .3s}
+.next .lt:hover{color:var(--accent)}
+
+/* mobile first screen: roles and cue in off-white with a gold rule */
+@media (max-width:639px){
+  .chero .roles{color:var(--foreground);opacity:.85;letter-spacing:.24em;font-size:.68rem;padding-left:2.25rem;position:relative}
+  .chero .roles::before{content:"";position:absolute;left:0;top:.5em;width:1.5rem;height:1px;background:var(--accent)}
+  .chero .cue{color:var(--foreground);opacity:.7}
+}
+@media (max-width:380px){.chero .name{font-size:16.5vw}.chero .por{height:66vh}.h-sec.ser{font-size:2.3rem}}
+
+/* one grade for every photograph on the page (the viewer shows originals) */
+.liq img,.pth img{filter:saturate(.9) contrast(1.05) brightness(.97)}
+.liq::after,.pth::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(233,199,106,.06),rgba(2,22,12,.18));pointer-events:none}
+.pth{position:relative}
+
+/* sub pages (education, privacy) in the cinematic shell */
+body.nopre .pre{display:none}
+.subpage{padding-top:5.5rem}
+.subpage .wrap{max-width:72rem;margin-inline:auto;padding-inline:var(--gutter)}
+.subpage section{background:transparent!important;position:relative;z-index:1}
+.subpage .kicker{display:flex;align-items:center;gap:.75rem;font-size:var(--fs-eyebrow);font-weight:500;text-transform:uppercase;letter-spacing:.3em;color:var(--accent);background:none;border:0;padding:0;margin:0 0 1rem}
+.subpage .kicker::before{content:"";width:1.75rem;height:1px;background:var(--accent)}
+.subpage h1,.subpage h2,.subpage h3,.subpage .ename{font-family:var(--font-serif)!important;font-weight:500!important;text-transform:none;letter-spacing:0;color:var(--foreground)}
+.subpage .ename{font-size:calc(var(--fs-h1) * 1.2);line-height:1}
+.subpage .ename span{display:block;font-size:.4em;color:var(--muted);margin-top:.6rem;font-family:var(--font-sans);text-transform:uppercase;letter-spacing:.25em}
+.subpage h2{font-size:calc(var(--fs-h1) * .9);line-height:1.05;margin-bottom:1.5rem}
+.subpage .lede,.subpage .er-lede,.subpage p{font-size:var(--fs-body);color:var(--foreground);opacity:.9}
+.subpage .wquote p{font-family:var(--font-serif);font-size:calc(var(--fs-h3) * 1.05);line-height:1.4;opacity:1}
+.subpage .divider,.subpage .wave{display:none!important}
+.subpage .btn.primary{background:var(--accent)!important;color:var(--background)!important;border-radius:9999px}
+.subpage .btn.ghost{border:1px solid var(--line-strong)!important;border-radius:9999px;color:var(--foreground)!important}
+.subpage .efirst{font-family:var(--font-serif);font-size:var(--fs-h3);color:var(--accent)}
+.cfoot.sub{padding-top:0}
+.legal{max-width:60rem}
+.legal-body{margin-top:3rem;max-width:62ch}
+.legal-body h3{font-family:var(--font-serif);font-size:var(--fs-h3);font-weight:500;margin:2rem 0 .6rem}
+.legal-body p{color:var(--foreground);opacity:.85;line-height:1.7}
+.legal-body a{color:var(--accent);border-bottom:1px solid var(--accent)}
+.legal-body .small{margin-top:2.5rem;font-size:var(--fs-eyebrow);color:var(--muted)}
+@media (max-width:639px){.subpage .ename{font-size:2.6rem}.subpage h2{font-size:2.1rem}}
 </style>
 <script type="importmap">{"imports":{"three":"./assets/js/three/three.module.js","three/addons/":"./assets/js/three/jsm/"}}</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/", "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": "Sri Lanka"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"}, "sameAs": ["https://www.facebook.com/chathuryasandabaranaofficial", "https://www.youtube.com/@chathuryasandabaranaofficial"], "image": "https://chathurya.caeleon.net/assets/share.jpg"}]</script>
 </head>
-<body>
+<body class="">
 <canvas id="flow" aria-hidden="true"></canvas>
 <i id="sprog" aria-hidden="true"></i>
 <div class="pre" id="pre" aria-hidden="false"><span class="brand">Chathurya Sandabarana</span><span class="count"><span id="preNum">0</span><b>%</b></span></div><header class="cnav"><nav aria-label="Main">
@@ -976,7 +1025,7 @@ body{background:transparent!important}
   <div class="base"></div>
   <h1 class="name disp" aria-label="Chathurya Sandabarana"><span class="ln"><span class="in-l"><span class="ltr">C</span><span class="ltr">h</span><span class="ltr">a</span><span class="ltr">t</span><span class="ltr">h</span><span class="ltr">u</span><span class="ltr">r</span><span class="ltr">y</span><span class="ltr">a</span></span></span><span class="ln"><span class="in-l"><span class="ltr">S</span><span class="ltr">a</span><span class="ltr">n</span><span class="ltr">d</span><span class="ltr">a</span><span class="ltr">b</span><span class="ltr">a</span><span class="ltr">r</span><span class="ltr">a</span><span class="ltr">n</span><span class="ltr">a</span></span></span></h1>
   <p class="cue">Scroll</p>
-</section><section class="next" aria-label="Availability"><span class="k">Now</span><span class="t">Accepting invitations for 2027</span><a class="d" href="#contact">Booking enquiry &rarr;</a></section><section class="mq" aria-label="Highlights"><div class="track"><span class="w">The Voice Sri Lanka</span><span class="w"><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span></span><span class="w">Sayam Heene</span><span class="w">Live in Dubai</span><span class="w">First Class Honours</span><span class="w"><span lang="si" class="si-t" title="Man Hoyanne Premayak">මං හොයන්නේ ප්‍රේමයක්</span></span><span class="w">The Voice Sri Lanka</span><span class="w"><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span></span><span class="w">Sayam Heene</span><span class="w">Live in Dubai</span><span class="w">First Class Honours</span><span class="w"><span lang="si" class="si-t" title="Man Hoyanne Premayak">මං හොයන්නේ ප්‍රේමයක්</span></span></div></section><section class="sec story" id="story"><div class="g12">
+</section><section class="next" aria-label="Latest"><span class="k">Latest &middot; 17 October 2026</span><span class="t"><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span>, Anuradhapura</span><a class="d" href="#contact">Booking enquiry &rarr;</a></section><section class="mq" aria-label="Highlights"><div class="track"><span class="w">The Voice Sri Lanka</span><span class="w"><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span></span><span class="w">Sayam Heene</span><span class="w">Live in Dubai</span><span class="w">First Class Honours</span><span class="w"><span lang="si" class="si-t" title="Man Hoyanne Premayak">මං හොයන්නේ ප්‍රේමයක්</span></span><span class="w">The Voice Sri Lanka</span><span class="w"><span lang="si" class="si-t" title="Handawaka">හැන්දෑවක</span></span><span class="w">Sayam Heene</span><span class="w">Live in Dubai</span><span class="w">First Class Honours</span><span class="w"><span lang="si" class="si-t" title="Man Hoyanne Premayak">මං හොයන්නේ ප්‍රේමයක්</span></span></div></section><section class="sec story" id="story"><div class="g12">
   <div class="c6">
     <p class="eyebrow">01 &middot; The Story</p>
     <h2 class="h-sec ser" data-reveal><span class="ln"><span class="in">A voice from the</span></span><span class="ln"><span class="in">southern coast.</span></span></h2>
@@ -1053,13 +1102,13 @@ body{background:transparent!important}
       <li><a href="work.html">All her work</a></li>
       <li><a href="education.html">Education</a></li>
       <li><a href="https://www.instagram.com/goyamodels/" target="_blank" rel="noreferrer noopener">Represented for modelling by GOYA</a></li></ul></nav>
-    <div class="c3"><p class="copy">© 2026 Chathurya Sandabarana. All rights reserved.</p><p class="copy">Messages sent through this page are used only to reply to you.</p></div>
+    <div class="c3"><p class="copy">© 2026 Chathurya Sandabarana. All rights reserved.</p><p class="copy"><a href="privacy.html">Privacy</a> &middot; Messages sent through this page are used only to reply to you.</p></div>
   </div>
 </footer><a class="minv" href="#contact" id="minv">Booking enquiry</a>
 <div class="preview-ribbon">Preview of the next version. The live site is at <a href="https://chathurya.caeleon.net/">chathurya.caeleon.net</a></div>
 <canvas id="waves" hidden></canvas>
 <dialog id="lightbox" aria-label="Gallery">
-  <div class="lb-top"><span id="lbCount" aria-live="polite"></span><button id="lbClose" aria-label="Close gallery"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="lb-top"><span id="lbCount" aria-live="polite"></span><span class="lb-acts"><button id="lbShare" aria-label="Share to your story" title="Share to your story">Share</button><button id="lbClose" aria-label="Close gallery"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span></div>
   <div class="lb-track" id="lbTrack"></div>
   <p class="lb-cap" id="lbCap"></p>
   <button class="lb-nav prev" id="lbPrev" aria-label="Previous">‹</button><button class="lb-nav next" id="lbNext" aria-label="Next">›</button>
@@ -1337,7 +1386,8 @@ $$('a[href^="#"]').forEach(a => a.addEventListener("click", ev => {
 const pre = $("#pre"), num = $("#preNum");
 const REVEAL_DELAY = reduce ? 0 : 1750;
 function heroReveal() {
-  const name = $(".chero .name"), roles = $$(".chero .roles .ln"), desc = $(".chero .desc"), cue = $(".chero .cue");
+  const name = $(".chero .name"); if (!name) return;
+  const roles = $$(".chero .roles .ln"), desc = $(".chero .desc"), cue = $(".chero .cue");
   name.querySelectorAll(".ln").forEach((ln, li) => ln.querySelectorAll(".ltr").forEach((l, i) => { l.style.transitionDelay = (li * 240 + i * 52) + "ms"; }));
   name.classList.add("on");
   const por = $(".chero .por"); setTimeout(() => por && por.classList.add("on"), 380);
@@ -1394,7 +1444,7 @@ if (!reduce && matchMedia("(hover:hover) and (min-width:769px)").matches) {
 
 /* mobile sticky invite appears once the hero has passed, hides on the invite form */
 const minv = $("#minv"), contact = $("#contact");
-if (minv) { const hero = $(".chero"); let pastHero = false, atForm = false;
+if (minv) { const hero = $(".chero") || $("main"); let pastHero = false, atForm = false;
   const upd = () => minv.classList.toggle("on", pastHero && !atForm);
   new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; upd(); }, { threshold: 0.05 }).observe(hero);
   if (contact) new IntersectionObserver(es => { atForm = es[0].isIntersecting; upd(); }, { threshold: 0.15 }).observe(contact);
@@ -1430,6 +1480,44 @@ const mono = $(".cnav .logo"); if (mono) mono.addEventListener("click", ev => { 
 })();
 /* programme rows stagger within each group */
 $$(".pgroup").forEach(g => $$("li[data-reveal]", g).forEach((li, i) => { if (!li.dataset.delay) li.dataset.delay = Math.min(i * 55, 330); }));
+
+/* share to story: a 1080x1920 card with the current photo, her name and the site address */
+(() => {
+  const btn = $("#lbShare"), track = $("#lbTrack"), capEl = $("#lbCap"); if (!btn || !track) return;
+  const SITE = "chathurya.caeleon.net";
+  async function makeCard() {
+    const i = Math.round(track.scrollLeft / track.clientWidth), slide = track.children[i]; if (!slide) return null;
+    const img = slide.querySelector("img"), vid = slide.querySelector("video");
+    let src = img ? img.currentSrc || img.src : vid && vid.poster; if (!src || /ytimg\.com/.test(src)) return null;
+    const im = new Image(); im.decoding = "async"; im.src = src; await im.decode().catch(() => {});
+    if (!im.naturalWidth) return null;
+    try { await document.fonts.load("400 120px Anton"); await document.fonts.load("500 44px Cormorant"); } catch {}
+    const W = 1080, H = 1920, c = document.createElement("canvas"); c.width = W; c.height = H; const x = c.getContext("2d");
+    x.fillStyle = "#02160c"; x.fillRect(0, 0, W, H);
+    const g = x.createRadialGradient(W / 2, H * 0.45, 100, W / 2, H * 0.45, 1100); g.addColorStop(0, "rgba(52,232,154,.16)"); g.addColorStop(1, "rgba(2,22,12,0)"); x.fillStyle = g; x.fillRect(0, 0, W, H);
+    const fw = 900, fh = 1125, fx = (W - fw) / 2, fy = 330; const r = Math.max(fw / im.naturalWidth, fh / im.naturalHeight);
+    const dw = im.naturalWidth * r, dh = im.naturalHeight * r; x.save(); x.beginPath(); x.rect(fx, fy, fw, fh); x.clip();
+    x.drawImage(im, fx + (fw - dw) / 2, fy + (fh - dh) * 0.3, dw, dh); x.restore();
+    x.strokeStyle = "#e9c76a"; x.lineWidth = 2; x.strokeRect(fx - 14, fy - 14, fw + 28, fh + 28);
+    x.fillStyle = "#e9c76a"; x.textAlign = "center"; x.font = "400 118px Anton, sans-serif"; x.fillText("CHATHURYA", W / 2, 170); x.fillText("SANDABARANA", W / 2, 290);
+    const cap = (capEl.textContent || "").replace(/\s+/g, " ").trim(); x.fillStyle = "#f3f1ea"; x.font = "500 44px Cormorant, Georgia, serif";
+    const words = cap.split(" "), lines = []; let ln = ""; for (const w of words) { const t = ln ? ln + " " + w : w; if (x.measureText(t).width > 880 && ln) { lines.push(ln); ln = w; } else ln = t; } if (ln) lines.push(ln);
+    lines.slice(0, 3).forEach((l, k) => x.fillText(l, W / 2, 1560 + k * 56));
+    x.fillStyle = "#a3aba3"; x.font = "500 30px Onest, sans-serif"; x.letterSpacing = "6px"; x.fillText(SITE.toUpperCase(), W / 2, 1800);
+    return new Promise(res => c.toBlob(res, "image/jpeg", 0.92));
+  }
+  btn.addEventListener("click", async () => {
+    btn.disabled = true; const old = btn.textContent; btn.textContent = "…";
+    try {
+      const blob = await makeCard(); if (!blob) { btn.textContent = "Not for this one"; setTimeout(() => btn.textContent = old, 1600); return; }
+      const file = new File([blob], "chathurya-sandabarana.jpg", { type: "image/jpeg" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) await navigator.share({ files: [file], title: "Chathurya Sandabarana", text: "https://" + SITE });
+      else { const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = file.name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }
+      btn.textContent = "Shared"; setTimeout(() => btn.textContent = old, 1600);
+    } catch (err) { btn.textContent = old; }
+    finally { btn.disabled = false; }
+  });
+})();
 </script>
 <script type="module">/* Flow Wave — Three.js r143 particle sea, fixed behind the page.
    Scene values are the Flow Wave spec verbatim; mobile tuning only touches pixel ratio,
@@ -1446,7 +1534,7 @@ const canvas = document.getElementById("flow");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const mobile = matchMedia("(max-width: 768px), (hover: none)").matches;
 /* low-memory phones keep the sea but skip the bloom passes */
-const lite = (navigator.deviceMemory && navigator.deviceMemory <= 2) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+let lite = (navigator.deviceMemory && navigator.deviceMemory <= 2) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
 
 function webglOK() { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl") || c.getContext("experimental-webgl")); } catch { return false; } }
 if (!canvas || !webglOK()) { canvas && canvas.remove(); }
@@ -1692,8 +1780,19 @@ const sceneObj = { stream: 0, appearStart: performance.now(), t0: performance.no
 /* ---- render loop (paused when the tab is hidden) ---- */
 let running = true;
 document.addEventListener("visibilitychange", () => { running = !document.hidden; if (running) requestAnimationFrame(loop); });
-function loop() {
+/* measured frame rate: if the device cannot hold ~36fps with bloom, drop bloom; if still slow, drop pixel ratio */
+let fcount = 0, facc = 0, flast = 0, fstage = 0;
+function budget(now) {
+  if (flast) { facc += now - flast; fcount++; }
+  flast = now;
+  if (fcount === 90) { const avg = facc / fcount; facc = 0; fcount = 0;
+    if (avg > 28 && fstage === 0) { lite = true; fstage = 1; }
+    else if (avg > 33 && fstage === 1) { renderer.setPixelRatio(1); for (const c of [torusComposer, bloomComposer, finalComposer]) c.setPixelRatio(1); fstage = 2; }
+    else fstage = Math.max(fstage, 3); }
+}
+function loop(now) {
   if (!running) return;
+  if (fstage < 3 && uniforms.uAppear.value >= 1) budget(now || performance.now());
   scrollSmooth = Lerp(scrollSmooth, scrollTarget, 0.10);
   scrollCurrent = Lerp(scrollCurrent, scrollSmooth, 0.06);
   mouse.x = Lerp(mouse.x, mouseTarget.x, 0.06);
