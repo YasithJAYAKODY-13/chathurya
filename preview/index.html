@@ -948,6 +948,12 @@ body{background:transparent!important}
 .on .unveil,.unveil.on{clip-path:inset(0 0 0 0)}
 .rise.on .unveil{clip-path:inset(0 0 0 0)}
 @media (prefers-reduced-motion:reduce){.unveil{clip-path:none}.liq img,.pth img{transform:none}}
+
+/* hero entrance: she rises into place a beat after her name */
+.chero .por{opacity:0;transform:translate(-50%,6vh);transition:opacity 1.6s var(--expo),transform 1.6s var(--expo)}
+.chero .por.on,.chero .por.in{opacity:1;transform:translate(-50%,0)}
+.chero .por.in{transition:none}
+@media (prefers-reduced-motion:reduce){.chero .por{opacity:1;transform:translate(-50%,0)}}
 </style>
 <script type="importmap">{"imports":{"three":"./assets/js/three/three.module.js","three/addons/":"./assets/js/three/jsm/"}}</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Chathurya Sandabarana", "url": "https://chathurya.caeleon.net/", "jobTitle": "Singer", "homeLocation": {"@type": "Place", "name": "Sri Lanka"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Kingston University London"}, "sameAs": ["https://www.facebook.com/chathuryasandabaranaofficial", "https://www.youtube.com/@chathuryasandabaranaofficial"], "image": "https://chathurya.caeleon.net/assets/share.jpg"}]</script>
@@ -1329,14 +1335,15 @@ $$('a[href^="#"]').forEach(a => a.addEventListener("click", ev => {
 
 /* preloader: count 0→100 over 2000ms, fade, 200ms, wipe up 650ms, then start */
 const pre = $("#pre"), num = $("#preNum");
-const REVEAL_DELAY = reduce ? 0 : 1500;
+const REVEAL_DELAY = reduce ? 0 : 1750;
 function heroReveal() {
   const name = $(".chero .name"), roles = $$(".chero .roles .ln"), desc = $(".chero .desc"), cue = $(".chero .cue");
   name.querySelectorAll(".ln").forEach((ln, li) => ln.querySelectorAll(".ltr").forEach((l, i) => { l.style.transitionDelay = (li * 240 + i * 52) + "ms"; }));
   name.classList.add("on");
-  roles.forEach((ln, i) => setTimeout(() => ln.classList.add("on"), 200 + i * 80));
-  setTimeout(() => desc.classList.add("on"), 400);
-  setTimeout(() => cue.classList.add("on"), 900);
+  const por = $(".chero .por"); setTimeout(() => por && por.classList.add("on"), 380);
+  roles.forEach((ln, i) => setTimeout(() => ln.classList.add("on"), 700 + i * 80));
+  setTimeout(() => desc.classList.add("on"), 900);
+  setTimeout(() => cue.classList.add("on"), 1600);
 }
 if (reduce || !pre) { if (pre) pre.remove(); heroReveal(); }
 else {
@@ -1405,9 +1412,10 @@ const mono = $(".cnav .logo"); if (mono) mono.addEventListener("click", ev => { 
     const y = scrollY, h = innerHeight, max = document.documentElement.scrollHeight - h;
     if (bar) bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
     if (nav) nav.classList.toggle("veil", y > 40);
+    if (por && !por.classList.contains("in") && y > 2) por.classList.add("in");
     if (y < h * 1.2 && !reduce) {
       const p = Math.min(1, y / h);
-      if (por) { por.style.transform = `translate(-50%, ${y * 0.22}px)`; por.style.opacity = 1 - p * 0.9; }
+      if (por && por.classList.contains("in")) { por.style.transform = `translate(-50%, ${y * 0.22}px)`; por.style.opacity = 1 - p * 0.9; }
       if (name) { name.style.setProperty("--drift", `${y * 0.10}px`); name.style.opacity = 1 - p * 1.1; }
       if (top) { top.style.transform = `translateY(${y * 0.06}px)`; top.style.opacity = 1 - p * 1.4; }
       if (cue) cue.style.opacity = Math.max(0, 1 - p * 3);
